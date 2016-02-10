@@ -1,15 +1,36 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+@font-face{ 
+  font-family: 'MyWebFont';
+  src: url('WebFont.woff') format('woff'),;
+}
+
 .login-page {
   width: 360px;
   padding: 8% 0 0;
   margin: auto;
 }
+
+.title{
+  position: absolute;
+  left: 8%;
+  top: 20%;
+  font-family: "kalvika", Times, serif;
+  font-size: 100px; 
+  font-weight: bold;
+  letter-spacing: -1px; 
+  color: #0066cc; 
+  text-shadow: 1px 1px 0 #000, margin: 10px 0 24px; 
+  text-align: center; 
+  line-height: 50px;
+  margin: auto;
+}
+
 .form {
   position: absolute;
-  left: 100px;
-  top: 20%;
   z-index: 1;
+  top: 30%;
+  left: 60%;
   background: #ffffff;
   max-width: 360px;
   margin: 0 auto 100px;
