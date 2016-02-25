@@ -20,51 +20,16 @@
               Registration Form
             </h4><hr><br></h4>
             <div class="row">
-              <form class="col s12">
+
+
+              <form class="col s12" action="http://localhost/backup/php/process.php" method="post">
+
 
                 <div class="row">
                   <div class="input-field col s12">
                     <i class="material-icons prefix">toc</i>
-                    <input id="reg_no" type="number" class="validate">
+                    <input name="reg_no" id="reg_no" type="number" class="validate">
                     <label for="reg_no">Registration Number</label>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="input-field col s6">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="first_name" type="text" class="validate">
-                    <label for="first_name">First Name</label>
-                  </div>
-
-                  <div class="input-field col s6">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="last_name" type="text" class="validate">
-                    <label for="last_name">Last Name</label>
-                  </div> 
-                </div>
-
-                <div class="row">
-                  <div class="input-field col s12">
-                    <i class="material-icons prefix">input</i>
-                    <input id="password" type="password" class="validate">
-                    <label for="password">Password</label>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="input-field col s12">
-                    <i class="material-icons prefix">email</i>
-                    <input id="email" type="email" class="validate">
-                    <label for="email">Email</label>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="input-field col s12">
-                    <i class="material-icons prefix">call</i>
-                    <input id="contact_no" type="number" class="validate">
-                    <label for="contact">Contact number</label>
                   </div>
                 </div>
 
@@ -77,27 +42,67 @@
                     <option value="3">Software Engineering</option>
                   </select>
                 </div>
-              </div>
 
-              <div class="file-field input-field">
-                <div class="btn">
-                  <span>File</span>
-                  <input type="file">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input name="first_name" id="first_name" type="text" class="validate">
+                    <label for="first_name">First Name</label>
+                  </div>
+
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input name="last_name" id="last_name" type="text" class="validate">
+                    <label for="last_name">Last Name</label>
+                  </div> 
                 </div>
-                <div class="file-path-wrapper">
-                  <input class="file-path validate" type="text">
+
+                <div class="row">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">input</i>
+                    <input name="password" id="password" type="password" class="validate">
+                    <label for="password">Password</label>
+                  </div>
                 </div>
-              </div>
-              
-              <button class="btn waves-effect right" type="submit" name="action">Submit
-                <i class="material-icons right">send</i>
-              </button>
+
+                <div class="row">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">email</i>
+                    <input name="email" id="email" type="email" class="validate">
+                    <label for="email">Email</label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">call</i>
+                    <input name="contact_no" id="contact_no" type="number" class="validate">
+                    <label for="contact">Contact number</label>
+                  </div>
+                </div>
+
+
+                <div class="file-field input-field">
+                  <div class="btn">
+                    <span>File</span>
+                    <input name="file_input" type="file">
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input name="file_input"class="file-path validate" type="text" placeholder="Upload profile pic">
+                  </div>
+                </div>
+
+                <button class="btn waves-effect right" type="submit" name="action">Submit
+                  <i class="material-icons right">send</i>
+                </button>
+              </form>
             </div>
           </div>
-          <br><br><br>
 
-          <br>
-        </form>
+        </div>
+        <br><br><br>
+
+        <br>
       </div>
 
       <footer class="page-footer">
