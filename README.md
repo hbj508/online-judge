@@ -1,63 +1,28 @@
-![alt tag](https://raw.github.com/dogfalo/materialize/master/images/materialize.gif)
-===========
+# CodeMirror
+[![Build Status](https://travis-ci.org/codemirror/CodeMirror.svg)](https://travis-ci.org/codemirror/CodeMirror)
+[![NPM version](https://img.shields.io/npm/v/codemirror.svg)](https://www.npmjs.org/package/codemirror)
+[![Join the chat at https://gitter.im/codemirror/CodeMirror](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/codemirror/CodeMirror)  
+[Funding status: ![maintainer happiness](https://marijnhaverbeke.nl/fund/status_s.png?again)](https://marijnhaverbeke.nl/fund/)
 
-[![Travis CI](https://travis-ci.org/Dogfalo/materialize.svg?branch=master)](https://travis-ci.org/Dogfalo/materialize)[![Dependency Status](https://david-dm.org/Dogfalo/materialize.svg)](https://david-dm.org/Dogfalo/materialize)[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/Dogfalo/materialize?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+CodeMirror is a versatile text editor implemented in JavaScript for
+the browser. It is specialized for editing code, and comes with over
+100 language modes and various addons that implement more advanced
+editing functionality.
 
-Materialize, a CSS Framework based on material design
+A rich programming API and a CSS theming system are available for
+customizing CodeMirror to fit your application, and extending it with
+new functionality.
 
-### Current Version : v0.97.4
+You can find more information (and the
+[manual](http://codemirror.net/doc/manual.html)) on the [project
+page](http://codemirror.net). For questions and discussion, use the
+[discussion forum](https://discuss.codemirror.net/).
 
-## Sass Requirements:
-- Ruby Sass 3.3+, LibSass 0.6+
+See
+[CONTRIBUTING.md](https://github.com/codemirror/CodeMirror/blob/master/CONTRIBUTING.md)
+for contributing guidelines.
 
-## Supported Browsers:
-Chrome 35+, Firefox 31+, Safari 7+, IE 10+
-
-## Changelog
-- v0.97.4 (Dec 20, 2015)
-  - Added Jasmine testing with Travis CI
-  - Select bugfixes
-  - Grid Offset bugfix
-  - Dropdown overflow bugfix
-  - Range slider error bugfix
-- v0.97.3 (Nov 15, 2015)
-  - Meteor font issues fixed
-  - Select rendering issue fixed
-  - Added Push and Pull to grid
-  - Dynamic accordion appends fixed
-- v0.97.2 (Nov 8, 2015)
-  - Image support inside select
-  - Optgroup supported in select
-  - Multiple select added
-  - Card styling fixes
-  - Breadcrumbs added
-  - Scrollable tabs
-  - Tooltips and dropdowns position themselves more intelligently inside the window
-  - FAB menu is click-toggleable
-  - Horizontal FAB support added
-- v0.97.1 (Sep 13, 2015)
-  - Added new range slider with uses noUiSlider to provide powerful options
-  - Added CSS for Chips
-  - Toasts support adding of html elements
-  - Fixed select destroy/creation bug
-  - Bugfixes for dropdown, badges, collections, scrollfire
-  - Added default preloader color variable
-  - File input now supports multiple files and dynamically loaded elements
-- v0.97.0 (June 21, 2015)
-  - **Documentation changed to use Official Google Icon web font**
-  - **Input errors added**
-  - Flicker on Firefox on dropdowns fixed
-  - Pagination made more responsive
-  - Modal now prevents scrolling
-  - Modal animation added
-  - Support for multiple modals added
-  - Programmatic control of FAB to open/close added
-  - Programmatic control of slider to play/pause added
-  - Plus many more bug fixes
-
-
-## Contributing
-[Please read CONTRIBUTING.md for more information](CONTRIBUTING.md)
-
-## Testing
-We use Jasmine as our testing framework and we're trying to write a robust test suite for our components. If you want to help, [here's a starting guide on how to write tests in Jasmine](https://docs.google.com/document/d/1dVM6qGt_b_y9RRhr9X7oZfFydaJIEqB9CT7yekv-4XE/edit?usp=sharing)
+The CodeMirror community aims to be welcoming to everybody. We use the
+[Contributor Covenant
+(1.1)](http://contributor-covenant.org/version/1/1/0/) as our code of
+conduct.

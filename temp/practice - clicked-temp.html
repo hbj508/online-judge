@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- TODO: Student name as title -->
+	<title>Gahan Rakholia</title>
+
+	<!-- Materialize imports -->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="css/gahan-styles.css" media="screen,projection"/>
+
+	<!-- codemirror -->
+	<link rel="stylesheet" href="lib/codemirror.css">
+            <script src="lib/codemirror.js"></script>
+            <script src="addon/edit/matchbrackets.js"></script>
+            <link rel="stylesheet" href="addon/hint/show-hint.css">
+            <script src="addon/hint/show-hint.js"></script>
+            <script src="mode/clike/clike.js"></script>
+            <style>.CodeMirror {border: 2px inset #dee;}</style>
+
+  <!-- theme -->
+  <link rel="stylesheet" href="../lib/codemirror.css">
+<link rel="stylesheet" href="../theme/3024-day.css">
+<link rel="stylesheet" href="../theme/3024-night.css">
+<link rel="stylesheet" href="../theme/abcdef.css">
+<link rel="stylesheet" href="../theme/ambiance.css">
+<link rel="stylesheet" href="../theme/base16-dark.css">
+<link rel="stylesheet" href="../theme/bespin.css">
+<link rel="stylesheet" href="../theme/base16-light.css">
+<link rel="stylesheet" href="../theme/blackboard.css">
+<link rel="stylesheet" href="../theme/cobalt.css">
+<link rel="stylesheet" href="../theme/colorforth.css">
+<link rel="stylesheet" href="../theme/dracula.css">
+<link rel="stylesheet" href="../theme/eclipse.css">
+<link rel="stylesheet" href="../theme/elegant.css">
+<link rel="stylesheet" href="../theme/erlang-dark.css">
+<link rel="stylesheet" href="../theme/hopscotch.css">
+<link rel="stylesheet" href="../theme/icecoder.css">
+<link rel="stylesheet" href="../theme/isotope.css">
+<link rel="stylesheet" href="../theme/lesser-dark.css">
+<link rel="stylesheet" href="../theme/liquibyte.css">
+<link rel="stylesheet" href="../theme/material.css">
+<link rel="stylesheet" href="../theme/mbo.css">
+<link rel="stylesheet" href="../theme/mdn-like.css">
+<link rel="stylesheet" href="../theme/midnight.css">
+<link rel="stylesheet" href="../theme/monokai.css">
+<link rel="stylesheet" href="../theme/neat.css">
+<link rel="stylesheet" href="../theme/neo.css">
+<link rel="stylesheet" href="../theme/night.css">
+<link rel="stylesheet" href="../theme/paraiso-dark.css">
+<link rel="stylesheet" href="../theme/paraiso-light.css">
+<link rel="stylesheet" href="../theme/pastel-on-dark.css">
+<link rel="stylesheet" href="../theme/railscasts.css">
+<link rel="stylesheet" href="../theme/rubyblue.css">
+<link rel="stylesheet" href="../theme/seti.css">
+<link rel="stylesheet" href="../theme/solarized.css">
+<link rel="stylesheet" href="../theme/the-matrix.css">
+<link rel="stylesheet" href="../theme/tomorrow-night-bright.css">
+<link rel="stylesheet" href="../theme/tomorrow-night-eighties.css">
+<link rel="stylesheet" href="../theme/ttcn.css">
+<link rel="stylesheet" href="../theme/twilight.css">
+<link rel="stylesheet" href="../theme/vibrant-ink.css">
+<link rel="stylesheet" href="../theme/xq-dark.css">
+<link rel="stylesheet" href="../theme/xq-light.css">
+<link rel="stylesheet" href="../theme/yeti.css">
+<link rel="stylesheet" href="../theme/zenburn.css">
+<script src="../lib/codemirror.js"></script>
+<script src="../mode/javascript/javascript.js"></script>
+<script src="../addon/selection/active-line.js"></script>
+<script src="../addon/edit/matchbrackets.js"></script>
+
+</head>
+<body>
+	<!-- Materialize scripts -->
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+
+	<!-- Naviagtion Bar -->
+	<header>
+		<nav>
+			<div class="nav-wrapper">
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href="#"><i class="material-icons">notifications</i></a></li>
+					<li><a href="#">Sign Out</a></li>
+					<li><a href="#"><i class="material-icons">more_vert</i></a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- TODO: Replace it with user details. i.e. profile pic and other links -->
+		<!-- Gray Navigation bar -->
+		<ul class="side-nav fixed blue-grey">
+			<div class="row">
+				<h4>&lt;CodePro&gt;</h4>
+			</div>
+			<div class="row">
+				<img src="images/profile-pic.jpg" class="circle z-depth-3">
+			</div>
+			<div class="row">Gahan Rakholia</div>
+			<div class="row" style="margin-bottom: 30px">1031210005</div>
+			<li><a href="#"><i class="material-icons">account_circle</i>Profile</a></li>
+			<li><a href="#"><i class="material-icons">timeline</i>Dashboard</a></li>
+			<li class="active"><a href="#"><i class="material-icons">fitness_center</i>Practice</a></li>
+			<li><a href="#"><i class="material-icons">assignment</i>Assignment</a></li>
+			<li><a href="#"><i class="material-icons">code</i>Test</a></li>
+			<li><a href="#"><i class="material-icons">info</i>Help</a></li>
+		</ul>
+	</header>
+
+</div>
+
+<main>
+	<div class="row">
+	    <div class="col s12">
+	      <ul class="tabs">
+	        <li class="tab col s3"><a  class="active" href="#test1">Problem Title</a></li>
+	        <li class="tab col s3"><a href="#test2">Code Editor</a></li>
+	        <div class="col s6 offset-s6"><span class="flow-text"></span></div>
+      	</ul>
+      </div>
+    </div>
+    
+    <!-- TODO get the problem content dynamically from the previous page content-->
+    <div id="test1" class="col s12">
+    	<div class="contain">
+	   <ul class="collapsible" data-collapsible="expandable">
+
+              <!-- probelms -->
+              <li>
+                <div class="collapsible-header">problem</div>
+                <div class="collapsible-body"><p>
+                  <code>
+                    After visiting a childhood friend, Chef wants to get back to his home. Friend lives at the first street, and Chef himself lives at the N-th (and the last) street. Their city is a bit special: you can move from the X-th street to the Y-th street if and only if 1 <= Y - X <= K, where K is the integer value that is given to you. Chef wants to get to home in such a way that the product of all the visited streets' special numbers is minimal (including the first and the N-th street). Please, help him to find such a product.
+                  </code>
+                </p></div>
+              </li>
+
+              <!-- input -->
+              <li>
+                <div class="collapsible-header">input</div>
+                <div class="collapsible-body"><p><code>
+                  The first line of input consists of two integer numbers - N and K - the number of streets and the value of K respectively. The second line consist of N numbers - A1, A2, ..., AN respectively, where Ai equals to the special number of the i-th street.
+                </code></p></div>
+              </li>
+
+              <!-- output -->
+              <li>
+                <div class="collapsible-header">output</div>
+                <div class="collapsible-body"><p><code>
+                  Please output the value of the minimal possible product, modulo 1000000007.
+                </code></p></div>
+              </li>
+
+              <!-- constraints -->
+              <li>
+                <div class="collapsible-header">Constraints</div>
+                <div class="collapsible-body"><p>
+                 <code>
+                   1<=n
+                 </code>
+               </p>
+             </div>
+           </li>
+</div>
+    </div>
+
+    <div id="test2" class="col s12">
+    <article>
+<h2>Theme Demo</h2>
+<form><textarea id="code" name="code">
+function findSequence(goal) {
+  function find(start, history) {
+    if (start == goal)
+      return history;
+    else if (start > goal)
+      return null;
+    else
+      return find(start + 5, "(" + history + " + 5)") ||
+             find(start * 3, "(" + history + " * 3)");
+  }
+  return find(1, "1");
+}</textarea></form>
+
+<p>Select a theme: <select onchange="selectTheme()" id=select>
+    <option selected>default</option>
+    <option>3024-day</option>
+    <option>3024-night</option>
+    <option>abcdef</option>
+    <option>ambiance</option>
+    <option>base16-dark</option>
+    <option>base16-light</option>
+    <option>bespin</option>
+    <option>blackboard</option>
+    <option>cobalt</option>
+    <option>colorforth</option>
+    <option>dracula</option>
+    <option>eclipse</option>
+    <option>elegant</option>
+    <option>erlang-dark</option>
+    <option>hopscotch</option>
+    <option>icecoder</option>
+    <option>isotope</option>
+    <option>lesser-dark</option>
+    <option>liquibyte</option>
+    <option>material</option>
+    <option>mbo</option>
+    <option>mdn-like</option>
+    <option>midnight</option>
+    <option>monokai</option>
+    <option>neat</option>
+    <option>neo</option>
+    <option>night</option>
+    <option>paraiso-dark</option>
+    <option>paraiso-light</option>
+    <option>pastel-on-dark</option>
+    <option>railscasts</option>
+    <option>rubyblue</option>
+    <option>seti</option>
+    <option>solarized dark</option>
+    <option>solarized light</option>
+    <option>the-matrix</option>
+    <option>tomorrow-night-bright</option>
+    <option>tomorrow-night-eighties</option>
+    <option>ttcn</option>
+    <option>twilight</option>
+    <option>vibrant-ink</option>
+    <option>xq-dark</option>
+    <option>xq-light</option>
+    <option>yeti</option>
+    <option>zenburn</option>
+</select>
+</p>
+
+<script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    styleActiveLine: true,
+    matchBrackets: true
+  });
+  var input = document.getElementById("select");
+  function selectTheme() {
+    var theme = input.options[input.selectedIndex].textContent;
+    editor.setOption("theme", theme);
+    location.hash = "#" + theme;
+  }
+  var choice = (location.hash && location.hash.slice(1)) ||
+               (document.location.search &&
+                decodeURIComponent(document.location.search.slice(1)));
+  if (choice) {
+    input.value = choice;
+    editor.setOption("theme", choice);
+  }
+  CodeMirror.on(window, "hashchange", function() {
+    var theme = location.hash.slice(1);
+    if (theme) { input.value = theme; selectTheme(); }
+  });
+</script>
+  </article>
+       
+    </div>
+  </div>
+</main>
+</body>
+</html>

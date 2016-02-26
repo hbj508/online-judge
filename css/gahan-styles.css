@@ -1,3 +1,8 @@
+
+.side-nav li.active {
+    background-color: #444;
+}
+
 header, main, footer{
 	padding-left: 240px;
 }
