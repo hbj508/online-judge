@@ -10,7 +10,3 @@ DB_URI = 'sqlite:///' + os.path.join(BASE_DIR, APP_NAME,'db','judge_temp.db')
 
 #flask uploads configuration
 UPLOADS_DEFAULT_DEST = os.path.join(BASE_DIR, APP_NAME, 'static')
-
-#certain useful constatnts
-FILE_INPUT_TESTCASE = 1
-FILE_OUTPUT_TESTCASE = 2

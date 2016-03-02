@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
+from enum import Enum
 
 """
     This module contains different useful models for judge. Following models are
@@ -70,6 +71,10 @@ class Problem(Base):
     attempts = Column(Integer)
     successfulSubmission = Column(Integer)
 
+class FileType(Enum):
+    """Enum INPUT, OUTPUT testcase files"""
+    INPUT = 1
+    OUTPUT = 2
 
 # Create engine
 if __name__ == '__main__':

@@ -1,6 +1,7 @@
 from judge_temp import app
 from flask import render_template, request
 from models import User, Problem
+from models import FileType
 
 import controllers as ctrl
 
@@ -38,6 +39,6 @@ def addProblem():
                           difficultyLevel=request.form['difficultyLevel'],
                           category=request.form['category'])
         ctrl.insertToDb(problem)
-        ctrl.saveTestCases(request.files.getlist('inputFiles'),123,app.config['FILE_INPUT_TESTCASE'])
-        ctrl.saveTestCases(request.files.getlist('outputFiles'),123,app.config['FILE_OUTPUT_TESTCASE'])
+        ctrl.saveTestCases(request.files.getlist('inputFiles'),problem.id,FileType.INPUT)
+        ctrl.saveTestCases(request.files.getlist('outputFiles'),problem.id,FileType.OUTPUT)
     return render_template('add_problem.html')
