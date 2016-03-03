@@ -1,0 +1,67 @@
+
+.side-nav li.active {
+    background-color: #444;
+}
+
+header, main, footer{
+	padding-left: 240px;
+}
+
+@media only screen and (max-width : 992px) {
+	header, main, footer {
+		padding-left: 0;
+	}
+}
+
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+main {
+	flex: 1 0 auto;
+}
+
+nav .brand-logo{
+	padding-left: 40px;
+}
+
+.side-nav.fixed a,.side-nav a{
+	line-height: 55px;
+	height: 55px;
+	color: #fafafa;
+}
+
+.side-nav li{
+	height: 55px;
+	transition: background-color .3s;
+}
+
+.side-nav li:hover{
+	background-color: #37474f;
+	/*blue-grey darken-3*/
+}
+
+.side-nav div.row{
+	margin-bottom: 0px;
+	text-align: center;
+	font-weight: bold;
+	color: #fafafa;
+}
+
+.side-nav img{
+	border: 2px solid white;
+	max-height: 100px;
+	margin: 15px;
+	margin-top: 30px;
+}
+
+.side-nav .material-icons{
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+.problem-text{
+    margin: 20px;
+}

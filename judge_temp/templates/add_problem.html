@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <title>Add Problem</title>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/materialize.min.css" media="screen">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/materialize.min.css')}}" media="screen">
 </head>
 <body>
 
     <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="../static/js/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="../static/js/materialize.min.js"></script>
+    <script type="text/javascript" src="{{url_for('static',filename='js/jquery-2.1.1.min.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static',filename='js/materialize.min.js')}}"></script>
 
     <!-- navigation bar -->
     <nav>
@@ -46,10 +46,26 @@
                 </div>
             </div>
 
-            <!-- constraints -->
+            <!-- Input Format -->
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea name="constraints" class="materialize-textarea col s6"></textarea>
+                    <textarea name="inputFormat" class="materialize-textarea"></textarea>
+                    <label for="inputFormat">Input Format:</label>
+                </div>
+            </div>
+
+            <!-- Output Format -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea name="outputFormat" class="materialize-textarea"></textarea>
+                    <label for="outputFormat">Output Format:</label>
+                </div>
+            </div>
+
+            <!-- constraints -->
+            <div class="row">
+                <div class="input-field col s6">
+                    <textarea name="constraints" class="materialize-textarea"></textarea>
                     <label for="constraints">Constraints:</label>
                 </div>
             </div>
@@ -71,6 +87,14 @@
                 <div class="input-field col s6">
                     <textarea name="sampleOutput" class="materialize-textarea"></textarea>
                     <label for="sampleOutput">Sample Output:</label>
+                </div>
+            </div>
+
+            <!-- Explanation -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea name="explanation" class="materialize-textarea"></textarea>
+                    <label for="explanation">Explanation:</label>
                 </div>
             </div>
 

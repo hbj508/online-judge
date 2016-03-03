@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- TODO: Student name as title -->
+	<title>Gahan Rakholia</title>
+
+	<!-- Materialize imports -->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="{{url_for('static',filename='css/materialize.min.css')}}"  media="screen,projection"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/gahan-styles.css')}}" media="screen,projection"/>
+
+	<!-- codemirror -->
+	<link rel="stylesheet" href="{{url_for('static',filename='lib/codemirror.css')}}">
+	<script src="{{url_for('static',filename='lib/codemirror.js')}}"></script>
+	<script src="{{url_for('static',filename='addon/edit/matchbrackets.js')}}"></script>
+	<link rel="stylesheet" href="{{url_for('static',filename='addon/hint/show-hint.css')}}">
+	<script src="{{url_for('static',filename='addon/hint/show-hint.js')}}"></script>
+	<script src="{{url_for('static',filename='mode/clike/clike.js')}}"></script>
+	<script src="{{url_for('static',filename='addon/selection/active-line.js')}}"></script>
+	<script src="{{url_for('static',filename='addon/edit/matchbrackets.js')}}"></script>
+	<style>.CodeMirror {border: 2px inset #dee;}</style>
+
+	<!-- theme -->
+	<link rel="stylesheet" href="{{url_for('static',filename='lib/codemirror.css')}}">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/theme/3024-day.css')}}">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/theme/3024-night.css')}}">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/theme/abcdef.css')}}">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/theme/base16-dark.css')}}">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/theme/ambiance.css')}}">
+
+</head>
+<body>
+	<!-- Materialize scripts -->
+	<script type="text/javascript" src="{{url_for('static',filename='js/jquery-2.1.1.min.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='js/materialize.min.js')}}"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('select').material_select();
+	});
+	</script>
+
+	<!-- Naviagtion Bar -->
+	<header>
+		<nav>
+			<div class="nav-wrapper">
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href="#"><i class="material-icons">notifications</i></a></li>
+					<li><a href="#">Sign Out</a></li>
+					<li><a href="#"><i class="material-icons">more_vert</i></a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- TODO: Replace it with user details. i.e. profile pic and other links -->
+		<!-- Gray Navigation bar -->
+		<ul class="side-nav fixed blue-grey">
+			<div class="row">
+				<h4>&lt;CodePro&gt;</h4>
+			</div>
+			<div class="row">
+				<img src="{{url_for('static',filename='profilePics/')}}{{user.id}}.{{user.profilePicExtension}}" class="circle z-depth-3">
+			</div>
+			<div class="row">{{user.firstName}} {{user.lastName}}</div>
+			<div class="row" style="margin-bottom: 30px">{{user.id}}</div>
+			<li><a href="#"><i class="material-icons">account_circle</i>Profile</a></li>
+			<li><a href="#"><i class="material-icons">timeline</i>Dashboard</a></li>
+			<li class="active"><a href="#"><i class="material-icons">fitness_center</i>Practice</a></li>
+			<li><a href="#"><i class="material-icons">assignment</i>Assignment</a></li>
+			<li><a href="#"><i class="material-icons">code</i>Test</a></li>
+			<li><a href="#"><i class="material-icons">info</i>Help</a></li>
+		</ul>
+	</header>
+
+	<main>
+		<div class="row">
+			<div class="col s12">
+				<ul class="tabs">
+					<li class="tab col s3"><a  class="active" href="#test1">Problem</a></li>
+					<li class="tab col s3"><a href="#test2">Code Editor</a></li>
+					<div class="col s6 offset-s6"><span class="flow-text"></span></div>
+				</ul>
+			</div>
+		</div>
+
+		<!-- TODO get the problem content dynamically from the previous page content-->
+		<div id="test1" class="col s12">
+				<ul class="collapsible" data-collapsible="expandable">
+
+					<!-- probelms -->
+					<li>
+						<div class="collapsible-header">{{problem.title}}</div>
+						<div class="collapsible-body" style="padding:20px">
+								<code>
+									{{problem.statement}}
+								</code>
+						</div>
+					</li>
+
+					<!-- input -->
+					<li>
+						<div class="collapsible-header">Input</div>
+						<div class="collapsible-body" style="padding:20px">
+							<code>
+								<pre>{{problem.sampleInput}}</pre>
+							</code>
+						</div>
+					</li>
+
+					<!-- output -->
+					<li>
+						<div class="collapsible-header">output</div>
+						<div class="collapsible-body" style="padding:20px">
+							<code>
+								<pre>{{problem.sampleOutput}}</pre>
+							</code>
+						</div>
+					</li>
+
+					<!-- constraints -->
+					<li>
+						<div class="collapsible-header">Constraints</div>
+						<div class="collapsible-body" style="padding:20px">
+							<code>
+								<pre>{{problem.constraints}}</pre>
+							</code>
+						</div>
+					</li>
+				</ul>
+		</div>
+
+		<div id="test2" class="col s12">
+			<div class="row">
+				<p>
+					<span class="col s1">Select a theme: </span>
+					<select onchange="selectTheme()" id="select" class="col s3">
+						<option selected>default</option>
+						<option>3024-day</option>
+						<option>3024-night</option>
+						<option>abcdef</option>
+						<option>ambiance</option>
+					</select>
+				</p>
+			</div>
+
+			<article>
+				<form>
+					<textarea id="code" name="code"></textarea>
+				</form>
+			</article>
+			<div class="row">
+				<div class="col s6 offset-s6"><span class="flow-text"></span></div>
+				<button class="btn waves-effect waves-light right" type="submit" name="action">Submit
+					<i class="material-icons right">send</i>
+				</button>
+			</div>
+		</div>
+	</main>
+	<script type="text/javascript" src="{{url_for('static',filename='js/myeditor.js')}}"></script>
+</body>
+</html>
