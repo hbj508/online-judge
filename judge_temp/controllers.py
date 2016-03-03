@@ -4,7 +4,12 @@ from judge_temp import app
 from flask.ext.uploads import UploadSet, IMAGES, configure_uploads, TEXT
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from models import Base,User, FileType
+from models import Base,User, TestcaseFileType
+
+"""
+    This module acts as a controller i.e.creates interface between
+    UI and backend.
+"""
 
 engine = create_engine(app.config['DB_URI'])
 Base.metadata.bind=engine
@@ -27,14 +32,31 @@ def insertToDb(obj):
     try:
         session.add(obj)
         session.commit()
-        get
         return True
     except:
         return False
 
+def selectFromDb(ModelClass,key=None):
+    """
+        Selects a particular row from a table based on its key if a key is provided
+        otherwise returns list of all tuples of given class
+
+        Args:
+            ModelClass: model class to query i.e. which table you want to extract from
+            key: priamry key for particular object it's an optional parameter
+        Returns:
+            tuple(class): a tuple object if a key is provided
+            list(tuple(class)): list of object in particular table
+    """
+    if key!=None:
+        return session.query(ModelClass).filter_by(id=key).one()
+    else:
+        return session.query(ModelClass).all()
+
+
 def saveProfilePic(pic,registrationNumber):
     """
-        Saves profile pic of each user in /static/profile_pic_db/
+        Saves profile pic of each user in /static/profilePics/
         with their registration number
 
         Args:
@@ -56,7 +78,7 @@ def saveTestCases(filelist,id,typeOfFile):
             typeOfFile(FileInput): enum of type FileInput which containts two values INPUT,OUTPUT
                         representing wether it's input testcase file or output.
     """
-    if typeOfFile==FileType.INPUT:
+    if typeOfFile==TestcaseFileType.INPUT:
         foldername = str(id)+"/inputs"
         count = 1
         for testcaseFile in filelist:

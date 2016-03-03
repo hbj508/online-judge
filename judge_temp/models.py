@@ -16,7 +16,7 @@ Base = declarative_base()
 class User(Base):
     """
         This model contains various entities for user such as:
-        1. Registration Number - (String, primary key)
+        1. id: Registration Number - (String, primary key)
         2. First Name
         3. Last Name
         4. Password
@@ -27,18 +27,20 @@ class User(Base):
             2.IT
             3.SWE
         8. Profile Type - (P)professior/(S)student
+        9. profilePicExtension
         Note: Profile pictures will be saved separatley in /static/profile_pic_db/
         and will be served as and when necessary. Name of each file will be unique
         i.e. as per their registrationNumber
     """
     __tablename__='user'
-    registrationNumber = Column(String(20),primary_key=True)
+    id = Column(String(20),primary_key=True)
     firstName = Column(String(20),nullable=False)
     lastName = Column(String(20),nullable=False)
     password = Column(String(20),nullable=False)
     email = Column(String(50),nullable=False,unique=True)
     contactNo = Column(Integer,nullable=False)
     branch = Column(Integer,nullable=False)
+    profilePicExtension = Column(String)
     #TODO: insert check constratint on profile type
 
 class Problem(Base):
@@ -52,8 +54,11 @@ class Problem(Base):
         6. Sample Output
         7. difficultyLevel
         8. category: DP, Graph, Ad-Hoc etc.
-        9. attempt
+        9. attempts
         10 successfulSubmission
+        11. inputFormat
+        12. outputFormat
+        13. explanation
         Note: Output Testcase Files will be saved separatley in /static/output_testcases/
         and will be served as and when necessary. Name of each folder will be equal to
         its id.
@@ -70,8 +75,11 @@ class Problem(Base):
     category = Column(String(100),nullable=False)
     attempts = Column(Integer)
     successfulSubmission = Column(Integer)
+    inputFormat= Column(Text)
+    outputFormat = Column(Text)
+    explanation = Column(Text)
 
-class FileType(Enum):
+class TestcaseFileType(Enum):
     """Enum INPUT, OUTPUT testcase files"""
     INPUT = 1
     OUTPUT = 2
