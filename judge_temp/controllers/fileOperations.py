@@ -10,24 +10,22 @@ Attributes:
         for saving different files.
     testcaseFiles (UploadSet) : instance of UploadSet for saving input and output testcases
         uploaded by problem setter.
-    sourceCodeFiles (UploadSet) : instance of UploadSet for saving code submitted for a problem
-        as a solution by user.
 """
 
 from .. import app
 from flask.ext.uploads import UploadSet, configure_uploads, IMAGES, TEXT
 from ..models import TestcaseFileType
 from . import getExtensionOfFile
+import os
+import execution
 
 # Intializing UploadSets
 profilePics = UploadSet('profilePics',extensions=IMAGES)
 testcaseFiles = UploadSet('testcaseFiles',extensions=TEXT)
-sourceCodeFiles = UploadSet('sourceCodeFiles',extensions=('c','cpp','java'))
 
 # Configuring UploadSets
 configure_uploads(app,profilePics)
 configure_uploads(app,testcaseFiles)
-configure_uploads(app,sourceCodeFiles)
 
 def saveProfilePic(pic,registrationNumber):
     """
@@ -80,7 +78,7 @@ def saveSourceCode(srcCode, codeLang, userId, problemId):
         For multiple uploads it'll get a suffix as a count.
 
         Args:
-            srcFile (str) : contains text of solution code submitted by user.
+            srcCode (str) : contains text of solution code submitted by user.
             codeLang (str) : extension of file to be used. This extension will be
                 as per the language chosen by user.
             userId (str) : registration number of user who uploaded this file
@@ -89,3 +87,11 @@ def saveSourceCode(srcCode, codeLang, userId, problemId):
 
     # TODO: apply check on success i.e. True if succes, False otherwise and raise an errors
     print 'inside saving'
+
+    #Writing a single solution file
+    userSolutionDirectory = os.path.join(app.config['SOURCE_CODE_FILES_DEST'],userId)
+    srcCodeBuffer = open(os.path.join(userSolutionDirectory,'Solution.'+codeLang),"w")
+    srcCodeBuffer.write(srcCode)
+    srcCodeBuffer.close()
+
+    execution.start(userId, codeLang)

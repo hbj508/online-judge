@@ -23,10 +23,5 @@ def mkdir_p(path):
         implements mkdir -p functinality of linux shell in python. It might raise
         error in concurrent conditions
     """
-    try:
-        os.mkdirs(path)
-    except OSError:
-        if OSError.errno == errno.EEXIST and os.path.isdir(path):
-            pass
-        else:
-            raise
+    if not os.path.exists(path):
+        os.makedirs(path)

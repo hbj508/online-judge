@@ -1,3 +1,4 @@
+import os
 from judge_temp import app
 from flask import render_template, request
 from models import User, Problem
@@ -28,6 +29,7 @@ def register():
         user.profilePicExtension = profilePicExtension
         fileOp.saveProfilePic(profilePic,user.id)
         dbOp.insertToDb(user)
+        ctrl.mkdir_p(os.path.join(app.config['SOURCE_CODE_FILES_DEST'],user.id))
     return render_template('registration_page.html')
 
 
