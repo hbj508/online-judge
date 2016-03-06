@@ -2,8 +2,9 @@ from judge_temp import app
 from flask import render_template, request
 from models import User, Problem
 from models import TestcaseFileType
-
 import controllers as ctrl
+import controllers.dbOperations as dbOp
+import controllers.fileOperations as fileOp
 
 @app.route('/')
 @app.route('/index')
@@ -13,7 +14,7 @@ def index():
 @app.route('/register', methods=['GET','POST'])
 def register():
     if request.method=='POST':
-        # TODO: enclose this with try catch
+        # TODO checkout for errors. use try except write unit test
         user = User(id=request.form['registrationNumber'],
                     firstName=request.form['firstName'],
                     lastName=request.form['lastName'],
@@ -22,16 +23,17 @@ def register():
                     contactNo=request.form['contactNo'],
                     branch=request.form['branch'])
         profilePic = request.files['profilePic']
-        ctrl.saveProfilePic(profilePic, user.id)
         if profilePic!=None:
             profilePicExtension = ctrl.getExtensionOfFile(profilePic.filename)
         user.profilePicExtension = profilePicExtension
-        ctrl.insertToDb(user)
+        fileOp.saveProfilePic(profilePic,user.id)
+        dbOp.insertToDb(user)
     return render_template('registration_page.html')
 
 
 @app.route('/addProblem',methods=['GET','POST'])
 def addProblem():
+    # TODO checkout for errors. use try except write unit test
     if request.method=='POST':
         problem = Problem(title=request.form['title'],
                           statement=request.form['statement'],
@@ -46,21 +48,25 @@ def addProblem():
                           inputFormat=request.form['inputFormat'],
                           outputFormat=request.form['outputFormat'],
                           explanation=request.form['explanation'])
-        ctrl.insertToDb(problem)
-        ctrl.saveTestCases(request.files.getlist('inputFiles'),problem.id,TestcaseFileType.INPUT)
-        ctrl.saveTestCases(request.files.getlist('outputFiles'),problem.id,TestcaseFileType.OUTPUT)
+        dbOp.insertToDb(problem)
+        fileOp.saveTestCases(request.files.getlist('inputFiles'),problem.id,TestcaseFileType.INPUT)
+        fileOp.saveTestCases(request.files.getlist('outputFiles'),problem.id,TestcaseFileType.OUTPUT)
     return render_template('add_problem.html')
 
 
 @app.route('/<userId>/practice')
 def practice(userId):
-    user = ctrl.selectFromDb(User,key=userId)
-    problems = ctrl.selectFromDb(Problem)
+    user = dbOp.selectFromDb(User,key=userId)
+    problems = dbOp.selectFromDb(Problem)
     return render_template('practice.html',user=user,problems=problems)
 
 
-@app.route('/<userId>/practice/<int:problemId>')
+@app.route('/<userId>/practice/<int:problemId>', methods=['GET','POST'])
 def problemSolving(userId,problemId):
-    user = ctrl.selectFromDb(User,key=userId)
-    problem = ctrl.selectFromDb(Problem,key=problemId)
+    # TODO secure location for saving soruce code files
+    if request.method=='POST':
+        sourceCode = request.form['code']
+        fileOp.saveSourceCode(sourceCode, 'java', userId, problemId)
+    user = dbOp.selectFromDb(User,key=userId)
+    problem = dbOp.selectFromDb(Problem,key=problemId)
     return render_template('problem.html',user=user,problem=problem)

@@ -146,15 +146,16 @@
 			</div>
 
 			<article>
-				<form>
+				<form action="{{url_for('problemSolving',userId=user.id,problemId=problem.id)}}" method="post">
 					<textarea id="code" name="code"></textarea>
+					<div class="row">
+						<button class="btn waves-effect waves-light right" type="submit" name="action">Submit
+							<i class="material-icons right">send</i>
+						</button>
+					</div>
 				</form>
 			</article>
 			<div class="row">
-				<div class="col s6 offset-s6"><span class="flow-text"></span></div>
-				<button class="btn waves-effect waves-light right" type="submit" name="action">Submit
-					<i class="material-icons right">send</i>
-				</button>
 			</div>
 		</div>
 	</main>

@@ -1,58 +1,33 @@
-import os
-
-from judge_temp import app
-from flask.ext.uploads import UploadSet, IMAGES, configure_uploads, TEXT
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from models import Base,User, TestcaseFileType
-
 """
-    This module acts as a controller i.e.creates interface between
-    UI and backend.
+This module consists of all the file operations required for
+online judge. Various tasks such as saving profile pics, saving user source code,
+saving testcase files etc. It'll configure upload files using configure_uploads() available
+in Flask-Uploads.
+
+Attributes:
+    profilePics (UploadSet) : instance of UploadSet for saving profile pics.
+        UploadSet is class available within Flask-Uploads package. It's responsible
+        for saving different files.
+    testcaseFiles (UploadSet) : instance of UploadSet for saving input and output testcases
+        uploaded by problem setter.
+    sourceCodeFiles (UploadSet) : instance of UploadSet for saving code submitted for a problem
+        as a solution by user.
 """
 
-engine = create_engine(app.config['DB_URI'])
-Base.metadata.bind=engine
+from .. import app
+from flask.ext.uploads import UploadSet, configure_uploads, IMAGES, TEXT
+from ..models import TestcaseFileType
+from . import getExtensionOfFile
 
-DBSession = sessionmaker(bind=engine)
-session = DBSession()
-
+# Intializing UploadSets
 profilePics = UploadSet('profilePics',extensions=IMAGES)
 testcaseFiles = UploadSet('testcaseFiles',extensions=TEXT)
+sourceCodeFiles = UploadSet('sourceCodeFiles',extensions=('c','cpp','java'))
+
+# Configuring UploadSets
 configure_uploads(app,profilePics)
 configure_uploads(app,testcaseFiles)
-
-def insertToDb(obj):
-    """
-        Inserts objects to database
-
-        Args:
-            obj: object to insert in database
-    """
-    try:
-        session.add(obj)
-        session.commit()
-        return True
-    except:
-        return False
-
-def selectFromDb(ModelClass,key=None):
-    """
-        Selects a particular row from a table based on its key if a key is provided
-        otherwise returns list of all tuples of given class
-
-        Args:
-            ModelClass: model class to query i.e. which table you want to extract from
-            key: priamry key for particular object it's an optional parameter
-        Returns:
-            tuple(class): a tuple object if a key is provided
-            list(tuple(class)): list of object in particular table
-    """
-    if key!=None:
-        return session.query(ModelClass).filter_by(id=key).one()
-    else:
-        return session.query(ModelClass).all()
-
+configure_uploads(app,sourceCodeFiles)
 
 def saveProfilePic(pic,registrationNumber):
     """
@@ -63,6 +38,7 @@ def saveProfilePic(pic,registrationNumber):
             pic(file): Picture file to be saved. It should not exceed 1MB
             registrationNumber(int): Registration number of student.
     """
+    # TODO: apply check on size of image
     profilePics.save(pic,name=str(registrationNumber)+"."+getExtensionOfFile(pic.filename))
 
 def saveTestCases(filelist,id,typeOfFile):
@@ -95,13 +71,21 @@ def saveTestCases(filelist,id,typeOfFile):
             testcaseFiles.save(testcaseFile,folder=foldername,name=filename)
             count += 1
 
-def getExtensionOfFile(filename):
+
+def saveSourceCode(srcCode, codeLang, userId, problemId):
     """
-        Returns extension of a file in string format
+        Saves soruce code submitted by each user. Each user gets a separate
+        folder for storing solution. Folder structure that is used:
+        /static/sourceCodeFiles/<regNo>/<problemId>/<srcFile>.<lang_ext>.
+        For multiple uploads it'll get a suffix as a count.
 
         Args:
-            filename(str): name of the file
-        Returns:
-            (str): extension of file
+            srcFile (str) : contains text of solution code submitted by user.
+            codeLang (str) : extension of file to be used. This extension will be
+                as per the language chosen by user.
+            userId (str) : registration number of user who uploaded this file
+            problemId (int) : id of problem for which user submitted solution.
     """
-    return filename.rsplit('.', 1)[1]
+
+    # TODO: apply check on success i.e. True if succes, False otherwise and raise an errors
+    print 'inside saving'
