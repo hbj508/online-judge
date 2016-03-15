@@ -12,12 +12,16 @@ Attributes:
         uploaded by problem setter.
 """
 
-from .. import app
+from .. import app, admin
 from flask.ext.uploads import UploadSet, configure_uploads, IMAGES, TEXT
+from flask.ext.admin.contrib.fileadmin import FileAdmin
 from ..models import TestcaseFileType
 from . import getExtensionOfFile
 import os
 import execution
+
+#static directory of files
+static_dir_path = str(app.static_folder)
 
 # Intializing UploadSets
 profilePics = UploadSet('profilePics',extensions=IMAGES)
@@ -27,9 +31,13 @@ testcaseFiles = UploadSet('testcaseFiles',extensions=TEXT)
 configure_uploads(app,profilePics)
 configure_uploads(app,testcaseFiles)
 
+#adding admin views
+rawFilesView = FileAdmin(static_dir_path+'/rawFiles/',name='Raw Files')
+admin.add_view(rawFilesView)
+
 def saveProfilePic(pic,registrationNumber):
     """
-        Saves profile pic of each user in /static/profilePics/
+        Saves profile pic of each user in /static/rawFiles/profilePics/
         with their registration number
 
         Args:
@@ -42,7 +50,7 @@ def saveProfilePic(pic,registrationNumber):
 def saveTestCases(filelist,id,typeOfFile):
     """
         Saves input and output testcases by creating separate folder for each
-        problem with their id in /static/testcaseFiles. Each file will be renamed
+        problem with their id in /static/rawFiles/testcaseFiles. Each file will be renamed
         to in<int>.txt and out<int>.txt. Uploaders are adviced to properly choose
         order for uploading files
 
