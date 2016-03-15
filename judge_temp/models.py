@@ -1,36 +1,34 @@
-from sqlalchemy import Column, Integer, String, Text
+"""
+    This module contains different useful models for judge
+"""
+
+from sqlalchemy import Column, Integer, String, Text, CHAR
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from enum import Enum
-
-"""
-    This module contains different useful models for judge. Following models are
-    created for judge
-    1. User - contains various user info including login info
-    2. Problem - various problem set
-"""
 
 # Construct base clas
 Base = declarative_base()
 
 class User(Base):
     """
-        This model contains various entities for user such as:
-        1. id: Registration Number - (String, primary key)
-        2. First Name
-        3. Last Name
-        4. Password
-        5. Email - (unique)
-        6. Contact Number
-        7. Branch - (Intger)
-            1.CSE
-            2.IT
-            3.SWE
-        8. Profile Type - (P)professior/(S)student
-        9. profilePicExtension
-        Note: Profile pictures will be saved separatley in /static/profile_pic_db/
-        and will be served as and when necessary. Name of each file will be unique
-        i.e. as per their registrationNumber
+        This model contains various entities for user table.
+
+        Attributes:
+            id (Column(String,primary_key)) : contains registration number of each student or professor. It'll work as key for
+                                            the relation
+            firstName (Column(String))
+            lastName (Column(String))
+            password (Column(String))
+            email(Column(String)) : email id of user. It has Unique contraint applied to it.
+            contactNo (Column(String)): contact number of user. It must be an 10 digit mobile no or 11 digit landline with STD
+                                      code.
+            branch (Column(Integer)) : each integer value corresponds to different branch
+                1 -- Computer Science and Engineering
+                2 -- Information Technology
+                3 -- Software Engineering
+            profileType (Column(CHAR)) : flag to distinguish between professor and student.
+            profilePicExtension (Column(String)): saves extension of profile pic uploaded by user.
     """
     __tablename__='user'
     id = Column(String(20),primary_key=True)
@@ -40,25 +38,30 @@ class User(Base):
     email = Column(String(50),nullable=False,unique=True)
     contactNo = Column(Integer,nullable=False)
     branch = Column(Integer,nullable=False)
+    profileType = Column(CHAR,nullable=False)
     profilePicExtension = Column(String)
     #TODO: insert check constratint on profile type
 
 class Problem(Base):
     """
-        This model contains various entities for user such as:
-        1. id - (Integer, primary key
-        2. Title
-        3. Statement
-        4. Constraints
-        5. Sample Input
-        6. Sample Output
-        7. difficultyLevel
-        8. category: DP, Graph, Ad-Hoc etc.
-        9. attempts
-        10 successfulSubmission
-        11. inputFormat
-        12. outputFormat
-        13. explanation
+        This model contains various attributes for problem table
+
+        Attributes:
+            id (Column(Integer,primary_key)) : id of problem. It'll be automatically incremented
+            title (Column(String)) : title of each problem
+            statement (Column(Text)) : problem statement
+            constraints (Column(String)) : various contraints on inputs
+            timeLimit (Column(Integer)) : time limit for execution of code
+            inputFormat (Column(String)) : explanation of how input is provided
+            sampleInput (Column(String)) : sample input for user
+            outputFormat (Column(String)) : explanation of how output should be formatted
+            sampleOutput (Column(String)) : sample output for user
+            explanation (Column(Text)) :  explanation of sample output
+            difficultyLevel (Column(String)) : sets problem difficulty to easy, medium and hard
+            category (Column(String)) : different categories of problem DP, Graph, ad-hoc etc
+            attempts (Column(Integer)) : no of attempts made by all the user
+            successfulSubmission (Column(Integer)) : no of successful submssion done by all the user
+
         Note: Output Testcase Files will be saved separatley in /static/output_testcases/
         and will be served as and when necessary. Name of each folder will be equal to
         its id.
@@ -69,15 +72,15 @@ class Problem(Base):
     statement = Column(Text,nullable=False)
     constraints = Column(String(200),nullable=False)
     timeLimit = Column(Integer,nullable=False)
+    inputFormat= Column(Text)
     sampleInput = Column(String(200),nullable=False)
+    outputFormat = Column(Text)
     sampleOutput = Column(String(200),nullable=False)
+    explanation = Column(Text)
     difficultyLevel = Column(String(30),nullable=False)
     category = Column(String(100),nullable=False)
     attempts = Column(Integer)
     successfulSubmission = Column(Integer)
-    inputFormat= Column(Text)
-    outputFormat = Column(Text)
-    explanation = Column(Text)
 
 class TestcaseFileType(Enum):
     """Enum INPUT, OUTPUT testcase files"""

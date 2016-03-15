@@ -6,6 +6,7 @@ from models import TestcaseFileType
 import controllers as ctrl
 import controllers.dbOperations as dbOp
 import controllers.fileOperations as fileOp
+import controllers.execution
 
 @app.route('/')
 @app.route('/index')
@@ -22,7 +23,8 @@ def register():
                     password=request.form['password'],
                     email=request.form['email'],
                     contactNo=request.form['contactNo'],
-                    branch=request.form['branch'])
+                    branch=request.form['branch'],
+                    profileType='S')
         profilePic = request.files['profilePic']
         if profilePic!=None:
             profilePicExtension = ctrl.getExtensionOfFile(profilePic.filename)
@@ -69,6 +71,7 @@ def problemSolving(userId,problemId):
     if request.method=='POST':
         sourceCode = request.form['code']
         fileOp.saveSourceCode(sourceCode, 'java', userId, problemId)
+        return controllers.execution.start(userId,'java' , problemId)
     user = dbOp.selectFromDb(User,key=userId)
     problem = dbOp.selectFromDb(Problem,key=problemId)
     return render_template('problem.html',user=user,problem=problem)

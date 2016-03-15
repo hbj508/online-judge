@@ -44,7 +44,7 @@
 
 	<!-- Naviagtion Bar -->
 	<header>
-		<nav>
+		<nav class="blue darken-2">
 			<div class="nav-wrapper">
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li><a href="#"><i class="material-icons">notifications</i></a></li>
@@ -56,7 +56,7 @@
 
 		<!-- TODO: Replace it with user details. i.e. profile pic and other links -->
 		<!-- Gray Navigation bar -->
-		<ul class="side-nav fixed blue-grey">
+		<ul class="side-nav fixed black">
 			<div class="row">
 				<h4>&lt;CodePro&gt;</h4>
 			</div>
@@ -91,7 +91,7 @@
 
 					<!-- probelms -->
 					<li>
-						<div class="collapsible-header">{{problem.title}}</div>
+						<div class="collapsible-header active">{{problem.title}}</div>
 						<div class="collapsible-body" style="padding:20px">
 								<code>
 									{{problem.statement}}
@@ -104,6 +104,8 @@
 						<div class="collapsible-header">Input</div>
 						<div class="collapsible-body" style="padding:20px">
 							<code>
+								<pre>{{problem.inputFormat}}</pre> <br>
+								Sample Input: <br>
 								<pre>{{problem.sampleInput}}</pre>
 							</code>
 						</div>
@@ -114,6 +116,8 @@
 						<div class="collapsible-header">output</div>
 						<div class="collapsible-body" style="padding:20px">
 							<code>
+								<pre>{{problem.outputFormat}}</pre> <br>
+								Sample Output: <br>
 								<pre>{{problem.sampleOutput}}</pre>
 							</code>
 						</div>
