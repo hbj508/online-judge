@@ -2,11 +2,11 @@
 <html>
 <head>
 	<!-- TODO: Student name as title -->
-	<title>Gahan Rakholia</title>
+	<title>{{user.name}}</title>
 
 	<!-- Materialize imports -->
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link type="text/css" rel="stylesheet" href="{{url_for('static',filename='css/materialize.min.css')}}"  media="screen,projection"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 	<!-- Custom CSS -->
@@ -34,8 +34,8 @@
 </head>
 <body>
 	<!-- Materialize scripts -->
-	<script type="text/javascript" src="{{url_for('static',filename='js/jquery-2.1.1.min.js')}}"></script>
-	<script type="text/javascript" src="{{url_for('static',filename='js/materialize.min.js')}}"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
 		$('select').material_select();
@@ -48,7 +48,7 @@
 			<div class="nav-wrapper">
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li><a href="#"><i class="material-icons">notifications</i></a></li>
-					<li><a href="#">Sign Out</a></li>
+					<li><a href="{{url_for('logout')}}">Sign Out</a></li>
 					<li><a href="#"><i class="material-icons">more_vert</i></a></li>
 				</ul>
 			</div>
@@ -350,6 +350,6 @@ int main() {
 					if (theme) { cinput.value = theme; cselectTheme(); }
 				});
 
-				</script>
-			</body>
-			</html>
+			</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 import os
 from judge_temp import app
-from flask import render_template, request
+from flask import render_template, request, redirect, session, url_for
 from models import User, Problem
 from models import TestcaseFileType
 import controllers as ctrl
@@ -8,11 +8,21 @@ import controllers.dbOperations as dbOp
 import controllers.fileOperations as fileOp
 import controllers.execution
 
-@app.route('/')
-@app.route('/index')
+@app.route('/',methods=['GET','POST'])
+@app.route('/index',methods=['GET','POST'])
 def index():
-
-    return "Hello World"
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = dbOp.selectFromDb(User,username)
+        print user.password
+        print password
+        if user.password==password:
+            session['username'] = username
+            return redirect(url_for('practice'))
+    if 'username' in session:
+        return redirect(url_for('practice'))
+    return render_template('index.html')
 
 @app.route('/register', methods=['GET','POST'])
 def register():
@@ -59,16 +69,18 @@ def addProblem():
     return render_template('add_problem.html')
 
 
-@app.route('/<userId>/practice')
-def practice(userId):
+@app.route('/practice')
+def practice():
+    userId = session['username']
     user = dbOp.selectFromDb(User,key=userId)
     problems = dbOp.selectFromDb(Problem)
     return render_template('practice.html',user=user,problems=problems)
 
 
-@app.route('/<userId>/practice/<int:problemId>', methods=['GET','POST'])
-def problemSolving(userId,problemId):
+@app.route('/practice/<int:problemId>', methods=['GET','POST'])
+def problemSolving(problemId):
     # TODO secure location for saving soruce code files
+    userId = session['username']
     if request.method=='POST':
         sourceCode = request.form['code']
         fileOp.saveSourceCode(sourceCode, 'java', userId, problemId)
@@ -76,3 +88,8 @@ def problemSolving(userId,problemId):
     user = dbOp.selectFromDb(User,key=userId)
     problem = dbOp.selectFromDb(Problem,key=problemId)
     return render_template('problem.html',user=user,problem=problem)
+
+@app.route('/logout')
+def logout():
+    session.pop('username',None)
+    return redirect(url_for('index'))
