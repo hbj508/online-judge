@@ -2,13 +2,16 @@
     This module contains different useful models for judge
 """
 
-from sqlalchemy import Column, Integer, String, Text, CHAR
+from sqlalchemy import Column, Integer, String, Text, CHAR, DateTime
+from sqlalchemy import ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from enum import Enum
 
-# Construct base clas
+
+# Construct base class
 Base = declarative_base()
+
 
 class User(Base):
     """
@@ -42,7 +45,9 @@ class User(Base):
     profilePicExtension = Column(String)
     #TODO: insert check constratint on profile type
 
+
 class Problem(Base):
+    #TODO: Add problem setter in model
     """
         This model contains various attributes for problem table
 
@@ -82,14 +87,48 @@ class Problem(Base):
     attempts = Column(Integer)
     successfulSubmission = Column(Integer)
 
+
 class TestcaseFileType(Enum):
     """Enum INPUT, OUTPUT testcase files"""
     INPUT = 1
     OUTPUT = 2
 
+
+class Solution(Base):
+    """
+        This model creates a Solution table for each solution that is submitted.
+        It'll contains just plain text of solution code submitted by user. It needs
+        to be first copied in a file with proper extension and then should be compiled
+        or executed.
+
+        Attributes:
+            id (Column(Integer,primary_key)) : Priamry key of each solution
+            solutionCode (Column, Text) : code submitted by user. Saved as plain text
+            languangeExt (Column,String(4)) : languange used by user. Stores extension of that languange
+            timeOfExecution (Column, Integer) : (in sec)total time of execution for the selected problem for selected solution
+            timestamp (Column, Integer) : DateTime timestamp at which particular solution code is submitted
+            resultCode (Column, String(10)) : different result codes for solution submitted.
+                SE: Server Error
+                AC: Accepted Solution
+                TLE: Time Limit exceeded
+                WA: Wrong answer
+                NZEC: Non zero execution code i.e. program didn't finish successfully
+            problemId (Column,Integer,Foreign Key REFERS Problem.id) : id of the problem for which solution is submitted.
+                It's a Foreign key representing relation between Solution and Problem table
+            userId (Column, String(20), Foreign Key REFERS User.id) : id of the user who submitted the problem
+    """
+    __tablename__ = 'solution'
+    id = Column(Integer,primary_key=True)
+    solutionCode = Column(Text,nullable=False)
+    languangeExt = Column(String(4),nullable=False)
+    timeOfExecution = Column(Integer, nullable=False)
+    timestamp = Column(DateTime, nullable=False)
+    resultCode = Column(String(5), nullable=False)
+    problemId = Column(Integer, ForeignKey('problem.id'),nullable=False)
+    userId = Column(String(20), ForeignKey('user.id'),nullable=False)
+
+
 # Create engine
 if __name__ == '__main__':
-    # engine = create_engine(app.config['DB_URI'])
-    # TODO: change url to static. find how to do it.
     engine = create_engine('sqlite:///db/judge_temp.db')
     Base.metadata.create_all(engine)

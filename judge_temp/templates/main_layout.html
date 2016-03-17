@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{user.firstName}} {{user.lastName}}</title>
+
+	<!-- Materialize imports -->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/gahan-styles.css')}}" media="screen,projection"/>
+	{%block extra_css%}
+	{%endblock%}
+</head>
+<body>
+	<!-- Materialize scripts -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+	{%block extra_init_scripts%}
+	{%endblock%}
+
+	{%block extra_init_divs%}
+	{%endblock%}
+	<!-- Naviagtion Bar -->
+	<header>
+		<nav>
+			<div class="nav-wrapper">
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href="#"><i class="material-icons">notifications</i></a></li>
+					<li><a href="{{url_for('logout')}}">Sign Out</a></li>
+					<li><a href="#"><i class="material-icons">more_vert</i></a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- Gray Navigation bar -->
+		<ul class="side-nav fixed blue-grey">
+			<div class="row">
+				<h4>&lt;CodePro&gt;</h4>
+			</div>
+			<div class="row">
+				<img src="{{url_for('static',filename='rawFiles/profilePics/')}}{{user.id}}.{{user.profilePicExtension}}" class="circle z-depth-3">
+			</div>
+			<div class="row">{{user.firstName}} {{user.lastName}}</div>
+			<div class="row" style="margin-bottom: 30px">{{user.id}}</div>
+			<li><a href="#"><i class="material-icons">account_circle</i>Profile</a></li>
+			<li><a href="#"><i class="material-icons">timeline</i>Dashboard</a></li>
+			<li class="active"><a href="#"><i class="material-icons">fitness_center</i>Practice</a></li>
+			<li><a href="#"><i class="material-icons">assignment</i>Assignment</a></li>
+			<li><a href="#"><i class="material-icons">code</i>Test</a></li>
+			<li><a href="#"><i class="material-icons">info</i>Help</a></li>
+		</ul>
+	</header>
+
+	<main>
+		{%block main%}
+		{%endblock%}
+	</main>
+
+	{%block extra_post_scripts%}
+	{%endblock%}
+</body>
+</html>

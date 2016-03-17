@@ -14,7 +14,7 @@ Attributes:
 from .. import app, admin
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from ..models import Base, User, Problem
+from ..models import Base, User, Problem, Solution
 from flask.ext.admin.contrib.sqla import ModelView
 
 
@@ -26,6 +26,7 @@ session = DBSession()
 
 admin.add_view(ModelView(User,session))
 admin.add_view(ModelView(Problem,session))
+admin.add_view(ModelView(Solution,session))
 
 def insertToDb(obj):
     """

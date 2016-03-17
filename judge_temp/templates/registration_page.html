@@ -25,6 +25,25 @@
         <div class="row">
             <form class="col s12" action='{{url_for('register')}}' method="post" enctype="multipart/form-data">
                 <div class="row">
+                    <div class="col s2">
+                        <p>
+                            Registering As:
+                        </p>
+                    </div>
+                    <div class="col s2">
+                        <p>
+                            <input type="radio" name="profileType" id="professor" value="P">
+                            <label for="professor">Professor</label>
+                        </p>
+                    </div>
+                    <div class="col s2">
+                        <p>
+                            <input type="radio" name="profileType" id="student" value="S">
+                            <label for="student">Professor</label>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">toc</i>
                         <input id="reg_no" type="number" class="validate" name="registrationNumber">
@@ -95,7 +114,7 @@
     <br><br><br><br>
 
     <!-- Footer -->
-    <footer class="page-footer blue darken-4">
+    <footer class="page-footer">
         <div class="footer-copyright">
             <div class="container">
                 &copy; 2014 Copyright Text

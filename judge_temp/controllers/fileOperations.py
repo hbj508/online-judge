@@ -76,30 +76,3 @@ def saveTestCases(filelist,id,typeOfFile):
             filename = 'out' + str(count) + "." + ext
             testcaseFiles.save(testcaseFile,folder=foldername,name=filename)
             count += 1
-
-
-def saveSourceCode(srcCode, codeLang, userId, problemId):
-    """
-        Saves soruce code submitted by each user. Each user gets a separate
-        folder for storing solution. Folder structure that is used:
-        /static/sourceCodeFiles/<regNo>/<problemId>/<srcFile>.<lang_ext>.
-        For multiple uploads it'll get a suffix as a count.
-
-        Args:
-            srcCode (str) : contains text of solution code submitted by user.
-            codeLang (str) : extension of file to be used. This extension will be
-                as per the language chosen by user.
-            userId (str) : registration number of user who uploaded this file
-            problemId (int) : id of problem for which user submitted solution.
-    """
-
-    # TODO: apply check on success i.e. True if succes, False otherwise and raise an errors
-    print 'inside saving'
-
-    #Writing a single solution file
-    userSolutionDirectory = os.path.join(app.config['SOURCE_CODE_FILES_DEST'],userId)
-    srcCodeBuffer = open(os.path.join(userSolutionDirectory,'Solution.'+codeLang),"w")
-    srcCodeBuffer.write(srcCode)
-    srcCodeBuffer.close()
-
-    # execution.start(userId, codeLang,problemId)

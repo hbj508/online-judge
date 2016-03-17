@@ -1,6 +1,6 @@
 import os
 from judge_temp import app
-from flask import render_template, request, redirect, session, url_for
+from flask import render_template, request, redirect, session, url_for, flash
 from models import User, Problem
 from models import TestcaseFileType
 import controllers as ctrl
@@ -11,17 +11,20 @@ import controllers.execution
 @app.route('/',methods=['GET','POST'])
 @app.route('/index',methods=['GET','POST'])
 def index():
+    if 'username' in session:
+        return redirect(url_for('practice'))
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        user = dbOp.selectFromDb(User,username)
-        print user.password
-        print password
-        if user.password==password:
-            session['username'] = username
-            return redirect(url_for('practice'))
-    if 'username' in session:
-        return redirect(url_for('practice'))
+        try:
+            user = dbOp.selectFromDb(User,username)
+            if user.password==password:
+                session['username'] = username
+                return redirect(url_for('practice'))
+            else:
+                raise
+        except Exception as e:
+            flash('Invalid Credentials')
     return render_template('index.html')
 
 @app.route('/register', methods=['GET','POST'])
@@ -35,7 +38,7 @@ def register():
                     email=request.form['email'],
                     contactNo=request.form['contactNo'],
                     branch=request.form['branch'],
-                    profileType='S')
+                    profileType=request.form['profileType'])
         profilePic = request.files['profilePic']
         if profilePic!=None:
             profilePicExtension = ctrl.getExtensionOfFile(profilePic.filename)
@@ -79,12 +82,13 @@ def practice():
 
 @app.route('/practice/<int:problemId>', methods=['GET','POST'])
 def problemSolving(problemId):
+    codeLang = 'c'
     # TODO secure location for saving soruce code files
     userId = session['username']
     if request.method=='POST':
-        sourceCode = request.form['code']
-        fileOp.saveSourceCode(sourceCode, 'java', userId, problemId)
-        return controllers.execution.start(userId,'java' , problemId)
+        solutionCode = request.form['code']
+        codeLang = request.form['codeLang']
+        controllers.execution.start(solutionCode, userId, codeLang, problemId)
     user = dbOp.selectFromDb(User,key=userId)
     problem = dbOp.selectFromDb(Problem,key=problemId)
     return render_template('problem.html',user=user,problem=problem)
