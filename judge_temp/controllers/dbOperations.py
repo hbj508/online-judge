@@ -66,3 +66,12 @@ def selectFromDb(ModelClass,key=None):
         return session.query(ModelClass).filter_by(id=key).one()
     else:
         return session.query(ModelClass).all()
+
+def get_session():
+    """
+        Returns reference to database session.
+
+        Returns:
+            session: reference to db session
+    """
+    return session

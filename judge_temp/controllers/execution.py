@@ -1,41 +1,86 @@
 import os
 import filecmp
 import datetime
+from .. import app
 import dbOperations as dbOp
 from ..models import Solution
+from subprocess import Popen, PIPE
 
 """
 This module is responsible for executing and checking code
 """
 
 def start(solutionCode,userId,codeLang,problemId):
-    #TODO: improve functionality, try using shell script
-    # filepath = "~/MyWorkspace/online-judge/judge_temp/static/sourceCodeFiles/" + str(userId)
-    # shOpenFilePath = "cd " + filepath
-    # inputFile = '/home/gahan/MyWorkspace/online-judge/judge_temp/static/testcaseFiles/'+str(problemId)+'/inputs/in1.txt'
-    # shCompileAndExecute = "javac Solution.java && java Solution <" + inputFile + "> out.txt"
-    # command = shOpenFilePath +"; " + shCompileAndExecute
-    # print command
-    # os.system(command)
-    # print "now checking the code"
-    # sampleOutput = '/home/gahan/MyWorkspace/online-judge/judge_temp/static/testcaseFiles/'+str(problemId)+'/outputs/out1.txt'
-    # output= '/home/gahan/MyWorkspace/online-judge/judge_temp/static/sourceCodeFiles/'+ str(userId) +'/out.txt'
-    # if filecmp.cmp(output, sampleOutput):
-    #     return 'True'
-    # else:
-    #     return 'False'
     _createSolution(solutionCode, userId, codeLang, problemId)
 
 def _createSolution(solutionCode,userId,codeLang,problemId):
-    try:
-        solution = Solution(solutionCode = solutionCode,
-                        languangeExt = codeLang,
-                        timeOfExecution = 0,
-                        timestamp=datetime.datetime.now(),
-                        resultCode = 'SE',
-                        userId = userId,
-                        problemId = problemId)
-        dbOp.insertToDb(solution)
-        print "success"
-    except:
-        print "failure"
+    """
+        Creates instance of Solution model for storing solution code
+
+        Args:
+            solutionCode (str) :  complete source code submitted by user
+            userId (str) : registration number of user of submitted the code
+            codeLang (str) : extension of code langauange file
+            problemId (int) : id of problem for which solution is submitted
+
+        Note: Solution Model also contains more attributes which will be initliazed
+        with some default values.
+    """
+    solution = Solution(solutionCode = solutionCode,
+                    languangeExt = codeLang,
+                    timeOfExecution = 0,
+                    timestamp=datetime.datetime.now(),
+                    resultCode = 'SE',
+                    userId = userId,
+                    problemId = problemId)
+    dbOp.insertToDb(solution)
+    _generate_output_file(solution)
+
+
+def _get_solution_details(solutionId):
+    """
+        Retrieves solution base on their Id
+
+        Args:
+            solutionId(int) : id of the solution to retreive
+        Returns:
+            solution(Solution): solution row obtained from the database
+    """
+    session = get_session()
+    solution = session.query(Solution).filter_by(id=solutionId).one()
+    return solution
+
+
+def _generate_solution_file(solution):
+    """
+        Generates solution file for execution
+
+        Args:
+            solution(Solution) : row of Solution model obtianed from query
+    """
+    solution_directory = os.path.join(app.config['SOLUTION_FILES_DEST'],solution.userId)
+    solution_file_name = "Solution." + solution.languangeExt
+    solution_path = os.path.join(solution_directory,solution_file_name)
+    with open(solution_path,'w') as solution_file:
+        solution_file.write(solution.solutionCode)
+    return solution_path, solution_directory
+
+def _generate_output_file(solution):
+    command = ""
+    solution_file_path, solution_directory =  _generate_solution_file(solution)
+    print solution_file_path + " " + solution_directory
+    output_file_path = os.path.join(solution_directory,"out.txt")
+    if solution.languangeExt == 'java':
+        command = " javac " +  solution_file_path + " && java -cp " + sol + " Solution \
+                    > " + output_file_path
+    elif solution.languangeExt == 'c':
+        command = " gcc " + solution_file_path + " && ./a.out \
+                    > " + output_file_path
+    elif solution.languangeExt == 'cpp':
+        command = " g++ " + solution_file_path + " && ./a.out \
+                    > " + output_file_path
+
+    process = Popen(command,shell=True,stderr=PIPE)
+    error = process.stderr.read();
+    print "MyERROR---------------"
+    print error

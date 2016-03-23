@@ -45,7 +45,8 @@ def register():
         user.profilePicExtension = profilePicExtension
         fileOp.saveProfilePic(profilePic,user.id)
         dbOp.insertToDb(user)
-        ctrl.mkdir_p(os.path.join(app.config['SOURCE_CODE_FILES_DEST'],user.id))
+        if user.profileType!='P':
+            ctrl.mkdir_p(os.path.join(app.config['SOLUTION_FILES_DEST'],user.id))
     return render_template('registration_page.html')
 
 
