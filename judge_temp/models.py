@@ -8,7 +8,6 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from enum import Enum
 
-
 # Construct base class
 Base = declarative_base()
 
@@ -33,21 +32,35 @@ class User(Base):
             profileType (Column(CHAR)) : flag to distinguish between professor and student.
             profilePicExtension (Column(String)): saves extension of profile pic uploaded by user.
     """
-    __tablename__='user'
-    id = Column(String(20),primary_key=True)
-    firstName = Column(String(20),nullable=False)
-    lastName = Column(String(20),nullable=False)
-    password = Column(String(20),nullable=False)
-    email = Column(String(50),nullable=False,unique=True)
-    contactNo = Column(Integer,nullable=False)
-    branch = Column(Integer,nullable=False)
-    profileType = Column(CHAR,nullable=False)
+    __tablename__ = 'user'
+    id = Column(String(20), primary_key=True)
+    firstName = Column(String(20), nullable=False)
+    lastName = Column(String(20), nullable=False)
+    password = Column(String(20), nullable=False)
+    email = Column(String(50), nullable=False, unique=True)
+    contactNo = Column(Integer, nullable=False)
+    branch = Column(Integer, nullable=False)
+    profileType = Column(CHAR, nullable=False)
     profilePicExtension = Column(String)
-    #TODO: insert check constratint on profile type
+
+    # TODO: insert check constraint on profile type
+
+    def __str__(self):
+        to_string = "<"
+        to_string += " id :" + str(self.id) + ","
+        to_string += " firstName :" + str(self.firstName) + ","
+        to_string += " lastName :" + str(self.lastName) + ","
+        to_string += " password :" + str(self.password) + ","
+        to_string += " email :" + str(self.email) + ","
+        to_string += " contactNo :" + str(self.contactNo) + ","
+        to_string += " branch :" + str(self.branch) + ","
+        to_string += " profileType :" + str(self.profileType) + ","
+        to_string += " profilePicExtension :" + str(self.profilePicExtension) + " > "
+        return to_string
 
 
 class Problem(Base):
-    #TODO: Add problem setter in model
+    # TODO: Add problem setter in model
     """
         This model contains various attributes for problem table
 
@@ -67,23 +80,23 @@ class Problem(Base):
             attempts (Column(Integer)) : no of attempts made by all the user
             successfulSubmission (Column(Integer)) : no of successful submssion done by all the user
 
-        Note: Output Testcase Files will be saved separatley in /static/output_testcases/
+        Note: Output test case Files will be saved separately in /static/output_testcases/
         and will be served as and when necessary. Name of each folder will be equal to
         its id.
     """
-    __tablename__='problem'
-    id = Column(Integer,primary_key=True)
-    title = Column(String(80),nullable=False)
-    statement = Column(Text,nullable=False)
-    constraints = Column(String(200),nullable=False)
-    timeLimit = Column(Integer,nullable=False)
-    inputFormat= Column(Text)
-    sampleInput = Column(String(200),nullable=False)
+    __tablename__ = 'problem'
+    id = Column(Integer, primary_key=True)
+    title = Column(String(80), nullable=False)
+    statement = Column(Text, nullable=False)
+    constraints = Column(String(200), nullable=False)
+    timeLimit = Column(Integer, nullable=False)
+    inputFormat = Column(Text)
+    sampleInput = Column(String(200), nullable=False)
     outputFormat = Column(Text)
-    sampleOutput = Column(String(200),nullable=False)
+    sampleOutput = Column(String(200), nullable=False)
     explanation = Column(Text)
-    difficultyLevel = Column(String(30),nullable=False)
-    category = Column(String(100),nullable=False)
+    difficultyLevel = Column(String(30), nullable=False)
+    category = Column(String(100), nullable=False)
     attempts = Column(Integer)
     successfulSubmission = Column(Integer)
 
@@ -101,7 +114,7 @@ class Solution(Base):
         to be first copied in a file with proper extension and then should be compiled
         or executed.
 
-        Attributes:
+        Args:
             id (Column(Integer,primary_key)) : Priamry key of each solution
             solutionCode (Column, Text) : code submitted by user. Saved as plain text
             languangeExt (Column,String(4)) : languange used by user. Stores extension of that languange
@@ -118,14 +131,14 @@ class Solution(Base):
             userId (Column, String(20), Foreign Key REFERS User.id) : id of the user who submitted the problem
     """
     __tablename__ = 'solution'
-    id = Column(Integer,primary_key=True)
-    solutionCode = Column(Text,nullable=False)
-    languangeExt = Column(String(4),nullable=False)
+    id = Column(Integer, primary_key=True)
+    solutionCode = Column(Text, nullable=False)
+    languangeExt = Column(String(4), nullable=False)
     timeOfExecution = Column(Integer, nullable=False)
     timestamp = Column(DateTime, nullable=False)
     resultCode = Column(String(5), nullable=False)
-    problemId = Column(Integer, ForeignKey('problem.id'),nullable=False)
-    userId = Column(String(20), ForeignKey('user.id'),nullable=False)
+    problemId = Column(Integer, ForeignKey('problem.id'), nullable=False)
+    userId = Column(String(20), ForeignKey('user.id'), nullable=False)
 
 
 # Create engine

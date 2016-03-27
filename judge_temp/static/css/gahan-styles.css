@@ -65,3 +65,7 @@ nav .brand-logo{
 .problem-text{
     margin: 20px;
 }
+
+.error {
+	color: red;
+}

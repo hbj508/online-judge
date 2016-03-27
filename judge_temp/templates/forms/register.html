@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/gahan-styles.css') }}">
+</head>
+<body>
+
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('select').material_select();
+    });
+</script>
+
+<!-- navigation bar-->
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">&lt;CodePro&gt;</a>
+    </div>
+</nav>
+<br>
+
+
+<!-- Registration Page -->
+<div class="container">
+    <h4>
+        Registration Form
+    </h4>
+    <hr>
+    <br>
+    <div class="row col s12">
+        {% from 'forms/_formhelpers.html' import render_field %}
+        {% from 'forms/_formhelpers.html' import render_subfield %}
+        <form action="{{ url_for('register') }}" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col s2">
+                    Registering As:
+                </div>
+                <div class="col s2">
+                    <input type="radio" name="profileType" id="professor" value="P">
+                    <label for="professor">Professor</label>
+                </div>
+                <div class="col s2">
+                    <input type="radio" name="profileType" id="student" value="S" checked="checked">
+                    <label for="student">Student</label>
+                </div>
+            </div>
+            {{ render_field(form.id,'s12','toc') }}
+            <div class="row">
+                {{ render_subfield(form.firstName, 's6','account_circle') }}
+                {{ render_subfield(form.lastName,'s6') }}
+            </div>
+            {{ render_field(form.password,'s12','input') }}
+            {{ render_field(form.email,'s12','email','email') }}
+            {{ render_field(form.contactNo,'s12','call','number') }}
+            {{ render_field(form.branch,'s12') }}
+            <div class="row">
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>Profile Pic</span>
+                        <input type="file" name="profilePic">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn waves-effect right" type="submit" name="action">
+                    Submit<i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
