@@ -8,7 +8,7 @@ Attributes:
     engine (Engine): instance of .Engine class of sqlalchemy to work with database
     DBSession (Session): .Session class from sqlalchemy module with given configuration.
         Currently it only initializes it with bind=engine
-    dbSession (DBSession):  instance of DBSession() to perform transactions with database
+    db_session (DBSession):  instance of DBSession() to perform transactions with database
 """
 
 from .. import app, admin
@@ -21,12 +21,12 @@ engine = create_engine(app.config['DB_URI'])
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine, autocommit=True)
-dbSession = DBSession()
+db_session = DBSession()
 
 
 class UserModelView(ModelView):
     column_display_pk = True
-    column_searchable_list = ('id', 'firstName', 'lastName', 'email', 'contactNo')
+    column_searchable_list = ('id', 'first_name', 'last_name', 'email', 'contact_no')
 
 
 class SolutionModeView(ModelView):
@@ -34,6 +34,6 @@ class SolutionModeView(ModelView):
     column_display_pk = True
 
 
-admin.add_view(UserModelView(User, dbSession))
-admin.add_view(ModelView(Problem, dbSession))
-admin.add_view(SolutionModeView(Solution, dbSession))
+admin.add_view(UserModelView(User, db_session))
+admin.add_view(ModelView(Problem, db_session))
+admin.add_view(SolutionModeView(Solution, db_session))

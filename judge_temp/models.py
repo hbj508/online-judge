@@ -19,43 +19,43 @@ class User(Base):
         Attributes:
             id (Column(String,primary_key)) : contains registration number of each student or professor. It'll work as key for
                                             the relation
-            firstName (Column(String))
-            lastName (Column(String))
+            first_name (Column(String))
+            last_name (Column(String))
             password (Column(String))
             email(Column(String)) : email id of user. It has Unique contraint applied to it.
-            contactNo (Column(String)): contact number of user. It must be an 10 digit mobile no or 11 digit landline with STD
+            contact_no (Column(String)): contact number of user. It must be an 10 digit mobile no or 11 digit landline with STD
                                       code.
             branch (Column(Integer)) : each integer value corresponds to different branch
                 1 -- Computer Science and Engineering
                 2 -- Information Technology
                 3 -- Software Engineering
-            profileType (Column(CHAR)) : flag to distinguish between professor and student.
-            profilePicExtension (Column(String)): saves extension of profile pic uploaded by user.
+            profile_type (Column(CHAR)) : flag to distinguish between professor and student.
+            profile_pic_extension (Column(String)): saves extension of profile pic uploaded by user.
     """
     __tablename__ = 'user'
     id = Column(String(20), primary_key=True)
-    firstName = Column(String(20), nullable=False)
-    lastName = Column(String(20), nullable=False)
+    first_name = Column(String(20), nullable=False)
+    last_name = Column(String(20), nullable=False)
     password = Column(String(20), nullable=False)
     email = Column(String(50), nullable=False, unique=True)
-    contactNo = Column(Integer, nullable=False)
+    contact_no = Column(Integer, nullable=False)
     branch = Column(Integer, nullable=False)
-    profileType = Column(CHAR, nullable=False)
-    profilePicExtension = Column(String)
+    profile_type = Column(CHAR, nullable=False)
+    profile_pic_extension = Column(String)
 
     # TODO: insert check constraint on profile type
 
     def __str__(self):
         to_string = "<"
         to_string += " id :" + str(self.id) + ","
-        to_string += " firstName :" + str(self.firstName) + ","
-        to_string += " lastName :" + str(self.lastName) + ","
+        to_string += " first_name :" + str(self.first_name) + ","
+        to_string += " last_name :" + str(self.last_name) + ","
         to_string += " password :" + str(self.password) + ","
         to_string += " email :" + str(self.email) + ","
-        to_string += " contactNo :" + str(self.contactNo) + ","
+        to_string += " contact_no :" + str(self.contact_no) + ","
         to_string += " branch :" + str(self.branch) + ","
-        to_string += " profileType :" + str(self.profileType) + ","
-        to_string += " profilePicExtension :" + str(self.profilePicExtension) + " > "
+        to_string += " profile_type :" + str(self.profile_type) + ","
+        to_string += " profile_pic_extension :" + str(self.profile_pic_extension) + " > "
         return to_string
 
 
@@ -69,16 +69,16 @@ class Problem(Base):
             title (Column(String)) : title of each problem
             statement (Column(Text)) : problem statement
             constraints (Column(String)) : various contraints on inputs
-            timeLimit (Column(Integer)) : time limit for execution of code
-            inputFormat (Column(String)) : explanation of how input is provided
-            sampleInput (Column(String)) : sample input for user
-            outputFormat (Column(String)) : explanation of how output should be formatted
-            sampleOutput (Column(String)) : sample output for user
+            time_limit (Column(Integer)) : time limit for execution of code
+            input_format (Column(String)) : explanation of how input is provided
+            sample_input (Column(String)) : sample input for user
+            output_format (Column(String)) : explanation of how output should be formatted
+            sample_output (Column(String)) : sample output for user
             explanation (Column(Text)) :  explanation of sample output
-            difficultyLevel (Column(String)) : sets problem difficulty to easy, medium and hard
+            difficulty_level (Column(String)) : sets problem difficulty to easy, medium and hard
             category (Column(String)) : different categories of problem DP, Graph, ad-hoc etc
             attempts (Column(Integer)) : no of attempts made by all the user
-            successfulSubmission (Column(Integer)) : no of successful submssion done by all the user
+            successful_submission (Column(Integer)) : no of successful submssion done by all the user
 
         Note: Output test case Files will be saved separately in /static/output_testcases/
         and will be served as and when necessary. Name of each folder will be equal to
@@ -89,19 +89,19 @@ class Problem(Base):
     title = Column(String(80), nullable=False)
     statement = Column(Text, nullable=False)
     constraints = Column(String(200), nullable=False)
-    timeLimit = Column(Integer, nullable=False)
-    inputFormat = Column(Text)
-    sampleInput = Column(String(200), nullable=False)
-    outputFormat = Column(Text)
-    sampleOutput = Column(String(200), nullable=False)
+    time_limit = Column(Integer, nullable=False)
+    input_format = Column(Text)
+    sample_input = Column(String(200), nullable=False)
+    output_format = Column(Text)
+    sample_output = Column(String(200), nullable=False)
     explanation = Column(Text)
-    difficultyLevel = Column(String(30), nullable=False)
+    difficulty_level = Column(String(30), nullable=False)
     category = Column(String(100), nullable=False)
     attempts = Column(Integer)
-    successfulSubmission = Column(Integer)
+    successful_submission = Column(Integer)
 
 
-class TestcaseFileType(Enum):
+class TestCaseFileType(Enum):
     """Enum INPUT, OUTPUT testcase files"""
     INPUT = 1
     OUTPUT = 2
@@ -114,32 +114,31 @@ class Solution(Base):
         to be first copied in a file with proper extension and then should be compiled
         or executed.
 
-        Args:
-            id (Column(Integer,primary_key)) : Priamry key of each solution
-            solutionCode (Column, Text) : code submitted by user. Saved as plain text
-            languangeExt (Column,String(4)) : languange used by user. Stores extension of that languange
-            timeOfExecution (Column, Integer) : (in sec)total time of execution for the selected problem for selected solution
-            timestamp (Column, Integer) : DateTime timestamp at which particular solution code is submitted
-            resultCode (Column, String(10)) : different result codes for solution submitted.
+        Attributes:
+            id (Column) : Priamry key of each solution
+            solution_code (Column) : code submitted by user. Saved as plain text
+            lang_ext (Column) : languange used by user. Stores extension of that languange
+            time_of_exec (Column) : (in sec)total time of execution for the selected problem for selected solution
+            timestamp (Column) : DateTime timestamp at which particular solution code is submitted
+            result_code (Column) : different result codes for solution submitted.
                 SE: Server Error
                 AC: Accepted Solution
                 TLE: Time Limit exceeded
                 WA: Wrong answer
                 NZEC: Non zero execution code i.e. program didn't finish successfully
-            problemId (Column,Integer,Foreign Key REFERS Problem.id) : id of the problem for which solution is submitted.
+            problem_id (Column,Integer,Foreign Key REFERS Problem.id) : id of the problem for which solution is submitted.
                 It's a Foreign key representing relation between Solution and Problem table
-            userId (Column, String(20), Foreign Key REFERS User.id) : id of the user who submitted the problem
+            user_id (Column, String(20), Foreign Key REFERS User.id) : id of the user who submitted the problem
     """
     __tablename__ = 'solution'
     id = Column(Integer, primary_key=True)
-    solutionCode = Column(Text, nullable=False)
-    languangeExt = Column(String(4), nullable=False)
-    timeOfExecution = Column(Integer, nullable=False)
+    solution_code = Column(Text, nullable=False)
+    lang_ext = Column(String(4), nullable=False)
+    time_of_exec = Column(Integer, nullable=False)
     timestamp = Column(DateTime, nullable=False)
-    resultCode = Column(String(5), nullable=False)
-    problemId = Column(Integer, ForeignKey('problem.id'), nullable=False)
-    userId = Column(String(20), ForeignKey('user.id'), nullable=False)
-
+    result_code = Column(String(5), nullable=False)
+    problem_id = Column(Integer, ForeignKey('problem.id'), nullable=False)
+    user_id = Column(String(20), ForeignKey('user.id'), nullable=False)
 
 # Create engine
 if __name__ == '__main__':

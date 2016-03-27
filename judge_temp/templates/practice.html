@@ -1,15 +1,15 @@
-{%extends "main_layout.html"%}
-{%block main%}
-{%for problem in problems%}
-<div class="collection">
-    <a href = "{{url_for('problemSolving', problemId=problem.id)}}" class="collection-item avatar">
-      <i class="material-icons circle">folder</i>
-      <span class="title">{{problem.title}}</span>
-      <p>Attempted {{problem.attempts}} &nbsp;&nbsp;&nbsp;&nbsp;
-		 Successful submision {{problem.successfulSubmission}}<br>
-         {{problem.difficultyLevel}}
-      </p>
-  	</a>
-</div>
-{%endfor%}
-{%endblock%}
+{% extends "main_layout.html" %}
+{% block main %}
+    {% for problem in problems %}
+        <div class="collection">
+            <a href="{{ url_for('problem_solving', problem_id=problem.id) }}" class="collection-item avatar">
+                <i class="material-icons circle">folder</i>
+                <span class="title">{{ problem.title }}</span>
+                <p>Attempted {{ problem.attempts }} &nbsp;&nbsp;&nbsp;&nbsp;
+                    Successful submission {{ problem.successful_submission }}<br>
+                    {{ problem.difficultyLevel }}
+                </p>
+            </a>
+        </div>
+    {% endfor %}
+{% endblock %}

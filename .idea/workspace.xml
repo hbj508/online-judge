@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="220af15b-61bc-4912-896f-944da155a5a8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/online-judge.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/judge_temp/controllers/dbHelpers.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/judge_temp/forms.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/judge_temp/templates/forms/_formhelpers.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/judge_temp/templates/forms/register.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/judge_temp/templates/forms/registration_success.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/judge_temp/controllers/dbOperations.py" afterPath="" />
+    <list default="true" id="220af15b-61bc-4912-896f-944da155a5a8" name="Default" comment="Registration form validation added">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/gahan.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/judge_temp/controllers/file_operations.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/judge_temp/static/rawFiles/testCaseFiles/None/inputs/in1.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/judge_temp/static/rawFiles/testCaseFiles/None/outputs/out1.txt" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/judge_temp/controllers/fileOperations.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/judge_temp/static/rawFiles/profilePics/1031210004.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/judge_temp/static/rawFiles/profilePics/1031210019.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/judge_temp/static/rawFiles/profilePics/123456789.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/judge_temp/static/rawFiles/testcaseFiles/1/inputs/in1.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/judge_temp/static/rawFiles/testcaseFiles/1/outputs/out1.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/judge_temp/static/rawFiles/testcaseFiles/2/inputs/in1.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/judge_temp/static/rawFiles/testcaseFiles/2/outputs/out1.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/judge_temp/static/rawFiles/testcaseFiles/4/inputs/in1.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/judge_temp/static/rawFiles/testcaseFiles/4/outputs/out1.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/judge_temp/static/rawFiles/testcaseFiles/5/inputs/in1.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/judge_temp/static/rawFiles/testcaseFiles/5/outputs/out1.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/judge_temp/templates/registration_page.html" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/judge_temp/controllers/dbHelpers.py" afterPath="$PROJECT_DIR$/judge_temp/controllers/db_helpers.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/judge_temp/db/judge_temp.db" afterPath="$PROJECT_DIR$/judge_temp/db/judge_temp.db" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/judge_temp/controllers/__init__.py" afterPath="$PROJECT_DIR$/judge_temp/controllers/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/judge_temp/controllers/execution.py" afterPath="$PROJECT_DIR$/judge_temp/controllers/execution.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/judge_temp/forms.py" afterPath="$PROJECT_DIR$/judge_temp/forms.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/judge_temp/models.py" afterPath="$PROJECT_DIR$/judge_temp/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/judge_temp/static/css/gahan-styles.css" afterPath="$PROJECT_DIR$/judge_temp/static/css/gahan-styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/judge_temp/templates/index.html" afterPath="$PROJECT_DIR$/judge_temp/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/judge_temp/templates/registration_page.html" afterPath="$PROJECT_DIR$/judge_temp/templates/registration_page.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/judge_temp/static/rawFiles/solutionFiles/1031210005/Solution.java" afterPath="$PROJECT_DIR$/judge_temp/static/rawFiles/solutionFiles/1031210005/Solution.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/judge_temp/templates/add_problem.html" afterPath="$PROJECT_DIR$/judge_temp/templates/add_problem.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/judge_temp/templates/forms/register.html" afterPath="$PROJECT_DIR$/judge_temp/templates/forms/register.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/judge_temp/templates/main_layout.html" afterPath="$PROJECT_DIR$/judge_temp/templates/main_layout.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/judge_temp/templates/practice.html" afterPath="$PROJECT_DIR$/judge_temp/templates/practice.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/judge_temp/templates/problem.html" afterPath="$PROJECT_DIR$/judge_temp/templates/problem.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/judge_temp/views.py" afterPath="$PROJECT_DIR$/judge_temp/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run.py" afterPath="$PROJECT_DIR$/run.py" />
     </list>
     <ignored path="online-judge.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,7 +46,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/online-judge$run.coverage" NAME="run Coverage Results" MODIFIED="1459068979557" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/online-judge$run.coverage" NAME="run Coverage Results" MODIFIED="1459086283281" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/online-judge$online_judge.coverage" NAME="online-judge Coverage Results" MODIFIED="1458985080890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -58,20 +64,7 @@
     <favorites_list name="online-judge" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/judge_temp/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
-              <folding>
-                <element signature="e#68#136#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -92,15 +85,25 @@
         <option value="$PROJECT_DIR$/judge_temp/templates/registration_page.html" />
         <option value="$PROJECT_DIR$/judge_temp/static/css/gahan-styles.css" />
         <option value="$PROJECT_DIR$/judge_temp/templates/forms/registration_success.html" />
-        <option value="$PROJECT_DIR$/judge_temp/templates/forms/register.html" />
         <option value="$PROJECT_DIR$/judge_temp/templates/forms/_formhelpers.html" />
         <option value="$PROJECT_DIR$/judge_temp/controllers/dbOperations.py" />
-        <option value="$PROJECT_DIR$/judge_temp/views.py" />
         <option value="$PROJECT_DIR$/run.py" />
-        <option value="$PROJECT_DIR$/judge_temp/controllers/execution.py" />
-        <option value="$PROJECT_DIR$/judge_temp/controllers/dbHelpers.py" />
+        <option value="$PROJECT_DIR$/example_google.py" />
         <option value="$PROJECT_DIR$/judge_temp/models.py" />
         <option value="$PROJECT_DIR$/judge_temp/forms.py" />
+        <option value="$PROJECT_DIR$/judge_temp/__init__.py" />
+        <option value="$PROJECT_DIR$/judge_temp/controllers/__init__.py" />
+        <option value="$PROJECT_DIR$/judge_temp/controllers/dbHelpers.py" />
+        <option value="$PROJECT_DIR$/judge_temp/controllers/fileOperations.py" />
+        <option value="$PROJECT_DIR$/judge_temp/templates/practice.html" />
+        <option value="$PROJECT_DIR$/judge_temp/templates/main_layout.html" />
+        <option value="$PROJECT_DIR$/judge_temp/templates/forms/register.html" />
+        <option value="$PROJECT_DIR$/judge_temp/controllers/db_helpers.py" />
+        <option value="$PROJECT_DIR$/judge_temp/controllers/file_operations.py" />
+        <option value="$PROJECT_DIR$/judge_temp/views.py" />
+        <option value="$PROJECT_DIR$/judge_temp/templates/add_problem.html" />
+        <option value="$PROJECT_DIR$/judge_temp/templates/problem.html" />
+        <option value="$PROJECT_DIR$/judge_temp/controllers/execution.py" />
       </list>
     </option>
   </component>
@@ -184,44 +187,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="online-judge" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="online-judge" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="judge_temp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="online-judge" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="online-judge" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="judge_temp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
+    <property name="settings.editor.selected.configurable" value="diff.external" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -496,29 +467,38 @@
       <option name="presentableId" value="Default" />
       <updated>1458900557855</updated>
     </task>
+    <task id="LOCAL-00001" summary="Registration form validation added">
+      <created>1459074186263</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1459074186263</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28462708" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2625571" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32736155" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32247558" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17579909" sideWeight="0.49348533" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2625571" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32736155" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28386605" sideWeight="0.50651467" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -532,6 +512,11 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="Registration form validation added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Registration form validation added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -550,7 +535,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/judge_temp/controllers/dbHelpers.py">
+    <entry file="file://$PROJECT_DIR$/judge_temp/controllers/db_helpers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -573,12 +558,12 @@
         <state relative-caret-position="1870">
           <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
           <folding>
-            <element signature="e#0#9#0" expanded="false" />
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/judge_temp/controllers/dbHelpers.py">
+    <entry file="file://$PROJECT_DIR$/judge_temp/controllers/db_helpers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
           <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
@@ -645,12 +630,12 @@
         <state relative-caret-position="1275">
           <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
           <folding>
-            <element signature="e#0#9#0" expanded="false" />
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/judge_temp/controllers/dbHelpers.py">
+    <entry file="file://$PROJECT_DIR$/judge_temp/controllers/db_helpers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
@@ -673,12 +658,12 @@
         <state relative-caret-position="799">
           <caret line="56" column="54" selection-start-line="56" selection-start-column="54" selection-end-line="56" selection-end-column="54" />
           <folding>
-            <element signature="e#0#9#0" expanded="false" />
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/judge_temp/controllers/dbHelpers.py">
+    <entry file="file://$PROJECT_DIR$/judge_temp/controllers/db_helpers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
@@ -703,7 +688,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/judge_temp/controllers/dbHelpers.py">
+    <entry file="file://$PROJECT_DIR$/judge_temp/controllers/db_helpers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
           <caret line="43" column="19" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
@@ -715,20 +700,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="850">
           <caret line="54" column="32" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/judge_temp/templates/add_problem.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/judge_temp/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -746,38 +717,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/judge_temp/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="29" column="65" selection-start-line="29" selection-start-column="65" selection-end-line="29" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/judge_temp/templates/forms/registration_success.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/judge_temp/templates/forms/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-34">
-          <caret line="10" column="53" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/judge_temp/templates/forms/_formhelpers.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="269">
           <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/judge_temp/controllers/fileOperations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-824">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -841,26 +784,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/judge_temp/controllers/execution.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="75" column="87" selection-start-line="75" selection-start-column="87" selection-end-line="75" selection-end-column="87" />
-          <folding>
-            <element signature="e#0#9#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/judge_temp/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="553">
-          <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#9#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python2.7/dist-packages/flask_admin/templates/bootstrap2/admin/layout.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
@@ -869,35 +792,145 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/judge_temp/controllers/dbHelpers.py">
+    <entry file="file://$PROJECT_DIR$/example_google.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="e#556#581#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1710">
+          <caret line="125" column="0" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/judge_temp/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/judge_temp/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
+        <state relative-caret-position="180">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding>
             <element signature="e#138#217#0" expanded="true" />
-            <element signature="e#375#690#1" expanded="false" />
-            <element signature="e#868#1185#1" expanded="false" />
-            <marker date="1459073864666" expanded="true" signature="1478:1522" placeholder="..." />
+            <element signature="e#377#692#1" expanded="false" />
+            <element signature="e#871#1188#1" expanded="false" />
+            <marker date="1459077945934" expanded="true" signature="1482:1511" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/judge_temp/controllers/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="28" column="25" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/judge_temp/templates/forms/registration_success.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/judge_temp/templates/admin/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="14" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/judge_temp/controllers/db_helpers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="28" column="72" selection-start-line="28" selection-start-column="72" selection-end-line="28" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/judge_temp/templates/forms/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-288">
+          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/judge_temp/controllers/file_operations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="66" column="17" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/judge_temp/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/judge_temp/templates/practice.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/judge_temp/templates/problem.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="180" column="56" selection-start-line="180" selection-start-column="52" selection-end-line="180" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/judge_temp/controllers/execution.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/judge_temp/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
+        <state relative-caret-position="-277">
+          <caret line="104" column="16" selection-start-line="104" selection-start-column="16" selection-end-line="104" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/judge_temp/templates/main_layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="46" column="14" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/judge_temp/templates/add_problem.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="58" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/judge_temp/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="80" column="37" selection-start-line="80" selection-start-column="37" selection-end-line="80" selection-end-column="37" />
           <folding>
-            <element signature="e#68#136#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>

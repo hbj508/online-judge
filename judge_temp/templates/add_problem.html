@@ -8,143 +8,144 @@
 </head>
 <body>
 
-    <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="{{url_for('static',filename='js/jquery-2.1.1.min.js')}}"></script>
-    <script type="text/javascript" src="{{url_for('static',filename='js/materialize.min.js')}}"></script>
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="{{ url_for('static',filename='js/jquery-2.1.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/materialize.min.js') }}"></script>
 
-    <!-- navigation bar -->
-    <nav>
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo center">&lt;CodePro&gt;</a>
-        </div>
-    </nav>
+<!-- navigation bar -->
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">&lt;CodePro&gt;</a>
+    </div>
+</nav>
+<br>
+
+<!-- container -->
+<div class="container">
+
+    <!-- heading -->
+    <h4>Add a problem</h4>
+    <hr>
     <br>
 
-    <!-- container -->
-    <div class="container">
+    <!-- form to add problem -->
+    <form class="col s12" action='{{ url_for('add_problem') }}' method="post" enctype="multipart/form-data">
 
-        <!-- heading -->
-        <h4>Add a problem</h4>
-        <hr><br>
+        <!-- problem title -->
+        <div class="row">
+            <div class="input-field col s12">
+                <input type="text" name="title">
+                <label for="title">Problem Title</label>
+            </div>
+        </div>
 
-        <!-- form to add problem -->
-        <form class="col s12" action='{{url_for('addProblem')}}' method="post" enctype="multipart/form-data">
+        <!-- statement -->
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea name="statement" class="materialize-textarea"></textarea>
+                <label for="statement">Problem Statement:</label>
+            </div>
+        </div>
 
-            <!-- problem title -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <input type="text" name="title">
-                    <label for="title">Problem Title</label>
+        <!-- Input Format -->
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea name="input_format" class="materialize-textarea"></textarea>
+                <label for="inputFormat">Input Format:</label>
+            </div>
+        </div>
+
+        <!-- Output Format -->
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea name="output_format" class="materialize-textarea"></textarea>
+                <label for="outputFormat">Output Format:</label>
+            </div>
+        </div>
+
+        <!-- constraints -->
+        <div class="row">
+            <div class="input-field col s6">
+                <textarea name="constraints" class="materialize-textarea"></textarea>
+                <label for="constraints">Constraints:</label>
+            </div>
+        </div>
+
+        <!-- time limit -->
+        <div class="row">
+            <div class="input-field col s12">
+                <input type="text" name="time_limit">
+                <label for="timeLimit">Time Limit:</label>
+            </div>
+        </div>
+
+        <!-- sample input and output -->
+        <div class="row">
+            <div class="input-field col s6">
+                <textarea name="sample_input" class="materialize-textarea"></textarea>
+                <label for="sampleInput">Sample Input:</label>
+            </div>
+            <div class="input-field col s6">
+                <textarea name="sample_output" class="materialize-textarea"></textarea>
+                <label for="sample_output">Sample Output:</label>
+            </div>
+        </div>
+
+        <!-- Explanation -->
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea name="explanation" class="materialize-textarea"></textarea>
+                <label for="explanation">Explanation:</label>
+            </div>
+        </div>
+
+        <!-- diffculty level -->
+        <div class="row">
+            <div class="input-field col s12">
+                <input type="text" name="difficulty_level">
+                <label for="difficulty_level">Difficulty Level:</label>
+            </div>
+        </div>
+
+        <!-- category -->
+        <div class="row">
+            <div class="input-field col s12">
+                <input type="text" name="category">
+                <label for="category">Category:</label>
+            </div>
+        </div>
+
+        <!-- Testcase files uploads -->
+        <div class="row">
+            <!-- inputs-->
+            <div class="file-field input-field col s6">
+                <div class="btn">
+                    <span>Input Files:</span>
+                    <input type="file" name="input_files" multiple>
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Upload one or more files">
                 </div>
             </div>
-
-            <!-- statement -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <textarea name="statement" class="materialize-textarea"></textarea>
-                    <label for="statement">Problem Statement:</label>
+            <!-- outputs-->
+            <div class="file-field input-field col s6">
+                <div class="btn">
+                    <span>Output Files:</span>
+                    <input type="file" name="output_files" multiple>
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Upload one or more files">
                 </div>
             </div>
+        </div>
 
-            <!-- Input Format -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <textarea name="inputFormat" class="materialize-textarea"></textarea>
-                    <label for="inputFormat">Input Format:</label>
-                </div>
-            </div>
-
-            <!-- Output Format -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <textarea name="outputFormat" class="materialize-textarea"></textarea>
-                    <label for="outputFormat">Output Format:</label>
-                </div>
-            </div>
-
-            <!-- constraints -->
-            <div class="row">
-                <div class="input-field col s6">
-                    <textarea name="constraints" class="materialize-textarea"></textarea>
-                    <label for="constraints">Constraints:</label>
-                </div>
-            </div>
-
-            <!-- time limit -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <input type="text" name="timeLimit">
-                    <label for="timeLimit">Time Limit:</label>
-                </div>
-            </div>
-
-            <!-- sample input and output -->
-            <div class="row">
-                <div class="input-field col s6">
-                    <textarea name="sampleInput" class="materialize-textarea"></textarea>
-                    <label for="sampleInput">Sample Input:</label>
-                </div>
-                <div class="input-field col s6">
-                    <textarea name="sampleOutput" class="materialize-textarea"></textarea>
-                    <label for="sampleOutput">Sample Output:</label>
-                </div>
-            </div>
-
-            <!-- Explanation -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <textarea name="explanation" class="materialize-textarea"></textarea>
-                    <label for="explanation">Explanation:</label>
-                </div>
-            </div>
-
-            <!-- diffculty level -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <input type="text" name="difficultyLevel">
-                    <label for="difficultyLevel">Difficulty Level:</label>
-                </div>
-            </div>
-
-            <!-- category -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <input type="text" name="category">
-                    <label for="category">Category:</label>
-                </div>
-            </div>
-
-            <!-- Testcase files uploads -->
-            <div class="row">
-                <!-- inputs-->
-                <div class="file-field input-field col s6">
-                    <div class="btn">
-                        <span>Input Files:</span>
-                        <input type="file" name="inputFiles" multiple>
-                    </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text" placeholder="Upload one or more files">
-                    </div>
-                </div>
-                <!-- outputs-->
-                <div class="file-field input-field col s6">
-                    <div class="btn">
-                        <span>Output Files:</span>
-                        <input type="file" name="outputFiles" multiple>
-                    </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text" placeholder="Upload one or more files">
-                    </div>
-                </div>
-            </div>
-
-            <!-- submit button -->
-            <div class="row">
-                <button class="btn waves-effect waves-light right" type="submit" name="action">Submit
-                    <i class="material-icons right">send</i>
-                </button>
-            </div>
-        </form>
-    </div>
+        <!-- submit button -->
+        <div class="row">
+            <button class="btn waves-effect waves-light right" type="submit" name="action">Submit
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+    </form>
+</div>
 </body>
 </html>

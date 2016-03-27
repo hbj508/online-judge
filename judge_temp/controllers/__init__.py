@@ -7,7 +7,8 @@ certain methods which require frequent user
 import errno
 import os
 
-def getExtensionOfFile(filename):
+
+def get_extension_of_file(filename):
     """
         Returns extension of a file in string format
 
@@ -18,9 +19,10 @@ def getExtensionOfFile(filename):
     """
     return filename.rsplit('.', 1)[1]
 
+
 def mkdir_p(path):
     """
-        implements mkdir -p functinality of linux shell in python. It might raise
+        implements mkdir -p functionality of linux shell in python. It might raise
         error in concurrent conditions
     """
     if not os.path.exists(path):

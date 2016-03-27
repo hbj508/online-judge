@@ -1,110 +1,114 @@
-{%extends "main_layout.html"%}
-{%block extra_css%}
-<!-- codemirror -->
-<link rel="stylesheet" href="{{url_for('static',filename='codemirror/lib/codemirror.css')}}">
-<script src="{{url_for('static',filename='codemirror/lib/codemirror.js')}}"></script>
-<script src="{{url_for('static',filename='codemirror/addon/edit/matchbrackets.js')}}"></script>
-<link rel="stylesheet" href="{{url_for('static',filename='codemirror/addon/hint/show-hint.css')}}">
-<script src="{{url_for('static',filename='codemirror/addon/hint/show-hint.js')}}"></script>
-<script src="{{url_for('static',filename='codemirror/mode/clike/clike.js')}}"></script>
-<script src="{{url_for('static',filename='codemirror/addon/selection/active-line.js')}}"></script>
-<script src="{{url_for('static',filename='codemirror/addon/edit/matchbrackets.js')}}"></script>
-<style>.CodeMirror {border: 2px inset #dee;}</style>
+{% extends "main_layout.html" %}
+{% block extra_css %}
+    <!-- codemirror -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='codemirror/lib/codemirror.css') }}">
+    <script src="{{ url_for('static',filename='codemirror/lib/codemirror.js') }}"></script>
+    <script src="{{ url_for('static',filename='codemirror/addon/edit/matchbrackets.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='codemirror/addon/hint/show-hint.css') }}">
+    <script src="{{ url_for('static',filename='codemirror/addon/hint/show-hint.js') }}"></script>
+    <script src="{{ url_for('static',filename='codemirror/mode/clike/clike.js') }}"></script>
+    <script src="{{ url_for('static',filename='codemirror/addon/selection/active-line.js') }}"></script>
+    <script src="{{ url_for('static',filename='codemirror/addon/edit/matchbrackets.js') }}"></script>
+    <style>.CodeMirror {
+        border: 2px inset #dee;
+    }</style>
 
-<!-- theme -->
-<link rel="stylesheet" href="{{url_for('static',filename='codemirror/lib/codemirror.css')}}">
-<link rel="stylesheet" href="{{url_for('static',filename='codemirror/theme/3024-day.css')}}">
-<link rel="stylesheet" href="{{url_for('static',filename='codemirror/theme/3024-night.css')}}">
-<link rel="stylesheet" href="{{url_for('static',filename='codemirror/theme/abcdef.css')}}">
-<link rel="stylesheet" href="{{url_for('static',filename='codemirror/theme/base16-dark.css')}}">
-<link rel="stylesheet" href="{{url_for('static',filename='codemirror/theme/ambiance.css')}}">
-{%endblock%}
+    <!-- theme -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='codemirror/lib/codemirror.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='codemirror/theme/3024-day.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='codemirror/theme/3024-night.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='codemirror/theme/abcdef.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='codemirror/theme/base16-dark.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='codemirror/theme/ambiance.css') }}">
+{% endblock %}
 
-{%block main%}
-<div class="row">
-	<div class="col s12">
-		<ul class="tabs">
-			<li class="tab col s3"><a  class="active" href="#test1">Problem</a></li>
-			<li class="tab col s3"><a href="#test2">Code Editor</a></li>
-			<div class="col s6 offset-s6"><span class="flow-text"></span></div>
-		</ul>
-	</div>
-</div>
+{% block main %}
+    <div class="row">
+        <div class="col s12">
+            <ul class="tabs">
+                <li class="tab col s3"><a class="active" href="#test1">Problem</a></li>
+                <li class="tab col s3"><a href="#test2">Code Editor</a></li>
+                <div class="col s6 offset-s6"><span class="flow-text"></span></div>
+            </ul>
+        </div>
+    </div>
 
-<!-- TODO get the problem content dynamically from the previous page content-->
-<div id="test1" class="col s12">
-	<ul class="collapsible" data-collapsible="expandable">
+    <!-- TODO get the problem content dynamically from the previous page content-->
+    <div id="test1" class="col s12">
+        <ul class="collapsible" data-collapsible="expandable">
 
-		<!-- probelms -->
-		<li>
-			<div class="collapsible-header active">{{problem.title}}</div>
-			<div class="collapsible-body" style="padding:20px">
-				<code>
-					{{problem.statement}}
-				</code>
-			</div>
-		</li>
+            <!-- problems -->
+            <li>
+                <div class="collapsible-header active">{{ problem.title }}</div>
+                <div class="collapsible-body" style="padding:20px">
+                    <code>
+                        {{ problem.statement }}
+                    </code>
+                </div>
+            </li>
 
-		<!-- input -->
-		<li>
-			<div class="collapsible-header">Input</div>
-			<div class="collapsible-body" style="padding:20px">
-				<code>
-					<pre>{{problem.inputFormat}}</pre> <br>
-					Sample Input: <br>
-					<pre>{{problem.sampleInput}}</pre>
-				</code>
-			</div>
-		</li>
+            <!-- input -->
+            <li>
+                <div class="collapsible-header">Input</div>
+                <div class="collapsible-body" style="padding:20px">
+                    <code>
+                        <pre>{{ problem.input_format }}</pre>
+                        <br>
+                        Sample Input: <br>
+                        <pre>{{ problem.sample_input }}</pre>
+                    </code>
+                </div>
+            </li>
 
-		<!-- output -->
-		<li>
-			<div class="collapsible-header">output</div>
-			<div class="collapsible-body" style="padding:20px">
-				<code>
-					<pre>{{problem.outputFormat}}</pre> <br>
-					Sample Output: <br>
-					<pre>{{problem.sampleOutput}}</pre>
-				</code>
-			</div>
-		</li>
+            <!-- output -->
+            <li>
+                <div class="collapsible-header">output</div>
+                <div class="collapsible-body" style="padding:20px">
+                    <code>
+                        <pre>{{ problem.output_format }}</pre>
+                        <br>
+                        Sample Output: <br>
+                        <pre>{{ problem.sample_output }}</pre>
+                    </code>
+                </div>
+            </li>
 
-		<!-- constraints -->
-		<li>
-			<div class="collapsible-header">Constraints</div>
-			<div class="collapsible-body" style="padding:20px">
-				<code>
-					<pre>{{problem.constraints}}</pre>
-				</code>
-			</div>
-		</li>
-	</ul>
-</div>
+            <!-- constraints -->
+            <li>
+                <div class="collapsible-header">Constraints</div>
+                <div class="collapsible-body" style="padding:20px">
+                    <code>
+                        <pre>{{ problem.constraints }}</pre>
+                    </code>
+                </div>
+            </li>
+        </ul>
+    </div>
 
-<div id="test2" class="col s12">
-		<div class="col s12">
-			<ul class="tabs">
-				<li class="tab col s4"><a  class="active" href="#java">java</a></li>
-				<li class="tab col s4"><a href="#c">C</a></li>
-				<li class="tab col s4"><a href="#cpp">C++</a></li>
-			</ul>
-		</div>
+    <div id="test2" class="col s12">
+        <div class="col s12">
+            <ul class="tabs">
+                <li class="tab col s4"><a class="active" href="#java">java</a></li>
+                <li class="tab col s4"><a href="#c">C</a></li>
+                <li class="tab col s4"><a href="#cpp">C++</a></li>
+            </ul>
+        </div>
 
-	<div id="java" class="col s12">
-		<form action="{{url_for('problemSolving',problemId=problem.id)}}" method="post">
-			<div class="row">
-				<p>
-					<span class="col s1">Select a theme: </span>
-					<select class="col s3 browser-default" onchange="selectTheme()" id="select">
-						<option selected>default</option>
-						<option>ambiance</option>
-						<option>base16-dark</option>
-						<option>base16-light</option>
-						<option>bespin</option>
-					</select>
-					<input class="col s3" name="codeLang" value="java" style="visibility: collapse;">
-				</p>
-			</div>
+        <div id="java" class="col s12">
+            <form action="{{ url_for('problem_solving',problem_id=problem.id) }}" method="post">
+                <div class="row">
+                    <p>
+                        <span class="col s1">Select a theme: </span>
+                        <select class="col s3 browser-default" onchange="selectTheme()" id="select">
+                            <option selected>default</option>
+                            <option>ambiance</option>
+                            <option>base16-dark</option>
+                            <option>base16-light</option>
+                            <option>bespin</option>
+                        </select>
+                        <input class="col s3" name="code_lang" value="java" style="visibility: collapse;">
+                    </p>
+                </div>
 			<textarea id="code" name="code">
 /* package codepro; // don't place package name! */
 
@@ -121,181 +125,190 @@ public class Solution
 	}
 }
 			</textarea>
-			<div class="row right">
-				<div class="col s6 offset-s6"><span class="flow-text"></span></div>
-				<button class="btn waves-effect waves-light" type="submit" name="action">Submit
-					<i class="material-icons right">send</i>
-				</button>
-			</div>
-		</form>
-	</div>
+                <div class="row right">
+                    <div class="col s6 offset-s6"><span class="flow-text"></span></div>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form>
+        </div>
 
-	<div id="c" class="col s12">
-		<form action="{{url_for('problemSolving',problemId=problem.id)}}" method="post">
-		<div class="row">
-			<p>
-				<span class="col s1">Select a theme: </span>
-				<select class="col s3 browser-default" onchange="cselectTheme()" id="cselect">
-					<option selected>default</option>
-					<option>ambiance</option>
-					<option>base16-dark</option>
-					<option>base16-light</option>
-					<option>bespin</option>
-				</select>
-				<input class="col s3" name="codeLang" value="c" style="visibility: collapse;">
-			</p>
-		</div>
+        <div id="c" class="col s12">
+            <form action="{{ url_for('problem_solving',problem_id=problem.id) }}" method="post">
+                <div class="row">
+                    <p>
+                        <span class="col s1">Select a theme: </span>
+                        <select class="col s3 browser-default" onchange="cselectTheme()" id="cselect">
+                            <option selected>default</option>
+                            <option>ambiance</option>
+                            <option>base16-dark</option>
+                            <option>base16-light</option>
+                            <option>bespin</option>
+                        </select>
+                        <input class="col s3" name="code_lang" value="c" style="visibility: collapse;">
+                    </p>
+                </div>
 		<textarea id="ccode" name="code">
 #include <stdio.h>
 
 int main(void) {
-	// your code goes here
-	return 0;
+// your code goes here
+return 0;
 }
 		</textarea>
-		<div class="row right">
-			<div class="col s6 offset-s6"><span class="flow-text"></span></div>
-			<button class="btn waves-effect waves-light" type="submit" name="action">Submit
-				<i class="material-icons right">send</i>
-			</button>
-		</div>
-	</form>
-	</div>
+                <div class="row right">
+                    <div class="col s6 offset-s6"><span class="flow-text"></span></div>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form>
+        </div>
 
-	<div id="cpp" class="col s12">
-		<form action="{{url_for('problemSolving',problemId=problem.id)}}" method="post">
-		<div class="row">
-			<p>
-				<span class="col s1">Select a theme: </span>
-				<select class="col s3 browser-default" onchange="cppselectTheme()" id="cppselect">
-					<option selected>default</option>
-					<option>ambiance</option>
-					<option>base16-dark</option>
-					<option>base16-light</option>
-					<option>bespin</option>
-				</select>
-				<input class="col s3" name="codeLang" value="cpp" style="visibility: collapse;">
-			</p>
-		</div>
+        <div id="cpp" class="col s12">
+            <form action="{{ url_for('problem_solving',problem_id=problem.id) }}" method="post">
+                <div class="row">
+                    <p>
+                        <span class="col s1">Select a theme: </span>
+                        <select class="col s3 browser-default" onchange="cppselectTheme()" id="cppselect">
+                            <option selected>default</option>
+                            <option>ambiance</option>
+                            <option>base16-dark</option>
+                            <option>base16-light</option>
+                            <option>bespin</option>
+                        </select>
+                        <input class="col s3" name="code_lang" value="cpp" style="visibility: collapse;">
+                    </p>
+                </div>
 		<textarea id="cppcode" name="code">
 #include <iostream>
 using namespace std;
 
 int main() {
-	// your code goes here
-	return 0;
+// your code goes here
+return 0;
 }
 		</textarea>
-		<div class="row right">
-			<div class="col s6 offset-s6"><span class="flow-text"></span></div>
-			<button class="btn waves-effect waves-light" type="submit" name="action">Submit
-				<i class="material-icons right">send</i>
-			</button>
-			</div>
-		</form>
-		</div>
-</div>
-{%endblock%}
+                <div class="row right">
+                    <div class="col s6 offset-s6"><span class="flow-text"></span></div>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
 
-{%block extra_post_scripts%}
-<script type="text/javascript">
-	var input = document.getElementById("select");
+{% block extra_post_scripts %}
+    <script type="text/javascript">
+        var input = document.getElementById("select");
 
-	var Editor = CodeMirror.fromTextArea(document.getElementById("code"),
-	{
-		lineNumbers: true,
-		matchBrackets: true,
-		mode: "text/x-java"
-	});
+        var Editor = CodeMirror.fromTextArea(document.getElementById("code"),
+                {
+                    lineNumbers: true,
+                    matchBrackets: true,
+                    mode: "text/x-java"
+                });
 
-	var mac = CodeMirror.keyMap.default == CodeMirror.keyMap.macDefault;
-	CodeMirror.keyMap.default[(mac ? "Cmd" : "Ctrl") + "-Space"] = "autocomplete";
-		function selectTheme() {
-		var theme = input.options[input.selectedIndex].textContent;
-		Editor.setOption("theme", theme);
-		location.hash = "#" + theme;
-	}
+        var mac = CodeMirror.keyMap.default == CodeMirror.keyMap.macDefault;
+        CodeMirror.keyMap.default[(mac ? "Cmd" : "Ctrl") + "-Space"] = "autocomplete";
+        function selectTheme() {
+            var theme = input.options[input.selectedIndex].textContent;
+            Editor.setOption("theme", theme);
+            location.hash = "#" + theme;
+        }
 
-	var choice = (location.hash && location.hash.slice(1)) ||
-	(document.location.search &&
-		decodeURIComponent(document.location.search.slice(1)));
-		if (choice) {
-		input.value = choice;
-		Editor.setOption("theme", choice);
-	}
+        var choice = (location.hash && location.hash.slice(1)) ||
+                (document.location.search &&
+                decodeURIComponent(document.location.search.slice(1)));
+        if (choice) {
+            input.value = choice;
+            Editor.setOption("theme", choice);
+        }
 
-	CodeMirror.on(window, "hashchange", function() {
-		var theme = location.hash.slice(1);
-		if (theme) { input.value = theme; selectTheme(); }
-	});
+        CodeMirror.on(window, "hashchange", function () {
+            var theme = location.hash.slice(1);
+            if (theme) {
+                input.value = theme;
+                selectTheme();
+            }
+        });
 
-</script>
+    </script>
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-	var cinput = document.getElementById("cselect");
-	var cEditor = CodeMirror.fromTextArea(document.getElementById("ccode"),{
-		lineNumbers: true,
-		matchBrackets: true,
-		mode: "text/x-csrc"
-	});
+        var cinput = document.getElementById("cselect");
+        var cEditor = CodeMirror.fromTextArea(document.getElementById("ccode"), {
+            lineNumbers: true,
+            matchBrackets: true,
+            mode: "text/x-csrc"
+        });
 
-	var cmac = CodeMirror.keyMap.default == CodeMirror.keyMap.macDefault;
-	CodeMirror.keyMap.default[(cmac ? "Cmd" : "Ctrl") + "-Space"] = "autocomplete";
-	function cselectTheme() {
-		var ctheme = cinput.options[cinput.selectedIndex].textContent;
-		cEditor.setOption("theme", ctheme);
-		location.hash = "#" + ctheme;
-	}
+        var cmac = CodeMirror.keyMap.default == CodeMirror.keyMap.macDefault;
+        CodeMirror.keyMap.default[(cmac ? "Cmd" : "Ctrl") + "-Space"] = "autocomplete";
+        function cselectTheme() {
+            var ctheme = cinput.options[cinput.selectedIndex].textContent;
+            cEditor.setOption("theme", ctheme);
+            location.hash = "#" + ctheme;
+        }
 
-	var choice = (location.hash && location.hash.slice(1)) ||
-		(document.location.search &&
-			decodeURIComponent(document.location.search.slice(1)));
-	if (choice) {
-		cinput.value = choice;
-		cEditor.setOption("theme", choice);
-	}
+        var choice = (location.hash && location.hash.slice(1)) ||
+                (document.location.search &&
+                decodeURIComponent(document.location.search.slice(1)));
+        if (choice) {
+            cinput.value = choice;
+            cEditor.setOption("theme", choice);
+        }
 
-	CodeMirror.on(window, "hashchange", function() {
-		var theme = location.hash.slice(1);
-		if (theme) { cinput.value = theme; cselectTheme(); }
-	});
+        CodeMirror.on(window, "hashchange", function () {
+            var theme = location.hash.slice(1);
+            if (theme) {
+                cinput.value = theme;
+                cselectTheme();
+            }
+        });
 
-</script>
+    </script>
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-	var cppinput = document.getElementById("cppselect");
+        var cppinput = document.getElementById("cppselect");
 
-	var cppEditor = CodeMirror.fromTextArea(document.getElementById("cppcode"),
-	{
-		lineNumbers: true,
-		matchBrackets: true,
-		mode: "text/x-c++src"
-	});
+        var cppEditor = CodeMirror.fromTextArea(document.getElementById("cppcode"),
+                {
+                    lineNumbers: true,
+                    matchBrackets: true,
+                    mode: "text/x-c++src"
+                });
 
-	var cppmac = CodeMirror.keyMap.default == CodeMirror.keyMap.macDefault;
-	CodeMirror.keyMap.default[(cppmac ? "Cmd" : "Ctrl") + "-Space"] = "autocomplete";
+        var cppmac = CodeMirror.keyMap.default == CodeMirror.keyMap.macDefault;
+        CodeMirror.keyMap.default[(cppmac ? "Cmd" : "Ctrl") + "-Space"] = "autocomplete";
 
-	function cppselectTheme() {
-		var cpptheme = cppinput.options[cppinput.selectedIndex].textContent;
-		cppEditor.setOption("theme", cpptheme);
-		location.hash = "#" + cpptheme;
-	}
+        function cppselectTheme() {
+            var cpptheme = cppinput.options[cppinput.selectedIndex].textContent;
+            cppEditor.setOption("theme", cpptheme);
+            location.hash = "#" + cpptheme;
+        }
 
-	var choice = (location.hash && location.hash.slice(1)) ||
-				(document.location.search &&
-				decodeURIComponent(document.location.search.slice(1)));
+        var choice = (location.hash && location.hash.slice(1)) ||
+                (document.location.search &&
+                decodeURIComponent(document.location.search.slice(1)));
 
-	if (choice) {
-		cppinput.value = choice;
-		cppEditor.setOption("theme", choice);
-	}
+        if (choice) {
+            cppinput.value = choice;
+            cppEditor.setOption("theme", choice);
+        }
 
-	CodeMirror.on(window, "hashchange", function() {
-		var theme = location.hash.slice(1);
-		if (theme) { cinput.value = theme; cselectTheme(); }
-	});
+        CodeMirror.on(window, "hashchange", function () {
+            var theme = location.hash.slice(1);
+            if (theme) {
+                cinput.value = theme;
+                cselectTheme();
+            }
+        });
 
-</script>
-{%endblock%}
+    </script>
+{% endblock %}

@@ -47,28 +47,28 @@
                     Registering As:
                 </div>
                 <div class="col s2">
-                    <input type="radio" name="profileType" id="professor" value="P">
+                    <input type="radio" name="profile_type" id="professor" value="P">
                     <label for="professor">Professor</label>
                 </div>
                 <div class="col s2">
-                    <input type="radio" name="profileType" id="student" value="S" checked="checked">
+                    <input type="radio" name="profile_type" id="student" value="S" checked="checked">
                     <label for="student">Student</label>
                 </div>
             </div>
             {{ render_field(form.id,'s12','toc') }}
             <div class="row">
-                {{ render_subfield(form.firstName, 's6','account_circle') }}
-                {{ render_subfield(form.lastName,'s6') }}
+                {{ render_subfield(form.first_name, 's6','account_circle') }}
+                {{ render_subfield(form.last_name,'s6') }}
             </div>
             {{ render_field(form.password,'s12','input') }}
             {{ render_field(form.email,'s12','email','email') }}
-            {{ render_field(form.contactNo,'s12','call','number') }}
+            {{ render_field(form.contact_no,'s12','call','number') }}
             {{ render_field(form.branch,'s12') }}
             <div class="row">
                 <div class="file-field input-field">
                     <div class="btn">
                         <span>Profile Pic</span>
-                        <input type="file" name="profilePic">
+                        <input type="file" name="profile_pic">
                     </div>
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text">
