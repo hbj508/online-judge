@@ -6,6 +6,7 @@ from sqlalchemy import Column, Integer, String, Text, CHAR, DateTime
 from sqlalchemy import ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
+from sqlalchemy.orm import relationship
 from enum import Enum
 
 # Construct base class
@@ -45,17 +46,21 @@ class User(Base):
 
     # TODO: insert check constraint on profile type
 
+    def __repr__(self):
+        repr_str = "< User ("
+        repr_str += " id :" + str(self.id) + ","
+        repr_str += " first_name :" + str(self.first_name) + ","
+        repr_str += " last_name :" + str(self.last_name) + ","
+        repr_str += " password :" + str(self.password) + ","
+        repr_str += " email :" + str(self.email) + ","
+        repr_str += " contact_no :" + str(self.contact_no) + ","
+        repr_str += " branch :" + str(self.branch) + ","
+        repr_str += " profile_type :" + str(self.profile_type) + ","
+        repr_str += " profile_pic_extension :" + str(self.profile_pic_extension) + " ) > "
+        return repr_str
+
     def __str__(self):
-        to_string = "<"
-        to_string += " id :" + str(self.id) + ","
-        to_string += " first_name :" + str(self.first_name) + ","
-        to_string += " last_name :" + str(self.last_name) + ","
-        to_string += " password :" + str(self.password) + ","
-        to_string += " email :" + str(self.email) + ","
-        to_string += " contact_no :" + str(self.contact_no) + ","
-        to_string += " branch :" + str(self.branch) + ","
-        to_string += " profile_type :" + str(self.profile_type) + ","
-        to_string += " profile_pic_extension :" + str(self.profile_pic_extension) + " > "
+        to_string = str(self.id)
         return to_string
 
 
@@ -100,35 +105,41 @@ class Problem(Base):
     attempts = Column(Integer)
     successful_submission = Column(Integer)
 
+    def __str__(self):
+        return str(self.id)
+
 
 class TestCaseFileType(Enum):
-    """Enum INPUT, OUTPUT testcase files"""
+    """Enum INPUT, OUTPUT test case files"""
     INPUT = 1
     OUTPUT = 2
 
 
 class Solution(Base):
-    """
-        This model creates a Solution table for each solution that is submitted.
-        It'll contains just plain text of solution code submitted by user. It needs
-        to be first copied in a file with proper extension and then should be compiled
-        or executed.
+    """Creates solution table
 
-        Attributes:
-            id (Column) : Priamry key of each solution
-            solution_code (Column) : code submitted by user. Saved as plain text
-            lang_ext (Column) : languange used by user. Stores extension of that languange
-            time_of_exec (Column) : (in sec)total time of execution for the selected problem for selected solution
-            timestamp (Column) : DateTime timestamp at which particular solution code is submitted
-            result_code (Column) : different result codes for solution submitted.
-                SE: Server Error
-                AC: Accepted Solution
-                TLE: Time Limit exceeded
-                WA: Wrong answer
-                NZEC: Non zero execution code i.e. program didn't finish successfully
-            problem_id (Column,Integer,Foreign Key REFERS Problem.id) : id of the problem for which solution is submitted.
-                It's a Foreign key representing relation between Solution and Problem table
-            user_id (Column, String(20), Foreign Key REFERS User.id) : id of the user who submitted the problem
+    This model creates a Solution table for each solution that is submitted.
+    It'll contains just plain text of solution code submitted by user. It needs
+    to be first copied in a file with proper extension and then should be compiled
+    or executed.
+
+    Args:
+        id (Column) : Primary key of each solution
+        solution_code (Column) : code submitted by user. Saved as plain text
+        lang_ext (Column) : language used by user. Stores extension of that languange
+        time_of_exec (Column) : (in sec)total time of execution for the selected problem for selected solution
+        timestamp (Column) : DateTime timestamp at which particular solution code is submitted
+        result_code (Column) : different result codes for solution submitted.
+            SE: Server Error
+            AC: Accepted Solution
+            TLE: Time Limit exceeded
+            WA: Wrong answer
+            NZEC: Non zero execution code i.e. program didn't finish successfully
+        problem_id (Column,Integer,Foreign Key REFERS Problem.id) : id of the problem for which solution is submitted.
+            It's a Foreign key representing relation between Solution and Problem table
+        user_id (Column, String(20), Foreign Key REFERS User.id) : id of the user who submitted the problem
+        user_relation : defines relationship between user and solution table
+        problem_relation : defines relationship between problem and solution table
     """
     __tablename__ = 'solution'
     id = Column(Integer, primary_key=True)
@@ -139,6 +150,9 @@ class Solution(Base):
     result_code = Column(String(5), nullable=False)
     problem_id = Column(Integer, ForeignKey('problem.id'), nullable=False)
     user_id = Column(String(20), ForeignKey('user.id'), nullable=False)
+    user_relation = relationship('User', backref='user')
+    problem_relation = relationship('Problem', backref='problem')
+
 
 # Create engine
 if __name__ == '__main__':

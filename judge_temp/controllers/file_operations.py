@@ -49,32 +49,23 @@ def save_profile_pic(pic, reg_no):
     profile_pics.save(pic, name=str(reg_no) + "." + get_extension_of_file(pic.filename))
 
 
-def save_test_cases(file_list, problem_id, type_of_file):
+def save_test_cases(test_case_file, problem_id, type_of_file):
     """
         Saves input and output testcases by creating separate folder for each
         problem with their problem_id in /static/rawFiles/testCaseFiles. Each file will be renamed
-        to in<int>.txt and out<int>.txt. Uploaders are adviced to properly choose
-        order for uploading files
+        to in.txt, for input test case and out.txt, for output. Uploader is adviced to
+        properly choose extension of files
 
         Args:
-            file_list(list): list of input files, could be input or output testcases
+            test_case_file(file): input files, could be input or output testcases
             problem_id(int): problem problem_id
-            type_of_file(FileInput): enum of type FileInput which containts two values INPUT,OUTPUT
-                        representing wether it's input testcase file or output.
+            type_of_file(FileInput): enum of type FileInput which constraints two values INPUT,OUTPUT
+                        representing whether it's input test case file or output.
     """
     if type_of_file == TestCaseFileType.INPUT:
         folder_name = str(problem_id) + "/inputs"
-        count = 1
-        for testCaseFile in file_list:
-            ext = get_extension_of_file(testCaseFile.filename)
-            filename = 'in' + str(count) + "." + ext
-            test_case_files.save(testCaseFile, folder=folder_name, name=filename)
-            count += 1
+        file_name = 'in.txt'
     else:
         folder_name = str(problem_id) + "/outputs"
-        count = 1
-        for testCaseFile in file_list:
-            ext = get_extension_of_file(testCaseFile.filename)
-            filename = 'out' + str(count) + "." + ext
-            test_case_files.save(testCaseFile, folder=folder_name, name=filename)
-            count += 1
+        file_name = 'out.txt'
+    test_case_files.save(test_case_file, folder=folder_name, name=file_name)

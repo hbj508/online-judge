@@ -1,11 +1,12 @@
-{% macro render_field(field,colSize,icon,type) %}
-    <div class="row">
-        <div class="input-field col {{ colSize }}">
+{% macro render_subfield(field,icon,colSize='s12',type=None, class=None) %}
+    <div class="input-field col {{ colSize }}">
             {% if icon %}
                 <i class="material-icons prefix">{{ icon }}</i>
             {% endif %}
             {% if type %}
                 {{ field(class='validate', type=type, **kwargs) | safe }}
+            {% elif class %}
+                {{ field(class=class, **kwargs) | safe }}
             {% else %}
                 {{ field(**kwargs) | safe }}
             {% endif %}
@@ -16,20 +17,10 @@
                 <span class="error right"> {{ error }}</span>
             {% endfor %}
         {% endif %}
-    </div>
 {% endmacro %}
 
-{% macro render_subfield(field,colSize,icon) %}
-    <div class="input-field col {{ colSize }}">
-        {% if icon %}
-            <i class="material-icons prefix">{{ icon }}</i>
-        {% endif %}
-        {% if field.errors %}
-            {% for error in field.errors %}
-                <span class="error right"> {{ error }}</span>
-            {% endfor %}
-        {% endif %}
-        {{ field(**kwargs) | safe }}
-        {{ field.label }}
+{% macro render_field(field,icon,colSize='s12',type=None, class=None) %}
+    <div class="row">
+        {{ render_subfield(field,icon,colSize,type,class) }}
     </div>
 {% endmacro %}

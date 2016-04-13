@@ -27,7 +27,7 @@
 <header>
     <nav>
         <div class="nav-wrapper">
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <ul id="nav-mobile" class="right">
                 <li><a href="#"><i class="material-icons">notifications</i></a></li>
                 <li><a href="{{ url_for('logout') }}">Sign Out</a></li>
                 <li><a href="#"><i class="material-icons">more_vert</i></a></li>
@@ -42,6 +42,8 @@
         </div>
         <div class="row">
             <img src="
+
+
                     {{ url_for('static',filename='rawFiles/profilePics/') }}{{ user.id }}.{{ user.profile_pic_extension }}"
                  class="circle z-depth-3">
         </div>
@@ -63,5 +65,11 @@
 
 {% block extra_post_scripts %}
 {% endblock %}
+<script type="text/javascript">
+    $(".side-nav").click(function () {
+        $(".side-nav li.active").removeClass("active");
+        $(this).addClass("active");
+    })
+</script>
 </body>
 </html>

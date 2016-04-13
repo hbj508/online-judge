@@ -13,27 +13,50 @@ Attributes:
 
 from .. import app, admin
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, relationship
+from sqlalchemy.orm import sessionmaker
 from ..models import Base, User, Problem, Solution
 from flask.ext.admin.contrib.sqla import ModelView
 
-engine = create_engine(app.config['DB_URI'])
-Base.metadata.bind = engine
 
-DBSession = sessionmaker(bind=engine, autocommit=True)
-db_session = DBSession()
+def create_db_session():
+    engine = create_engine(app.config['DB_URI'])
+    Base.metadata.bind = engine
+
+    db_session = sessionmaker(bind=engine)()
+
+    return db_session
+
+
+def insert_to_db(db_session, obj):
+    """ Inserts object to required database
+
+    Args:
+        db_session (sessionmaker()): current database session of object
+        obj (ModelClass): object of any model described
+    """
+    db_session.add(obj)
+    db_session.commit()
+    db_session.close()
 
 
 class UserModelView(ModelView):
     column_display_pk = True
-    column_searchable_list = ('id', 'first_name', 'last_name', 'email', 'contact_no')
+    column_searchable_list = (User.id, User.first_name, User.last_name, User.email, User.contact_no)
 
 
 class SolutionModeView(ModelView):
-    column_display_all_relations = True
     column_display_pk = True
+    column_searchable_list = (Solution.id, Solution.lang_ext,
+                              Solution.result_code, Solution.user_id,
+                              Solution.problem_id)
+    column_display_all_relations = True
 
 
-admin.add_view(UserModelView(User, db_session))
-admin.add_view(ModelView(Problem, db_session))
-admin.add_view(SolutionModeView(Solution, db_session))
+class ProblemModeView(ModelView):
+    column_display_pk = True
+    column_searchable_list = (Problem.id, Problem.difficulty_level, Problem.category)
+
+
+admin.add_view(UserModelView(User, create_db_session()))
+admin.add_view(ProblemModeView(Problem, create_db_session()))
+admin.add_view(SolutionModeView(Solution, create_db_session()))

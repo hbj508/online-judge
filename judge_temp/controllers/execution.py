@@ -1,10 +1,10 @@
-import os
-import filecmp
 import datetime
-from .. import app
-from db_helpers import db_session
-from ..models import Solution
+import os
 from subprocess import Popen, PIPE
+
+from db_helpers import create_db_session, insert_to_db
+from .. import app
+from ..models import Solution
 
 """
 This module is responsible for executing and checking code
@@ -22,10 +22,10 @@ def _create_solution(solution_code, user_id, code_lang, problem_id):
         Args:
             solution_code (str) :  complete source code submitted by user
             user_id (str) : registration number of user of submitted the code
-            code_lang (str) : extension of code langauange file
+            code_lang (str) : extension of code language file
             problem_id (int) : id of problem for which solution is submitted
 
-        Note: Solution Model also contains more attributes which will be initliazed
+        Note: Solution Model also contains more attributes which will be initialized
         with some default values.
     """
     solution = Solution(solution_code=solution_code,
@@ -35,7 +35,8 @@ def _create_solution(solution_code, user_id, code_lang, problem_id):
                         result_code='SE',
                         user_id=user_id,
                         problem_id=problem_id)
-    db_session.add(solution)
+    db_session = create_db_session()
+    insert_to_db(db_session, solution)
     _generate_output_file(solution)
 
 
@@ -44,11 +45,13 @@ def _get_solution_details(solution_id):
         Retrieves solution base on their Id
 
         Args:
-            solution_id(int) : id of the solution to retreive
+            solution_id(int) : id of the solution to receive
         Returns:
             solution(Solution): solution row obtained from the database
     """
+    db_session = create_db_session()
     solution = db_session.query(Solution).filter_by(id=solution_id).one()
+    db_session.close()
     return solution
 
 
@@ -57,7 +60,7 @@ def _generate_solution_file(solution):
         Generates solution file for execution
 
         Args:
-            solution(Solution) : row of Solution model obtianed from query
+            solution(Solution) : row of Solution model obtained from query
     """
     solution_directory = os.path.join(app.config['SOLUTION_FILES_DEST'], solution.user_id)
     solution_file_name = "Solution." + solution.lang_ext

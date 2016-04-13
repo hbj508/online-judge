@@ -55,15 +55,15 @@
                     <label for="student">Student</label>
                 </div>
             </div>
-            {{ render_field(form.id,'s12','toc') }}
+            {{ render_field(form.id,'toc') }}
             <div class="row">
-                {{ render_subfield(form.first_name, 's6','account_circle') }}
-                {{ render_subfield(form.last_name,'s6') }}
+                {{ render_subfield(form.first_name, 'account_circle', colSize='s6') }}
+                {{ render_subfield(form.last_name,colSize='s6') }}
             </div>
-            {{ render_field(form.password,'s12','input') }}
-            {{ render_field(form.email,'s12','email','email') }}
-            {{ render_field(form.contact_no,'s12','call','number') }}
-            {{ render_field(form.branch,'s12') }}
+            {{ render_field(form.password,'input') }}
+            {{ render_field(form.email,'email',type='email') }}
+            {{ render_field(form.contact_no,'call',type='number') }}
+            {{ render_field(form.branch) }}
             <div class="row">
                 <div class="file-field input-field">
                     <div class="btn">
