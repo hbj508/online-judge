@@ -5,7 +5,7 @@
 
 from wtforms import Form, StringField, PasswordField, IntegerField, SelectField, TextAreaField
 from wtforms import validators, ValidationError
-from controllers.db_helpers import create_db_session
+from controllers.db_helpers import get_db_session
 from models import User
 
 
@@ -21,7 +21,7 @@ def validate_user_id(form, field):
         Raises:
             ValidationError: if user already registered
     """
-    db_session = create_db_session()
+    db_session = get_db_session()
     id_query = db_session.query(User).filter_by(id=field.data).all()
     db_session.close()
     if id_query:
@@ -40,7 +40,7 @@ def validate_email(form, field):
         Raises:
             ValidationError: if email already registered
     """
-    db_session = create_db_session()
+    db_session = get_db_session()
     email_query = db_session.query(User).filter_by(email=field.data).all()
     db_session.close()
     if email_query:

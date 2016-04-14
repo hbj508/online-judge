@@ -41,9 +41,7 @@
             <li>
                 <div class="collapsible-header active">{{ problem.title }}</div>
                 <div class="collapsible-body" style="padding:20px">
-                    <code>
-                        {{ problem.statement }}
-                    </code>
+                    {{ problem.statement | safe }}
                 </div>
             </li>
 
@@ -51,12 +49,10 @@
             <li>
                 <div class="collapsible-header">Input</div>
                 <div class="collapsible-body" style="padding:20px">
-                    <code>
-                        <pre>{{ problem.input_format }}</pre>
+                        {{ problem.input_format | safe }}
                         <br>
                         Sample Input: <br>
-                        <pre>{{ problem.sample_input }}</pre>
-                    </code>
+                        {{ problem.sample_input | safe }}
                 </div>
             </li>
 
@@ -64,12 +60,9 @@
             <li>
                 <div class="collapsible-header">output</div>
                 <div class="collapsible-body" style="padding:20px">
-                    <code>
-                        <pre>{{ problem.output_format }}</pre>
-                        <br>
+                        {{ problem.output_format | safe }}
                         Sample Output: <br>
-                        <pre>{{ problem.sample_output }}</pre>
-                    </code>
+                        {{ problem.sample_output | safe }}
                 </div>
             </li>
 
@@ -77,9 +70,7 @@
             <li>
                 <div class="collapsible-header">Constraints</div>
                 <div class="collapsible-body" style="padding:20px">
-                    <code>
-                        <pre>{{ problem.constraints }}</pre>
-                    </code>
+                        {{ problem.constraints | safe }}
                 </div>
             </li>
         </ul>

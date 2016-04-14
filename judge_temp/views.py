@@ -5,7 +5,7 @@ from models import User, Problem
 from models import TestCaseFileType
 from forms import RegistrationForm, ProblemForm
 import controllers as ctrl
-from controllers.db_helpers import create_db_session, insert_to_db
+from controllers.db_helpers import get_db_session, insert_to_db
 import controllers.file_operations as file_op
 import controllers.execution
 
@@ -19,7 +19,7 @@ def index():
         username = request.form['username']
         password = request.form['password']
         try:
-            db_session = create_db_session()
+            db_session = get_db_session()
             user = db_session.query(User).filter_by(id=username).one()
             db_session.close()
             if user.password == password:
@@ -54,15 +54,16 @@ def register():
 
         if user.profile_type != 'P':
             ctrl.mkdir_p(os.path.join(app.config['SOLUTION_FILES_DEST'], user.id))
+        user.is_active = 'Y'
 
-        db_session = create_db_session()
+        db_session = get_db_session()
         insert_to_db(db_session, user)
         return render_template('forms/registration_success.html')
     return render_template('forms/register.html', form=form)
 
 
 @app.route('/add_problem', methods=['GET', 'POST'])
-def add_problem_new():
+def add_problem():
     problem_form = ProblemForm(request.form)
     if request.method == 'POST':
         problem = Problem(
@@ -78,9 +79,10 @@ def add_problem_new():
             attempts=0,
             input_format=problem_form.input_format.data,
             output_format=problem_form.output_format.data,
-            explanation=problem_form.explanation.data)
+            explanation=problem_form.explanation.data
+        )
 
-        db_session = create_db_session()
+        db_session = get_db_session()
         db_session.add(problem)
         db_session.commit()
         problem_id = problem.id
@@ -94,7 +96,7 @@ def add_problem_new():
 @app.route('/practice')
 def practice():
     user_id = session['username']
-    db_session = create_db_session()
+    db_session = get_db_session()
     user = db_session.query(User).filter_by(id=user_id).one()
     problems = db_session.query(Problem).all()
     db_session.close()
@@ -109,7 +111,7 @@ def problem_solving(problem_id):
         solution_code = request.form['code']
         code_lang = request.form['code_lang']
         controllers.execution.start(solution_code, user_id, code_lang, problem_id)
-    db_session = create_db_session()
+    db_session = get_db_session()
     user = db_session.query(User).filter_by(id=user_id).one()
     problem = db_session.query(Problem).filter_by(id=problem_id).one()
     db_session.close()

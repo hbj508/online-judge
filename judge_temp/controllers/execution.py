@@ -2,7 +2,7 @@ import datetime
 import os
 from subprocess import Popen, PIPE
 
-from db_helpers import create_db_session, insert_to_db
+from db_helpers import get_db_session, insert_to_db
 from .. import app
 from ..models import Solution
 
@@ -35,7 +35,7 @@ def _create_solution(solution_code, user_id, code_lang, problem_id):
                         result_code='SE',
                         user_id=user_id,
                         problem_id=problem_id)
-    db_session = create_db_session()
+    db_session = get_db_session()
     insert_to_db(db_session, solution)
     _generate_output_file(solution)
 
@@ -49,7 +49,7 @@ def _get_solution_details(solution_id):
         Returns:
             solution(Solution): solution row obtained from the database
     """
-    db_session = create_db_session()
+    db_session = get_db_session()
     solution = db_session.query(Solution).filter_by(id=solution_id).one()
     db_session.close()
     return solution

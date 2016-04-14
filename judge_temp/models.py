@@ -32,17 +32,19 @@ class User(Base):
                 3 -- Software Engineering
             profile_type (Column(CHAR)) : flag to distinguish between professor and student.
             profile_pic_extension (Column(String)): saves extension of profile pic uploaded by user.
+            is_active(Column(CHAR)): whether user is active or not
     """
     __tablename__ = 'user'
     id = Column(String(20), primary_key=True)
     first_name = Column(String(20), nullable=False)
-    last_name = Column(String(20), nullable=False)
+    last_name = Column(String(20))
     password = Column(String(20), nullable=False)
     email = Column(String(50), nullable=False, unique=True)
-    contact_no = Column(Integer, nullable=False)
+    contact_no = Column(Integer)
     branch = Column(Integer, nullable=False)
     profile_type = Column(CHAR, nullable=False)
     profile_pic_extension = Column(String)
+    is_active = Column(CHAR, nullable=False)
 
     # TODO: insert check constraint on profile type
 
@@ -93,12 +95,12 @@ class Problem(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String(80), nullable=False)
     statement = Column(Text, nullable=False)
-    constraints = Column(String(200), nullable=False)
+    constraints = Column(Text, nullable=False)
     time_limit = Column(Integer, nullable=False)
     input_format = Column(Text)
-    sample_input = Column(String(200), nullable=False)
+    sample_input = Column(Text, nullable=False)
     output_format = Column(Text)
-    sample_output = Column(String(200), nullable=False)
+    sample_output = Column(Text, nullable=False)
     explanation = Column(Text)
     difficulty_level = Column(String(30), nullable=False)
     category = Column(String(100), nullable=False)

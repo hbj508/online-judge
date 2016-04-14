@@ -17,13 +17,19 @@ from sqlalchemy.orm import sessionmaker
 from ..models import Base, User, Problem, Solution
 from flask.ext.admin.contrib.sqla import ModelView
 
+db_session_instance = None
 
-def create_db_session():
-    engine = create_engine(app.config['DB_URI'])
-    Base.metadata.bind = engine
 
-    db_session = sessionmaker(bind=engine)()
-
+def get_db_session():
+    global db_session_instance
+    if db_session_instance is None:
+        engine = create_engine(app.config['DB_URI'])
+        Base.metadata.bind = engine
+        db_session = sessionmaker(bind=engine)()
+        db_session_instance = db_session
+        db_session = db_session_instance
+    else:
+        db_session = db_session_instance
     return db_session
 
 
@@ -55,8 +61,10 @@ class SolutionModeView(ModelView):
 class ProblemModeView(ModelView):
     column_display_pk = True
     column_searchable_list = (Problem.id, Problem.difficulty_level, Problem.category)
+    create_template = 'admin/edit.html'
+    edit_template = 'admin/edit.html'
 
 
-admin.add_view(UserModelView(User, create_db_session()))
-admin.add_view(ProblemModeView(Problem, create_db_session()))
-admin.add_view(SolutionModeView(Solution, create_db_session()))
+admin.add_view(UserModelView(User, get_db_session()))
+admin.add_view(ProblemModeView(Problem, get_db_session()))
+admin.add_view(SolutionModeView(Solution, get_db_session()))
