@@ -1,0 +1,47 @@
+{% extends 'main_layout.html' %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/result.css') }}">
+{% endblock %}
+
+{% block main %}
+    <h4 class="center"> Result </h4>
+    <div class="divider"></div>
+    <div class="center section" id="result-loading">
+        <strong>Wait till we get your result</strong>
+        <br><br>
+        <div class="preloader-wrapper active">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="center section hidden" id="result-content">
+        <h5 id="result-verdict"></h5>
+        <table class="striped container">
+            <tbody>
+                <tr>
+                    <td><strong>Problem Code</strong></td>
+                    <td>{{ problem.id }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Problem Title</strong></td>
+                    <td>{{ problem.title }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Execution time</strong></td>
+                    <td>3.0s</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

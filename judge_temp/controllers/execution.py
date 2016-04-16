@@ -49,7 +49,7 @@ def _get_solution_details(solution_id):
         Returns:
             solution(Solution): solution row obtained from the database
     """
-    db_session = get_db_session()
+    db_session = get_db_session(create_new_instance=True)
     solution = db_session.query(Solution).filter_by(id=solution_id).one()
     db_session.close()
     return solution
@@ -61,6 +61,9 @@ def _generate_solution_file(solution):
 
         Args:
             solution(Solution) : row of Solution model obtained from query
+        Returns:
+            solution_path(str) : string representing path of solution file
+            solution_directory(str) : string representing directory of solution
     """
     solution_directory = os.path.join(app.config['SOLUTION_FILES_DEST'], solution.user_id)
     solution_file_name = "Solution." + solution.lang_ext
@@ -84,6 +87,7 @@ def _generate_output_file(solution):
         command = " g++ " + solution_file_path + " && ./a.out \
                     > " + output_file_path
 
+    # TODO: try for any alternative of shell=True
     process = Popen(command, shell=True, stderr=PIPE)
     error = process.stderr.read()
     # TODO: do some error work

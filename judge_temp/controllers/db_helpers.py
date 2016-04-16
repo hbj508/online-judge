@@ -19,13 +19,14 @@ from flask.ext.admin.contrib.sqla import ModelView
 
 db_session_instance = None
 
+engine = create_engine(app.config['DB_URI'])
+Base.metadata.bind = engine
+DBSession = sessionmaker(bind=engine,expire_on_commit=False)
 
-def get_db_session():
+def get_db_session(create_new_instance=False):
     global db_session_instance
-    if db_session_instance is None:
-        engine = create_engine(app.config['DB_URI'])
-        Base.metadata.bind = engine
-        db_session = sessionmaker(bind=engine)()
+    if db_session_instance is None or create_new_instance:
+        db_session = DBSession()
         db_session_instance = db_session
         db_session = db_session_instance
     else:

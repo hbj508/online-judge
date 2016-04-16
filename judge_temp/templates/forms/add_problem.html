@@ -11,6 +11,7 @@
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="{{ url_for('static',filename='js/jquery-2.1.1.min.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static',filename='js/materialize.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='ckeditor/ckeditor.js') }}"></script>
 
 <!-- navigation bar -->
 <nav>
@@ -32,7 +33,7 @@
     <!-- form to add problem -->
     <form class="col s12" action='{{ url_for('add_problem') }}' method="post" enctype="multipart/form-data">
         {{ render_field(form.problem_title) }}
-        {{ render_field(form.problem_statement,class="materialize-textarea") }}
+        {{ render_field(form.problem_statement,class="ckeditor") }}
         {{ render_field(form.input_format, class="materialize-textarea") }}
         {{ render_field(form.output_format, class="materialize-textarea") }}
         {{ render_field(form.constraints, colSize="s6", class="materialize-textarea") }}
@@ -43,7 +44,7 @@
         </div>
         {{ render_field(form.explanation,class="materialize-textarea") }}
         {{ render_field(form.difficulty_level) }}
-        {{ render_field(form.category)}}
+        {{ render_field(form.category) }}
 
         <!-- Testcase files uploads -->
         <div class="row">

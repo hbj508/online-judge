@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="4239120897">
+    <data-source source="LOCAL" name="Sqlite (Xerial) - judge_temp.db" uuid="bcc7c1cf-81a3-45de-93b1-cf6117d03588">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/judge_temp/db/judge_temp.db</jdbc-url>
+    </data-source>
+  </component>
+</project>

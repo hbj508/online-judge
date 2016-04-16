@@ -63,9 +63,9 @@ def save_test_cases(test_case_file, problem_id, type_of_file):
                         representing whether it's input test case file or output.
     """
     if type_of_file == TestCaseFileType.INPUT:
-        folder_name = str(problem_id) + "/inputs"
+        folder_name = os.path.join(str(problem_id),"inputs")
         file_name = 'in.txt'
     else:
-        folder_name = str(problem_id) + "/outputs"
+        folder_name = os.path.join(str(problem_id), "outputs")
         file_name = 'out.txt'
     test_case_files.save(test_case_file, folder=folder_name, name=file_name)

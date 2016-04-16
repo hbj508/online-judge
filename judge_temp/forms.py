@@ -1,12 +1,14 @@
-"""
-    Module handling all the form related queries such as validation, creation etc.
-    It makes use of wtforms for it's working.
-"""
-
-from wtforms import Form, StringField, PasswordField, IntegerField, SelectField, TextAreaField
 from wtforms import validators, ValidationError
+from flask.ext.wtf import Form
+from flask.ext.wtf.file import FileField, FileAllowed, FileRequired
+from wtforms import StringField, PasswordField, IntegerField, SelectField, TextAreaField, SubmitField
 from controllers.db_helpers import get_db_session
 from models import User
+
+"""
+    Module handling all the form related queries such as validation, creation etc.
+    It makes use of wtforms and Flask-WTF packages for it's working.
+"""
 
 
 def validate_user_id(form, field):
@@ -96,3 +98,6 @@ class ProblemForm(Form):
     explanation = TextAreaField('Explanation')
     difficulty_level = StringField('Difficulty Level:*', [validators.required("*required")])
     category = StringField('Category:*', [validators.required("*required")])
+    input_test_case_file = FileField('Input Test Case File', validators=[FileRequired()])
+    output_test_case_file = FileField('Output Test case File', validators=[FileRequired()])
+    submit = SubmitField('Submit')

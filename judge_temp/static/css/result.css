@@ -1,0 +1,19 @@
+.code-accepted {
+    color: green;
+}
+
+.code-wrong {
+    color: red;
+}
+
+.code-time-limit {
+    color: blue
+}
+
+.code-compile-error {
+    color: #DADA20;
+}
+
+.hidden{
+    visibility: hidden;
+}

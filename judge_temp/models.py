@@ -2,7 +2,7 @@
     This module contains different useful models for judge
 """
 
-from sqlalchemy import Column, Integer, String, Text, CHAR, DateTime
+from sqlalchemy import Column, Integer, String, Text, CHAR, DateTime, LargeBinary
 from sqlalchemy import ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine

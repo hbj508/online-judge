@@ -34,7 +34,7 @@ def index():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    form = RegistrationForm(request.form)
+    form = RegistrationForm(csrf_enabled=False)
     if request.method == 'POST' and form.validate():
         user = User()
         user.id = form.id.data
@@ -64,7 +64,7 @@ def register():
 
 @app.route('/add_problem', methods=['GET', 'POST'])
 def add_problem():
-    problem_form = ProblemForm(request.form)
+    problem_form = ProblemForm(csrf_enabled=False)
     if request.method == 'POST':
         problem = Problem(
             title=problem_form.problem_title.data,
@@ -88,9 +88,11 @@ def add_problem():
         problem_id = problem.id
         db_session.close()
 
-        file_op.save_test_cases(request.files['input_files'], problem_id, TestCaseFileType.INPUT)
-        file_op.save_test_cases(request.files['output_files'], problem_id, TestCaseFileType.OUTPUT)
-    return render_template('forms/add_problem.html', form=problem_form)
+        file_op.save_test_cases(problem_form.input_test_case_file.data, problem_id,
+                                TestCaseFileType.INPUT)
+        file_op.save_test_cases(problem_form.output_test_case_file.data, problem_id,
+                                TestCaseFileType.OUTPUT)
+    return render_template('forms/add_problem_new.html', form=problem_form)
 
 
 @app.route('/practice')
@@ -100,22 +102,23 @@ def practice():
     user = db_session.query(User).filter_by(id=user_id).one()
     problems = db_session.query(Problem).all()
     db_session.close()
-    return render_template('practice.html', user=user, problems=problems)
+    return render_template('student/practice.html', user=user, problems=problems)
 
 
 @app.route('/practice/<problem_id>', methods=['GET', 'POST'])
 def problem_solving(problem_id):
     # TODO secure location for saving source code files
     user_id = session['username']
-    if request.method == 'POST':
-        solution_code = request.form['code']
-        code_lang = request.form['code_lang']
-        controllers.execution.start(solution_code, user_id, code_lang, problem_id)
     db_session = get_db_session()
     user = db_session.query(User).filter_by(id=user_id).one()
     problem = db_session.query(Problem).filter_by(id=problem_id).one()
     db_session.close()
-    return render_template('problem.html', user=user, problem=problem)
+    if request.method == 'POST':
+        return render_template('student/result.html', user=user, problem=problem)
+        solution_code = request.form['code']
+        code_lang = request.form['code_lang']
+        controllers.execution.start(solution_code, user_id, code_lang, problem_id)
+    return render_template('student/problem.html', user=user, problem=problem)
 
 
 @app.route('/logout')
