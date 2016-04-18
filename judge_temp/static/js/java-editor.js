@@ -35,7 +35,7 @@ CodeMirror.on(window, "hashchange", function () {
 });
 
 $(document).ready(function () {
-    var str = "/*package codepro; // don't place package name! */ \n " +
+    var str = "/*package codepro; // don't place package name! */ \n" +
                 "import java.util.*; \n" +
                 "import java.lang.*; \n" +
                 "import java.io.*; \n" +

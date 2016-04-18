@@ -1,6 +1,6 @@
 import os
 from judge_temp import app
-from flask import render_template, request, redirect, session, url_for, flash
+from flask import render_template, request, redirect, session, url_for, flash, jsonify
 from models import User, Problem
 from models import TestCaseFileType
 from forms import RegistrationForm, ProblemForm
@@ -105,7 +105,7 @@ def practice():
     return render_template('student/practice.html', user=user, problems=problems)
 
 
-@app.route('/practice/<problem_id>', methods=['GET', 'POST'])
+@app.route('/practice/<problem_id>')
 def problem_solving(problem_id):
     # TODO secure location for saving source code files
     user_id = session['username']
@@ -113,11 +113,6 @@ def problem_solving(problem_id):
     user = db_session.query(User).filter_by(id=user_id).one()
     problem = db_session.query(Problem).filter_by(id=problem_id).one()
     db_session.close()
-    if request.method == 'POST':
-        return render_template('student/result.html', user=user, problem=problem)
-        solution_code = request.form['code']
-        code_lang = request.form['code_lang']
-        controllers.execution.start(solution_code, user_id, code_lang, problem_id)
     return render_template('student/problem.html', user=user, problem=problem)
 
 
@@ -125,3 +120,14 @@ def problem_solving(problem_id):
 def logout():
     session.pop('username', None)
     return redirect(url_for('index'))
+
+
+@app.route('/_get_result', methods=['POST'])
+def get_result():
+    solution_code = request.form['code']
+    code_lang = request.form['code_lang']
+    user_id = request.form['user_id']
+    problem_id = request.form['problem_id']
+    result = controllers.execution.start(solution_code, user_id, code_lang, problem_id)
+    print "RESULT:----------" + result
+    return jsonify(result=result)

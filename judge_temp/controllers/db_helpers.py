@@ -34,7 +34,7 @@ def get_db_session(create_new_instance=False):
     return db_session
 
 
-def insert_to_db(db_session, obj):
+def insert_to_db(db_session, obj, dont_close_session = False):
     """ Inserts object to required database
 
     Args:
@@ -43,7 +43,8 @@ def insert_to_db(db_session, obj):
     """
     db_session.add(obj)
     db_session.commit()
-    db_session.close()
+    if not dont_close_session:
+        db_session.close()
 
 
 class UserModelView(ModelView):

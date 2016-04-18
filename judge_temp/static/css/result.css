@@ -14,6 +14,10 @@
     color: #DADA20;
 }
 
+.code-server-error {
+    color: #66d9ef;
+}
+
 .hidden{
     visibility: hidden;
 }

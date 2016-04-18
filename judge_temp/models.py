@@ -117,6 +117,15 @@ class TestCaseFileType(Enum):
     OUTPUT = 2
 
 
+class ResultCodes:
+    """Enum for result codes"""
+    CORRECT_ANSWER = "AC"
+    WRONG_ANSWER = "WA"
+    TIME_LIMIT_EXCEED = "TLE"
+    COMPILE_ERROR = "NZEC"
+    SERVER_ERROR = "SE"
+
+
 class Solution(Base):
     """Creates solution table
 

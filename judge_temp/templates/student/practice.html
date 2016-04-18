@@ -1,15 +1,17 @@
 {% extends "main_layout.html" %}
 {% block main %}
+    <ul class="collection">
     {% for problem in problems %}
-        <div class="collection">
-            <a href="{{ url_for('problem_solving', problem_id=problem.id) }}" class="collection-item avatar">
+            <li class="collection-item avatar">
+                <a href="{{ url_for('problem_solving', problem_id=problem.id) }}" class="black-text">
                 <i class="material-icons circle">folder</i>
                 <span class="title">{{ problem.title }}</span>
-                <p>Attempted {{ problem.attempts }} &nbsp;&nbsp;&nbsp;&nbsp;
-                    Successful submission {{ problem.successful_submission }}<br>
-                    {{ problem.difficultyLevel }}
+                <p>Attempted {{ problem.attempts }}
+                <br>Successful submission {{ problem.successful_submission }}
+                <br>{{ problem.difficultyLevel }}
                 </p>
             </a>
-        </div>
+            </li>
     {% endfor %}
+    </ul>
 {% endblock %}

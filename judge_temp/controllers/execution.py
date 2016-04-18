@@ -1,10 +1,12 @@
 import datetime
 import os
-from subprocess import Popen, PIPE
+from subprocess32 import Popen, PIPE
+import filecmp
+import time
 
 from db_helpers import get_db_session, insert_to_db
 from .. import app
-from ..models import Solution
+from ..models import Solution, ResultCodes, Problem
 
 """
 This module is responsible for executing and checking code
@@ -12,7 +14,7 @@ This module is responsible for executing and checking code
 
 
 def start(solution_code, user_id, code_lang, problem_id):
-    _create_solution(solution_code, user_id, code_lang, problem_id)
+    return _create_solution(solution_code, user_id, code_lang, problem_id)
 
 
 def _create_solution(solution_code, user_id, code_lang, problem_id):
@@ -36,8 +38,15 @@ def _create_solution(solution_code, user_id, code_lang, problem_id):
                         user_id=user_id,
                         problem_id=problem_id)
     db_session = get_db_session()
-    insert_to_db(db_session, solution)
-    _generate_output_file(solution)
+    problem = db_session.query(Problem).filter_by(id=problem_id).one()
+    problem.attempts += 1
+    _generate_output_file(solution, problem)
+    result = solution.result_code
+    if result == ResultCodes.CORRECT_ANSWER:
+        problem.successful_submission += 1
+    insert_to_db(db_session, solution, dont_close_session=True)
+    insert_to_db(db_session, problem)
+    return result
 
 
 def _get_solution_details(solution_id):
@@ -73,7 +82,7 @@ def _generate_solution_file(solution):
     return solution_path, solution_directory
 
 
-def _generate_output_file(solution):
+def _generate_output_file(solution, problem):
     command = ""
     solution_file_path, solution_directory = _generate_solution_file(solution)
     output_file_path = os.path.join(solution_directory, "out.txt")
@@ -89,7 +98,24 @@ def _generate_output_file(solution):
 
     # TODO: try for any alternative of shell=True
     process = Popen(command, shell=True, stderr=PIPE)
+    pid = int(process.pid)
+    resource_use = os.wait4(pid, 0)[2]
     error = process.stderr.read()
+    solution.time_of_exec=resource_use.ru_stime
     # TODO: do some error work
     print "MyERROR---------------"
     print error
+    if error is None or error == '':
+        user_output_file_path = os.path.join(app.config['SOLUTION_FILES_DEST'],
+                                             solution.user_id, 'out.txt')
+        output_test_file_path = os.path.join(app.config['TEST_CASE_FILES_DEST'],
+                                             solution.problem_id, 'outputs',
+                                             'out.txt')
+        compare_files = filecmp.cmp(user_output_file_path,
+                                    output_test_file_path)
+        if compare_files:
+            solution.result_code = ResultCodes.CORRECT_ANSWER
+        else:
+            solution.result_code = ResultCodes.WRONG_ANSWER
+    else:
+        solution.result_code = ResultCodes.COMPILE_ERROR

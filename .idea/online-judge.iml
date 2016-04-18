@@ -7,6 +7,12 @@
     <orderEntry type="library" name="jquery-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="jquery-2.1.1" level="application" />
     <orderEntry type="library" name="materialize" level="application" />
+    <orderEntry type="library" name="ckeditor" level="application" />
+    <orderEntry type="library" name="codemirror" level="application" />
+    <orderEntry type="library" name="matchbrackets" level="application" />
+    <orderEntry type="library" name="show-hint" level="application" />
+    <orderEntry type="library" name="clike" level="application" />
+    <orderEntry type="library" name="active-line" level="application" />
   </component>
   <component name="PyDocumentationSettings">
     <option name="myDocStringFormat" value="Google" />

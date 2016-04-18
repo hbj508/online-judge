@@ -1,34 +1,34 @@
 {% extends "main_layout.html" %}
 {% block extra_css %}
     <!-- codemirror -->
-    <link rel="stylesheet" href="{{ url_for('static',filename='codemirror/lib/codemirror.css') }}">
-    <script src="{{ url_for('static',filename='codemirror/lib/codemirror.js') }}"></script>
-    <script src="{{ url_for('static',filename='codemirror/addon/edit/matchbrackets.js') }}"></script>
-    <link rel="stylesheet" href="{{ url_for('static',filename='codemirror/addon/hint/show-hint.css') }}">
-    <script src="{{ url_for('static',filename='codemirror/addon/hint/show-hint.js') }}"></script>
-    <script src="{{ url_for('static',filename='codemirror/mode/clike/clike.js') }}"></script>
-    <script src="{{ url_for('static',filename='codemirror/addon/selection/active-line.js') }}"></script>
-    <script src="{{ url_for('static',filename='codemirror/addon/edit/matchbrackets.js') }}"></script>
-    <style>.CodeMirror {
-        border: 2px inset #dee;
-    }</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/codemirror.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/addon/edit/matchbrackets.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/addon/hint/show-hint.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/addon/hint/show-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/mode/clike/clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/addon/selection/active-line.min.js"></script>
 
     <!-- theme -->
-    <link rel="stylesheet" href="{{ url_for('static',filename='codemirror/lib/codemirror.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='codemirror/theme/3024-day.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='codemirror/theme/3024-night.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='codemirror/theme/abcdef.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='codemirror/theme/base16-dark.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='codemirror/theme/ambiance.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/theme/3024-day.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/theme/3024-night.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/theme/cobalt.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/theme/blackboard.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/theme/ambiance.min.css">
+
+    <!-- result css -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/result.css') }}">
 {% endblock %}
 
 {% block main %}
     <div class="row">
-        <div class="col s12">
-            <ul class="tabs">
+        <div class="col s12" style="padding-left: 0px; padding-right: 0px;">
+            <ul class="tabs" style="width: 100%;">
                 <li class="tab col s3"><a class="active" href="#test1">Problem</a></li>
-                <li class="tab col s3"><a href="#test2">Code Editor</a></li>
+                <li class="tab col s3"><a href="#test2" class="">Code Editor</a></li>
                 <div class="col s6 offset-s6"><span class="flow-text"></span></div>
+                <div class="indicator" style="right: 975px; left: 0px;"></div>
             </ul>
         </div>
     </div>
@@ -49,10 +49,10 @@
             <li>
                 <div class="collapsible-header">Input</div>
                 <div class="collapsible-body" style="padding:20px">
-                        {{ problem.input_format | safe }}
-                        <br>
-                        Sample Input: <br>
-                        {{ problem.sample_input | safe }}
+                    {{ problem.input_format | safe }}
+                    <br>
+                    Sample Input: <br>
+                    {{ problem.sample_input | safe }}
                 </div>
             </li>
 
@@ -60,9 +60,9 @@
             <li>
                 <div class="collapsible-header">output</div>
                 <div class="collapsible-body" style="padding:20px">
-                        {{ problem.output_format | safe }}
-                        Sample Output: <br>
-                        {{ problem.sample_output | safe }}
+                    {{ problem.output_format | safe }}
+                    Sample Output: <br>
+                    {{ problem.sample_output | safe }}
                 </div>
             </li>
 
@@ -70,7 +70,7 @@
             <li>
                 <div class="collapsible-header">Constraints</div>
                 <div class="collapsible-body" style="padding:20px">
-                        {{ problem.constraints | safe }}
+                    {{ problem.constraints | safe }}
                 </div>
             </li>
         </ul>
@@ -85,17 +85,19 @@
             </ul>
         </div>
 
+        {# JAVA #}
         <div id="java" class="col s12">
-            <form action="{{ url_for('problem_solving',problem_id=problem.id) }}" method="post">
+            <form method="post">
                 <div class="row">
                     <p>
                         <span class="col s1">Select a theme: </span>
                         <select class="col s3 browser-default" onchange="selectTheme()" id="select">
                             <option selected>default</option>
+                            <option>3024-day</option>
+                            <option>3024-night</option>
+                            <option>cobalt</option>
+                            <option>blackboard</option>
                             <option>ambiance</option>
-                            <option>base16-dark</option>
-                            <option>base16-light</option>
-                            <option>bespin</option>
                         </select>
                         <input class="col s3" name="code_lang" value="java" style="visibility: collapse;">
                     </p>
@@ -104,13 +106,16 @@
 			</textarea>
                 <div class="row right">
                     <div class="col s6 offset-s6"><span class="flow-text"></span></div>
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <button class="btn waves-effect waves-light modal-trigger" href="#result-modal"
+                            id="java-submit">
+                        Submit
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
             </form>
         </div>
 
+        {# C #}
         <div id="c" class="col s12">
             <form action="{{ url_for('problem_solving',problem_id=problem.id) }}" method="post">
                 <div class="row">
@@ -118,10 +123,11 @@
                         <span class="col s1">Select a theme: </span>
                         <select class="col s3 browser-default" onchange="cselectTheme()" id="cselect">
                             <option selected>default</option>
+                            <option>3024-day</option>
+                            <option>3024-night</option>
+                            <option>cobalt</option>
+                            <option>blackboard</option>
                             <option>ambiance</option>
-                            <option>base16-dark</option>
-                            <option>base16-light</option>
-                            <option>bespin</option>
                         </select>
                         <input class="col s3" name="code_lang" value="c" style="visibility: collapse;">
                     </p>
@@ -137,6 +143,7 @@
             </form>
         </div>
 
+        {# CPP #}
         <div id="cpp" class="col s12">
             <form action="{{ url_for('problem_solving',problem_id=problem.id) }}" method="post">
                 <div class="row">
@@ -144,10 +151,11 @@
                         <span class="col s1">Select a theme: </span>
                         <select class="col s3 browser-default" onchange="cppselectTheme()" id="cppselect">
                             <option selected>default</option>
+                            <option>3024-day</option>
+                            <option>3024-night</option>
+                            <option>cobalt</option>
+                            <option>blackboard</option>
                             <option>ambiance</option>
-                            <option>base16-dark</option>
-                            <option>base16-light</option>
-                            <option>bespin</option>
                         </select>
                         <input class="col s3" name="code_lang" value="cpp" style="visibility: collapse;">
                     </p>
@@ -163,6 +171,29 @@
             </form>
         </div>
     </div>
+
+    <!------------Result Modal---------->
+    <div id="result-modal" class="modal center-align">
+        <div class="modal-content">
+            <h4>Waiting for result</h4>
+            <div class="preloader-wrapper active">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+    </div>
 {% endblock %}
 
 {% block extra_post_scripts %}
@@ -170,5 +201,80 @@
     <script type="text/javascript" src="{{ url_for('static',filename='js/ceditor.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static',filename='js/cppeditor.js') }}"></script>
     <script type="text/javascript">
+        var problem_id = {{ problem.id }};
+        var problem_title = "{{ problem.title }}";
+        var execution_time = 3.0;
+        var result_verdict;
+        var $SCRIPT_ROOT = {{ request.script_root | tojson | safe }};
+
+        var result_str;
+        var result_class;
+        var result_code;
+        var load_content_str;
+
+        $(document).ready(
+                $('#java-submit').bind('click', function () {
+                    if (load_content_str == undefined)
+                        load_content_str = $('.modal-content').html();
+                    $('.modal-content').html(load_content_str);
+                    $.post(
+                            $SCRIPT_ROOT + "/_get_result",
+                            {
+                                code: Editor.getValue(),
+                                code_lang: $('input[name="code_lang"]').val(),
+                                user_id: {{ user.id }},
+                                problem_id:{{ problem.id }}
+                            },
+                            function (data) {
+                                result_code = data.result;
+                                switch (result_code) {
+                                    case "AC":
+                                        result_verdict = "Correct Answer";
+                                        result_class = "code-accepted";
+                                        break;
+                                    case "SE":
+                                        result_verdict = "Server Error";
+                                        result_class = "server-error";
+                                        break;
+                                    case "TLE":
+                                        result_verdict = "Time Limit Exceeded";
+                                        result_class = "code-time-limit";
+                                        break;
+                                    case "WA":
+                                        result_verdict = "Wrong Answer";
+                                        result_class = "code-wrong";
+                                        break;
+                                    case "NZEC":
+                                        result_verdict = "Compile Error";
+                                        result_class = "code-compile-error";
+                                        break;
+                                }
+                                result_str =
+                                        "<h4 class='" + result_class + "'>" + result_verdict + "</h4>" +
+                                        "<table class='striped container'>" +
+                                        "   <tbody>" +
+                                        "   <tr>" +
+                                        "       <td> <strong>Problem Code</strong> </td>" +
+                                        "       <td>" + problem_id + "</td> " +
+                                        "   </tr>" +
+                                        "   <tr> " +
+                                        "       <td> <strong>Problem Title</strong> </td> " +
+                                        "       <td>" + problem_title + "</td>" +
+                                        "   <tr> " +
+                                        "       <td><strong>Execution time</strong></td> " +
+                                        "       <td>" + execution_time + "s</td> " +
+                                        "   </tr> " +
+                                        "   </tbody> " +
+                                        "</table>";
+                                $(".modal-content").html(result_str);
+                            },
+                            'json'
+                    );
+                    return false;
+                })
+        );
+        $(document).ready(function () {
+            $('.modal-trigger').leanModal();
+        });
     </script>
 {% endblock %}
