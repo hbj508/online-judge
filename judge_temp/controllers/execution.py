@@ -1,9 +1,8 @@
 import datetime
 import os
-from subprocess32 import Popen, PIPE
+from subprocess32 import PIPE, TimeoutExpired, check_output, STDOUT, CalledProcessError
+from psutil import Popen
 import filecmp
-import time
-
 from db_helpers import get_db_session, insert_to_db
 from .. import app
 from ..models import Solution, ResultCodes, Problem
@@ -40,13 +39,13 @@ def _create_solution(solution_code, user_id, code_lang, problem_id):
     db_session = get_db_session()
     problem = db_session.query(Problem).filter_by(id=problem_id).one()
     problem.attempts += 1
-    _generate_output_file(solution, problem)
+    execution_time = _generate_output_file(solution, problem)
     result = solution.result_code
     if result == ResultCodes.CORRECT_ANSWER:
         problem.successful_submission += 1
     insert_to_db(db_session, solution, dont_close_session=True)
     insert_to_db(db_session, problem)
-    return result
+    return result, execution_time
 
 
 def _get_solution_details(solution_id):
@@ -86,26 +85,40 @@ def _generate_output_file(solution, problem):
     command = ""
     solution_file_path, solution_directory = _generate_solution_file(solution)
     output_file_path = os.path.join(solution_directory, "out.txt")
-    if solution.lang_ext == 'java':
-        command = " javac " + solution_file_path + " && java -cp " + solution_directory + " Solution \
-                    > " + output_file_path
-    elif solution.lang_ext == 'c':
-        command = " gcc " + solution_file_path + " && ./a.out \
-                    > " + output_file_path
-    elif solution.lang_ext == 'cpp':
-        command = " g++ " + solution_file_path + " && ./a.out \
-                    > " + output_file_path
-
     # TODO: try for any alternative of shell=True
-    process = Popen(command, shell=True, stderr=PIPE)
-    pid = int(process.pid)
-    resource_use = os.wait4(pid, 0)[2]
-    error = process.stderr.read()
-    solution.time_of_exec=resource_use.ru_stime
-    # TODO: do some error work
-    print "MyERROR---------------"
-    print error
-    if error is None or error == '':
+    try:
+        time_limit = int(problem.time_limit)
+
+        if solution.lang_ext == 'java':
+            time_limit *= 2
+            compile_command = " javac " + solution_file_path
+            command = "timeout " + str(
+                time_limit) + " java -cp '" + solution_directory + "' " + " Solution > " + output_file_path
+            print command
+        elif solution.lang_ext == 'c':
+            compile_command = " gcc -o " + solution_directory + "/Solution " + solution_file_path
+            command = "timeout " + str(time_limit) + " " + solution_directory + "/Solution > " + output_file_path
+        elif solution.lang_ext == 'cpp':
+            compile_command = "g++ -o " + solution_directory + "/Solution " + solution_file_path
+            command = "timeout " + str(time_limit) + " " + solution_directory + "/Solution > " + output_file_path
+
+        print compile_command
+        check_output(compile_command, shell=True, stderr=STDOUT)
+        process = Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
+        execution_time = process.cpu_times()[0]
+        stdout, stderr = process.communicate()
+
+        print "stdout::::" + stdout
+        print "stderr::::" + stderr
+        print "exit-code:::::::::" + str(process.returncode)
+        print execution_time
+
+        error = stderr
+        if process.returncode == 124:
+            raise TimeoutExpired(command, timeout=time_limit, output=str(stderr))
+        if error != '':
+            raise CalledProcessError(process.returncode, command, output=str(error))
+
         user_output_file_path = os.path.join(app.config['SOLUTION_FILES_DEST'],
                                              solution.user_id, 'out.txt')
         output_test_file_path = os.path.join(app.config['TEST_CASE_FILES_DEST'],
@@ -117,5 +130,14 @@ def _generate_output_file(solution, problem):
             solution.result_code = ResultCodes.CORRECT_ANSWER
         else:
             solution.result_code = ResultCodes.WRONG_ANSWER
-    else:
+    except TimeoutExpired as e:
+        print e.cmd
+        print e.output
+        solution.result_code = ResultCodes.TIME_LIMIT_EXCEED
+        execution_time = time_limit + 0.001
+    except CalledProcessError as c:
+        print c.output
         solution.result_code = ResultCodes.COMPILE_ERROR
+        execution_time = 0.0
+
+    return "{0:.3f}".format(execution_time)

@@ -5,8 +5,14 @@ import java.io.*;
 /* Name of the class has to be "Solution" only if the class is public. */ 
 public class Solution 
 { 
-   public static void main (String[] args) throws java.lang.Exception 
+  	public static int fun()
+    {
+      int a =0,b=1;
+      return b;
+    }
+  
+   public static void main (String[] args)
    { 
-       // your code goes here 
+       fun();
    } 
 }

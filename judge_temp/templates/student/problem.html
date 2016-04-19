@@ -117,7 +117,7 @@
 
         {# C #}
         <div id="c" class="col s12">
-            <form action="{{ url_for('problem_solving',problem_id=problem.id) }}" method="post">
+            <form method="post">
                 <div class="row">
                     <p>
                         <span class="col s1">Select a theme: </span>
@@ -135,8 +135,9 @@
 		<textarea id="ccode" name="code">
 		</textarea>
                 <div class="row right">
-                    <div class="col s6 offset-s6"><span class="flow-text"></span></div>
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <button class="btn waves-effect waves-light modal-trigger" href="#result-modal"
+                        id = "c-submit">
+                        Submit
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
@@ -145,7 +146,7 @@
 
         {# CPP #}
         <div id="cpp" class="col s12">
-            <form action="{{ url_for('problem_solving',problem_id=problem.id) }}" method="post">
+            <form method="post">
                 <div class="row">
                     <p>
                         <span class="col s1">Select a theme: </span>
@@ -164,7 +165,9 @@
 		</textarea>
                 <div class="row right">
                     <div class="col s6 offset-s6"><span class="flow-text"></span></div>
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <button class="btn waves-effect waves-light modal-trigger" href="#result-modal"
+                        id = "cpp-submit">
+                        Submit
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
@@ -203,7 +206,7 @@
     <script type="text/javascript">
         var problem_id = {{ problem.id }};
         var problem_title = "{{ problem.title }}";
-        var execution_time = 3.0;
+        var execution_time;
         var result_verdict;
         var $SCRIPT_ROOT = {{ request.script_root | tojson | safe }};
 
@@ -211,22 +214,38 @@
         var result_class;
         var result_code;
         var load_content_str;
+        var solution_code;
+        var code_lang;
+    $(document).ready(
+                $('button').bind('click', function () {
+                    if(this.id == 'java-submit') {
+                        solution_code = Editor.getValue();
+                        code_lang = 'java';
+                    }
+                    else if(this.id=="c-submit") {
+                        solution_code = cEditor.getValue();
+                        code_lang = 'c';
+                    }
+                    else
+                    {
+                        solution_code = cppEditor.getValue();
+                        code_lang='cpp';
+                    }
 
-        $(document).ready(
-                $('#java-submit').bind('click', function () {
                     if (load_content_str == undefined)
                         load_content_str = $('.modal-content').html();
                     $('.modal-content').html(load_content_str);
                     $.post(
                             $SCRIPT_ROOT + "/_get_result",
                             {
-                                code: Editor.getValue(),
-                                code_lang: $('input[name="code_lang"]').val(),
+                                code: solution_code,
+                                code_lang: code_lang,
                                 user_id: {{ user.id }},
                                 problem_id:{{ problem.id }}
                             },
                             function (data) {
                                 result_code = data.result;
+                                execution_time = data.time;
                                 switch (result_code) {
                                     case "AC":
                                         result_verdict = "Correct Answer";

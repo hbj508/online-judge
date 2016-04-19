@@ -128,6 +128,6 @@ def get_result():
     code_lang = request.form['code_lang']
     user_id = request.form['user_id']
     problem_id = request.form['problem_id']
-    result = controllers.execution.start(solution_code, user_id, code_lang, problem_id)
+    result, exec_time = controllers.execution.start(solution_code, user_id, code_lang, problem_id)
     print "RESULT:----------" + result
-    return jsonify(result=result)
+    return jsonify(result=result, time=exec_time)
