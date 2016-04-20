@@ -1,0 +1,48 @@
+{% extends "main_layout.html" %}
+{% block main %}
+    <div class="container">
+        <table class="striped">
+
+            <thead>
+            <tr>
+                <th data-field="id">{{ user.id }}</th>
+                <th data-field="name">Statistics</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>Problems Solved</td>
+                <td>
+                    {% for solution in problem_solved_ids %}
+                    <a href="{{ url_for('problem_solving',problem_id=solution.problem_id) }}" class="chip">
+                        PROB_ID_{{ solution.problem_id }}
+                    </a>
+                    {% endfor %}
+                </td>
+            </tr>
+
+            <tr>
+                <td>Problems Attempted</td>
+                <td>{{ problem_attempted }}</td>
+            </tr>
+            <tr>
+                <td>Correct Answer</td>
+                <td>{{ problem_correct_ans }}</td>
+            </tr>
+            <tr>
+                <td>Wrong Answer</td>
+                <td>{{ problem_wrong_ans }}</td>
+            </tr>
+            <tr>
+                <td>Time Limit Exceeded</td>
+                <td>{{ problem_tle }}</td>
+            </tr>
+            <tr>
+                <td>Compilation Error</td>
+                <td>{{ problem_compile_err }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,7 +1,7 @@
 import os
 from . import app
 from flask import render_template, request, redirect, session, url_for, flash, jsonify
-from models import User, Problem
+from models import User, Problem, Solution, ResultCodes
 from models import TestCaseFileType
 from forms import RegistrationForm, ProblemForm
 import controllers as ctrl
@@ -130,3 +130,39 @@ def get_result():
     problem_id = request.form['problem_id']
     result, exec_time = controllers.execution.start(solution_code, user_id, code_lang, problem_id)
     return jsonify(result=result, time=exec_time)
+
+
+@app.route('/dashboard')
+def dashboard():
+    user_id = session['username']
+    user = get_db_session().query(User).filter_by(id=user_id).one()
+
+    problem_solved_ids = \
+        get_db_session().query(Solution) \
+            .filter_by(user_id=user_id, result_code=ResultCodes.CORRECT_ANSWER) \
+            .distinct(Solution.problem_id) \
+            .with_entities(Solution.problem_id).all()
+
+    problem_attempted = get_db_session().query(Solution).filter_by(user_id=user_id) \
+        .distinct(Solution.problem_id).with_entities(Solution.problem_id).count()
+
+    problem_wrong_ans =get_db_session().query(Solution) \
+            .filter_by(user_id=user_id, result_code=ResultCodes.WRONG_ANSWER).count()
+
+    problem_correct_ans = get_db_session().query(Solution) \
+        .filter_by(user_id=user_id, result_code=ResultCodes.CORRECT_ANSWER).count()
+
+    problem_tle = get_db_session().query(Solution) \
+        .filter_by(user_id=user_id, result_code=ResultCodes.TIME_LIMIT_EXCEED).count()
+
+    problem_compile_err = get_db_session().query(Solution) \
+        .filter_by(user_id=user_id, result_code=ResultCodes.COMPILE_ERROR).count()
+
+    return render_template('student/dashboard.html',
+                           user=user,
+                           problem_solved_ids=problem_solved_ids,
+                           problem_attempted=problem_attempted,
+                           problem_correct_ans=problem_correct_ans,
+                           problem_wrong_ans=problem_wrong_ans,
+                           problem_tle=problem_tle,
+                           problem_compile_err=problem_compile_err)
