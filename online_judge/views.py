@@ -1,5 +1,5 @@
 import os
-from . import app
+from . import app, admin
 from flask import render_template, request, redirect, session, url_for, flash, jsonify
 from models import User, Problem, Solution, ResultCodes
 from models import TestCaseFileType
@@ -8,7 +8,6 @@ import controllers as ctrl
 from controllers.db_helpers import get_db_session, insert_to_db
 import controllers.file_operations as file_op
 import controllers.execution
-from sqlalchemy import update
 
 
 @app.route('/', methods=['GET', 'POST'])

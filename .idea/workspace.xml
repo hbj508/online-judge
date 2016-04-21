@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="220af15b-61bc-4912-896f-944da155a5a8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/online_judge/templates/help.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/online_judge/controllers/file_operations.py" afterPath="$PROJECT_DIR$/online_judge/controllers/file_operations.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/online_judge/templates/forms/profile.html" afterPath="$PROJECT_DIR$/online_judge/templates/forms/profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/online_judge/templates/main_layout.html" afterPath="$PROJECT_DIR$/online_judge/templates/main_layout.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/online_judge/templates/student/dashboard.html" afterPath="$PROJECT_DIR$/online_judge/templates/student/dashboard.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/online_judge/templates/student/practice.html" afterPath="$PROJECT_DIR$/online_judge/templates/student/practice.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/online_judge/templates/student/problem.html" afterPath="$PROJECT_DIR$/online_judge/templates/student/problem.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/online_judge/templates/admin/index.html" afterPath="$PROJECT_DIR$/online_judge/templates/admin/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/online_judge/views.py" afterPath="$PROJECT_DIR$/online_judge/views.py" />
     </list>
     <ignored path="online-judge.iws" />
@@ -26,7 +20,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/online-judge$models.coverage" NAME="models Coverage Results" MODIFIED="1460743579436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/judge_temp" />
     <SUITE FILE_PATH="coverage/online-judge$run.coverage" NAME="run Coverage Results" MODIFIED="1460739887191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/online_judge$online_judge.coverage" NAME="online-judge Coverage Results" MODIFIED="1461242475601" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/online_judge$online_judge.coverage" NAME="online-judge Coverage Results" MODIFIED="1461246429304" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/online-judge$forms.coverage" NAME="forms Coverage Results" MODIFIED="1460739923285" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/judge_temp" />
     <SUITE FILE_PATH="coverage/online-judge$Unittests_in_online_judge.coverage" NAME="Unittests in online-judge Coverage Results" MODIFIED="1461064568786" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/online-judge$online_judge.coverage" NAME="online-judge Coverage Results" MODIFIED="1461064591811" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -47,11 +41,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/online_judge/models.py">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/online_judge/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="156" column="18" selection-start-line="156" selection-start-column="18" selection-end-line="156" selection-end-column="18" />
+            <state relative-caret-position="126">
+              <caret line="174" column="13" selection-start-line="174" selection-start-column="13" selection-end-line="174" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/online_judge/templates/admin/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -74,7 +80,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/judge_temp/templates/practice.html" />
         <option value="$PROJECT_DIR$/judge_temp/static/js/ceditor.js" />
         <option value="$PROJECT_DIR$/judge_temp/static/js/cppeditor.js" />
         <option value="$PROJECT_DIR$/judge_temp/templates/main_layout.html" />
@@ -107,7 +112,6 @@
         <option value="$PROJECT_DIR$/judge_temp/templates/student/problem.html" />
         <option value="$PROJECT_DIR$/config.py" />
         <option value="$PROJECT_DIR$/online_judge/templates/forms/registration_success.html" />
-        <option value="$PROJECT_DIR$/online_judge/__init__.py" />
         <option value="$PROJECT_DIR$/online_judge/templates/forms/add_problem_new.html" />
         <option value="$PROJECT_DIR$/online_judge/controllers/execution.py" />
         <option value="$PROJECT_DIR$/online_judge/controllers/db_helpers.py" />
@@ -122,9 +126,11 @@
         <option value="$PROJECT_DIR$/online_judge/templates/student/problem.html" />
         <option value="$PROJECT_DIR$/online_judge/templates/forms/profile.html" />
         <option value="$PROJECT_DIR$/online_judge/templates/help.html" />
-        <option value="$PROJECT_DIR$/online_judge/views.py" />
         <option value="$PROJECT_DIR$/online_judge/templates/main_layout.html" />
         <option value="$PROJECT_DIR$/online_judge/models.py" />
+        <option value="$PROJECT_DIR$/online_judge/templates/admin/index.html" />
+        <option value="$PROJECT_DIR$/online_judge/__init__.py" />
+        <option value="$PROJECT_DIR$/online_judge/views.py" />
       </list>
     </option>
   </component>
@@ -204,20 +210,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="online_judge" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="online_judge" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="online_judge" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="online_judge" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="online_judge" />
@@ -675,7 +667,14 @@
       <option name="project" value="LOCAL" />
       <updated>1461224447625</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="help page added">
+      <created>1461244323242</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1461244323242</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -764,18 +763,16 @@
     <MESSAGE value="partially production ready" />
     <MESSAGE value="dashboard added" />
     <MESSAGE value="basic profile page added" />
-    <option name="LAST_COMMIT_MESSAGE" value="basic profile page added" />
+    <MESSAGE value="help page added" />
+    <option name="LAST_COMMIT_MESSAGE" value="help page added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/judge_temp/static/rawFiles/solutionFiles/1031210005/Solution.java" />
-    <entry file="file://$PROJECT_DIR$/judge_temp/static/css/result.css" />
-    <entry file="file://$PROJECT_DIR$/judge_temp/templates/forms/add_problem.html" />
     <entry file="file://$PROJECT_DIR$/judge_temp/static/js/ceditor.js" />
     <entry file="file://$PROJECT_DIR$/judge_temp/templates/admin/edit.html" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/bcc7c1cf-81a3-45de-93b1-cf6117d03588/console.sql">
@@ -822,13 +819,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/online_judge/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -883,13 +873,6 @@
         <state relative-caret-position="269">
           <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1006,16 +989,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/online_judge/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="27" column="50" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/online_judge/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="106">
@@ -1024,10 +997,60 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/flask_admin/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3109">
+          <caret line="457" column="8" selection-start-line="457" selection-start-column="8" selection-end-line="457" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/flask/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="975" column="0" selection-start-line="975" selection-start-column="0" selection-end-line="975" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_judge/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/online_judge/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
+        <state relative-caret-position="2718">
           <caret line="156" column="18" selection-start-line="156" selection-start-column="18" selection-end-line="156" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_judge/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="174" column="13" selection-start-line="174" selection-start-column="13" selection-end-line="174" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_judge/templates/admin/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
           <folding />
         </state>
       </provider>
