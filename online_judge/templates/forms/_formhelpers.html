@@ -1,26 +1,26 @@
-{% macro render_subfield(field,icon,colSize='s12',type=None, class=None) %}
+{% macro render_subfield(field,icon,colSize,type, class, value, disabled,label) %}
     <div class="input-field col {{ colSize }}">
-            {% if icon %}
-                <i class="material-icons prefix">{{ icon }}</i>
-            {% endif %}
-            {% if type %}
-                {{ field(class='validate', type=type, **kwargs) | safe }}
-            {% elif class %}
-                {{ field(class=class, **kwargs) | safe }}
-            {% else %}
-                {{ field(**kwargs) | safe }}
-            {% endif %}
-            {{ field.label }}
-        </div>
-        {% if field.errors %}
-            {% for error in field.errors %}
-                <span class="error right"> {{ error }}</span>
-            {% endfor %}
+        {% if icon %}
+            <i class="material-icons prefix">{{ icon }}</i>
         {% endif %}
+        {% if type %}
+            {{ field(class=class + ' validate',disabled=disabled ,value=value, type=type, **kwargs) | safe }}
+        {% else %}
+            {{ field(class=class,disabled=disabled,value=value,**kwargs) | safe }}
+        {% endif %}
+        {% if label %}
+            {{ field.label }}
+        {% endif %}
+    </div>
+    {% if field.errors %}
+        {% for error in field.errors %}
+            <span class="error right"> {{ error }}</span>
+        {% endfor %}
+    {% endif %}
 {% endmacro %}
 
-{% macro render_field(field,icon,colSize='s12',type=None, class=None) %}
+{% macro render_field(field,icon,colSize='s12',type='', class='', value='',disabled=False,label=True) %}
     <div class="row">
-        {{ render_subfield(field,icon,colSize,type,class) }}
+        {{ render_subfield(field,icon,colSize,type,class,value,disabled,label) }}
     </div>
 {% endmacro %}

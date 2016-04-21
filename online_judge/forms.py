@@ -3,6 +3,7 @@ from flask.ext.wtf import Form
 from flask.ext.wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import StringField, PasswordField, IntegerField, SelectField, TextAreaField, SubmitField
 from controllers.db_helpers import get_db_session
+from controllers.file_operations import profile_pics
 from models import User
 
 """
@@ -101,3 +102,12 @@ class ProblemForm(Form):
     input_test_case_file = FileField('Input Test Case File', validators=[FileRequired()])
     output_test_case_file = FileField('Output Test case File', validators=[FileRequired()])
     submit = SubmitField('Submit')
+
+
+class ProfileForm(Form):
+    first_name = StringField('First Name', [validators.Length(max=20, message="too long")])
+    last_name = StringField('Last Name', [validators.Length(max=20, message="too long")])
+    password = PasswordField('Password', [validators.Length(min=5, max=20, message="Minimum 5 characters")])
+    contact_no = IntegerField('Contact No')
+    profile_pic = FileField(validators=[FileRequired(),FileAllowed(profile_pics,
+                                                                   message="Only image files")])

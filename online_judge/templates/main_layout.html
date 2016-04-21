@@ -47,9 +47,9 @@
         </div>
         <div class="row">{{ user.first_name }} {{ user.last_name }}</div>
         <div class="row" style="margin-bottom: 30px">{{ user.id }}</div>
-        <li><a href="#"><i class="material-icons">account_circle</i>Profile</a></li>
+        <li><a href="{{ url_for('profile') }}"><i class="material-icons">account_circle</i>Profile</a></li>
         <li><a href="{{ url_for('dashboard') }}"><i class="material-icons">timeline</i>Dashboard</a></li>
-        <li class="active"><a href="{{ url_for('practice') }}"><i class="material-icons">fitness_center</i>Practice</a></li>
+        <li><a href="{{ url_for('practice') }}"><i class="material-icons">fitness_center</i>Practice</a></li>
         <li><a href="#"><i class="material-icons">assignment</i>Assignment</a></li>
         <li><a href="#"><i class="material-icons">code</i>Test</a></li>
         <li><a href="#"><i class="material-icons">info</i>Help</a></li>
@@ -63,11 +63,9 @@
 
 {% block extra_post_scripts %}
 {% endblock %}
+
 <script type="text/javascript">
-    $(".side-nav").click(function () {
-        $(".side-nav li.active").removeClass("active");
-        $(this).addClass("active");
-    })
 </script>
+
 </body>
 </html>

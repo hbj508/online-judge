@@ -3,11 +3,12 @@ from . import app
 from flask import render_template, request, redirect, session, url_for, flash, jsonify
 from models import User, Problem, Solution, ResultCodes
 from models import TestCaseFileType
-from forms import RegistrationForm, ProblemForm
+from forms import RegistrationForm, ProblemForm, ProfileForm
 import controllers as ctrl
 from controllers.db_helpers import get_db_session, insert_to_db
 import controllers.file_operations as file_op
 import controllers.execution
+from sqlalchemy import update
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -128,7 +129,8 @@ def get_result():
     code_lang = request.form['code_lang']
     user_id = request.form['user_id']
     problem_id = request.form['problem_id']
-    result, exec_time = controllers.execution.start(solution_code, user_id, code_lang, problem_id)
+    result, exec_time = controllers.execution.start(solution_code, user_id,
+                                                    code_lang, problem_id)
     return jsonify(result=result, time=exec_time)
 
 
@@ -146,8 +148,8 @@ def dashboard():
     problem_attempted = get_db_session().query(Solution).filter_by(user_id=user_id) \
         .distinct(Solution.problem_id).with_entities(Solution.problem_id).count()
 
-    problem_wrong_ans =get_db_session().query(Solution) \
-            .filter_by(user_id=user_id, result_code=ResultCodes.WRONG_ANSWER).count()
+    problem_wrong_ans = get_db_session().query(Solution) \
+        .filter_by(user_id=user_id, result_code=ResultCodes.WRONG_ANSWER).count()
 
     problem_correct_ans = get_db_session().query(Solution) \
         .filter_by(user_id=user_id, result_code=ResultCodes.CORRECT_ANSWER).count()
@@ -166,3 +168,18 @@ def dashboard():
                            problem_wrong_ans=problem_wrong_ans,
                            problem_tle=problem_tle,
                            problem_compile_err=problem_compile_err)
+
+
+@app.route('/profile', methods=['GET', 'POST'])
+def profile():
+    user_id = session['username']
+    user = get_db_session().query(User).filter_by(id=user_id).one()
+    user_form = ProfileForm(csrf_enabled=False, obj=user)
+    if request.method == 'POST':
+        user.first_name = user_form.first_name.data
+        user.last_name = user_form.last_name.data
+        if user_form.password.data != '':
+            user.password = user_form.password.data
+        user.contact_no = user_form.contact_no.data
+        get_db_session().commit()
+    return render_template('forms/profile.html', user=user, form=user_form)

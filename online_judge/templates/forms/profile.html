@@ -1,0 +1,25 @@
+{% extends 'main_layout.html' %}
+{% block main %}
+    <div class="container">
+        <h4>
+            My Profile
+        </h4>
+        <hr>
+        <br>
+        {% from 'forms/_formhelpers.html' import render_field,render_subfield %}
+        <form method="post" enctype="application/x-www-form-urlencoded">
+            {{ render_field(form.first_name,value=user.first_name) }}
+            {{ render_field(form.last_name,value=user.last_name) }}
+            {{ render_field(form.password,value=user.password) }}
+            {{ render_field(form.contact_no,value=user.contact_no) }}
+            <br>
+            <strong>Profile Pic</strong>
+            {{ render_field(form.profile_pic,label=False) }}
+            <div class="row">
+                <button class="btn waves-effect right" type="submit" name="action">
+                    Submit<i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

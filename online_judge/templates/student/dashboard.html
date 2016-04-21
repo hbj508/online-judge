@@ -1,4 +1,16 @@
 {% extends "main_layout.html" %}
+
+{% block extra_init_scripts %}
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        $('.side-nav li').removeClass('active');
+        $('#dashboard').addClass('active');
+    })
+
+    </script>
+{% endblock %}
+
 {% block main %}
     <div class="container">
         <table class="striped">
