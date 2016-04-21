@@ -21,6 +21,16 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='css/result.css') }}">
 {% endblock %}
 
+{% block extra_init_scripts %}
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        $('.side-nav li').removeClass('active');
+        $('#practice').addClass('active');
+    });
+    </script>
+{% endblock %}
+
 {% block main %}
     <div class="row">
         <div class="col s12" style="padding-left: 0px; padding-right: 0px;">

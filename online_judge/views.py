@@ -15,7 +15,7 @@ from sqlalchemy import update
 @app.route('/index', methods=['GET', 'POST'])
 def index():
     if 'username' in session:
-        return redirect(url_for('practice'))
+        return redirect(url_for('dashboard'))
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -25,7 +25,7 @@ def index():
             db_session.close()
             if user.password == password:
                 session['username'] = username
-                return redirect(url_for('practice'))
+                return redirect(url_for('dashboard'))
             else:
                 raise
         except Exception as e:
@@ -183,3 +183,10 @@ def profile():
         user.contact_no = user_form.contact_no.data
         get_db_session().commit()
     return render_template('forms/profile.html', user=user, form=user_form)
+
+
+@app.route('/help')
+def help():
+    user_id = session['username']
+    user = get_db_session().query(User).filter_by(id=user_id).one()
+    return render_template('help.html', user=user)

@@ -1,4 +1,13 @@
 {% extends "main_layout.html" %}
+{% block extra_init_scripts %}
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        $('.side-nav li').removeClass('active');
+        $('#practice').addClass('active');
+    });
+    </script>
+{% endblock %}
 {% block main %}
     <ul class="collection">
     {% for problem in problems %}

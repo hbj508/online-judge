@@ -44,7 +44,7 @@ def save_profile_pic(pic, reg_no):
             pic(file): Picture file to be saved. It should not exceed 1MB
             reg_no(str): Registration number of student.
     """
-    # TODO: apply check on size of image
+    # TODO: apply check on size7 of image
     profile_pics.save(pic, name=str(reg_no) + "." + get_extension_of_file(pic.filename))
 
 
