@@ -16,7 +16,7 @@
         <hr>
         <br>
         {% from 'forms/_formhelpers.html' import render_field,render_subfield %}
-        <form method="post" enctype="application/x-www-form-urlencoded">
+        <form method="post" enctype="multipart/form-data">
             {{ render_field(form.first_name,value=user.first_name) }}
             {{ render_field(form.last_name,value=user.last_name) }}
             {{ render_field(form.password,value=user.password) }}

@@ -180,6 +180,8 @@ def profile():
         if user_form.password.data != '':
             user.password = user_form.password.data
         user.contact_no = user_form.contact_no.data
+        profile_pic = request.files['profile_pic']
+        file_op.save_profile_pic(profile_pic,user_id)
         get_db_session().commit()
     return render_template('forms/profile.html', user=user, form=user_form)
 

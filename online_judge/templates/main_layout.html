@@ -28,9 +28,7 @@
     <nav>
         <div class="nav-wrapper">
             <ul id="nav-mobile" class="right">
-                <li><a href="#"><i class="material-icons">notifications</i></a></li>
                 <li><a href="{{ url_for('logout') }}">Sign Out</a></li>
-                <li><a href="#"><i class="material-icons">more_vert</i></a></li>
             </ul>
         </div>
     </nav>
@@ -50,7 +48,6 @@
         <li id="dashboard"><a href="{{ url_for('dashboard') }}"><i class="material-icons">timeline</i>Dashboard</a></li>
         <li id="practice"><a href="{{ url_for('practice') }}"><i class="material-icons">fitness_center</i>Practice</a></li>
         <li id="profile"><a href="{{ url_for('profile') }}"><i class="material-icons">account_circle</i>Profile</a></li>
-        <li id="test"><a href="#"><i class="material-icons">code</i>Test</a></li>
         <li id="help"><a href="{{ url_for('help') }}"><i class="material-icons">info</i>Help</a></li>
     </ul>
 </header>

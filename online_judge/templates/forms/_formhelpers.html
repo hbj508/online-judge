@@ -1,12 +1,12 @@
-{% macro render_subfield(field,icon,colSize,type, class, value, disabled,label) %}
+{% macro render_subfield(field,icon,colSize,type, class, value, disabled=False,label=True) %}
     <div class="input-field col {{ colSize }}">
         {% if icon %}
             <i class="material-icons prefix">{{ icon }}</i>
         {% endif %}
         {% if type %}
-            {{ field(class=class + ' validate',disabled=disabled ,value=value, type=type, **kwargs) | safe }}
+            {{ field(class=class + ' validate', disabled=disabled ,value=value, type=type, **kwargs) | safe }}
         {% else %}
-            {{ field(class=class,disabled=disabled,value=value,**kwargs) | safe }}
+            {{ field(class=class, disabled=disabled,value=value,**kwargs) | safe }}
         {% endif %}
         {% if label %}
             {{ field.label }}

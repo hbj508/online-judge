@@ -45,7 +45,13 @@ def save_profile_pic(pic, reg_no):
             reg_no(str): Registration number of student.
     """
     # TODO: apply check on size7 of image
-    profile_pics.save(pic, name=str(reg_no) + "." + get_extension_of_file(pic.filename))
+    filename = str(reg_no) + "." + get_extension_of_file(pic.filename)
+    file_path = os.path.join(app.config['PROFILE_PICS_DEST'], filename)
+
+    if os.path.exists(file_path):
+        os.remove(file_path)
+
+    profile_pics.save(pic, name=filename)
 
 
 def save_test_cases(test_case_file, problem_id, type_of_file):
@@ -62,7 +68,7 @@ def save_test_cases(test_case_file, problem_id, type_of_file):
                         representing whether it's input test case file or output.
     """
     if type_of_file == TestCaseFileType.INPUT:
-        folder_name = os.path.join(str(problem_id),"inputs")
+        folder_name = os.path.join(str(problem_id), "inputs")
         file_name = 'in.txt'
     else:
         folder_name = os.path.join(str(problem_id), "outputs")
