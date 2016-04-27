@@ -85,6 +85,7 @@ def _generate_output_file(solution, problem):
     command = ""
     solution_file_path, solution_directory = _generate_solution_file(solution)
     output_file_path = os.path.join(solution_directory, "out.txt")
+    test_case_dir = app.config['TEST_CASE_FILES_DEST']
     # TODO: try for any alternative of shell=True
     try:
         time_limit = int(problem.time_limit)
@@ -93,17 +94,24 @@ def _generate_output_file(solution, problem):
             time_limit *= 2
             compile_command = " javac " + solution_file_path
             command = "timeout " + str(
-                time_limit) + " java -cp '" + solution_directory + "' " + " Solution > " + output_file_path
+                time_limit) + " java -cp '" + solution_directory + "' " + " < " + test_case_dir + "/" + str(
+                problem.id) + "/inputs/in.txt " + " Solution > " + output_file_path
         elif solution.lang_ext == 'c':
-            compile_command = " gcc -o " + solution_directory + "/Solution " + solution_file_path
+            compile_command = " gcc -o " + " < " + test_case_dir + "/" + str(
+                problem.id) + "/inputs/in.txt " + solution_directory + "/Solution " + solution_file_path
             command = "timeout " + str(time_limit) + " " + solution_directory + "/Solution > " + output_file_path
         elif solution.lang_ext == 'cpp':
-            compile_command = "g++ -o " + solution_directory + "/Solution " + solution_file_path
+            compile_command = "g++ -o " + " < " + test_case_dir + "/" + str(
+                problem.id) + "/inputs/in.txt " + solution_directory + "/Solution " + solution_file_path
             command = "timeout " + str(time_limit) + " " + solution_directory + "/Solution > " + output_file_path
 
+        # print command
+        # print compile_command
         check_output(compile_command, shell=True, stderr=STDOUT)
         process = Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
-        execution_time = process.cpu_times()[0]
+        execution_times = process.cpu_times()
+        # print execution_times
+        execution_time = execution_times[2]
         stdout, stderr = process.communicate()
 
         error = stderr
