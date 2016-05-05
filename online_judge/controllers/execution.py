@@ -113,9 +113,7 @@ def _generate_output_file(solution, problem):
         # print execution_times
         execution_time = resource_usage[2].ru_utime + resource_usage[2].ru_stime
         returncode = resource_usage[1]
-        stderr = process.stderr.read()
-        print stderr
-        error = stderr
+        error = process.stderr.read()
         if returncode == 124:
             raise TimeoutExpired(command, timeout=time_limit, output=str(stderr))
         if error != '':
