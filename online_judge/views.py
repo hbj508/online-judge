@@ -1,5 +1,5 @@
 import os
-from . import app, admin
+from . import app
 from flask import render_template, request, redirect, session, url_for, flash, jsonify
 from models import User, Problem, Solution, ResultCodes
 from models import TestCaseFileType
@@ -8,6 +8,7 @@ import controllers as ctrl
 from controllers.db_helpers import get_db_session, insert_to_db
 import controllers.file_operations as file_op
 import controllers.execution
+import random
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -102,7 +103,7 @@ def practice():
     user = db_session.query(User).filter_by(id=user_id).one()
     problems = db_session.query(Problem).all()
     db_session.close()
-    return render_template('student/practice.html', user=user, problems=problems)
+    return render_template('student/practice.html', user=user, problems=problems, randint=random.randint(1000, 9999))
 
 
 @app.route('/practice/<problem_id>')
@@ -113,7 +114,7 @@ def problem_solving(problem_id):
     user = db_session.query(User).filter_by(id=user_id).one()
     problem = db_session.query(Problem).filter_by(id=problem_id).one()
     db_session.close()
-    return render_template('student/problem.html', user=user, problem=problem)
+    return render_template('student/problem.html', user=user, problem=problem, randint=random.randint(1000, 9999))
 
 
 @app.route('/logout')
@@ -130,7 +131,11 @@ def get_result():
     problem_id = request.form['problem_id']
     result, exec_time = controllers.execution.start(solution_code, user_id,
                                                     code_lang, problem_id)
-    return jsonify(result=result, time=exec_time)
+    error = ""
+    if result == ResultCodes.COMPILE_ERROR:
+        error = exec_time[1]
+        exec_time = exec_time[0]
+    return jsonify(result=result, time=exec_time, error=error)
 
 
 @app.route('/dashboard')
@@ -166,7 +171,8 @@ def dashboard():
                            problem_correct_ans=problem_correct_ans,
                            problem_wrong_ans=problem_wrong_ans,
                            problem_tle=problem_tle,
-                           problem_compile_err=problem_compile_err)
+                           problem_compile_err=problem_compile_err,
+                           randint=random.randint(1000, 9999))
 
 
 @app.route('/profile', methods=['GET', 'POST'])
@@ -181,9 +187,9 @@ def profile():
             user.password = user_form.password.data
         user.contact_no = user_form.contact_no.data
         profile_pic = request.files['profile_pic']
-        file_op.save_profile_pic(profile_pic,user_id)
+        file_op.save_profile_pic(profile_pic, user_id)
         get_db_session().commit()
-    return render_template('forms/profile.html', user=user, form=user_form)
+    return render_template('forms/profile.html', user=user, form=user_form, randint=random.randint(1000, 9999))
 
 
 @app.route('/help')

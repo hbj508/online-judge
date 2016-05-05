@@ -40,7 +40,7 @@
         </div>
         <div class="row">
             <img src="
-                    {{ url_for('static',filename='rawFiles/profilePics/') }}{{ user.id }}.{{ user.profile_pic_extension }}"
+                    {{ url_for('static',filename='rawFiles/profilePics/') }}{{ user.id }}.{{ user.profile_pic_extension }}?q={{ randint }}"
                  class="circle z-depth-3">
         </div>
         <div class="row">{{ user.first_name }} {{ user.last_name }}</div>

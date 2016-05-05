@@ -109,13 +109,14 @@ def _generate_output_file(solution, problem):
         # print compile_command
         check_output(compile_command, shell=True, stderr=STDOUT)
         process = Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
-        execution_times = process.cpu_times()
+        resource_usage = os.wait4(process.pid, 0)
         # print execution_times
-        execution_time = execution_times[2]
-        stdout, stderr = process.communicate()
-
+        execution_time = resource_usage[2].ru_utime + resource_usage[2].ru_stime
+        returncode = resource_usage[1]
+        stderr = process.stderr.read()
+        print stderr
         error = stderr
-        if process.returncode == 124:
+        if returncode == 124:
             raise TimeoutExpired(command, timeout=time_limit, output=str(stderr))
         if error != '':
             raise CalledProcessError(process.returncode, command, output=str(error))
@@ -137,5 +138,15 @@ def _generate_output_file(solution, problem):
     except CalledProcessError as c:
         solution.result_code = ResultCodes.COMPILE_ERROR
         execution_time = 0.0
+        output = c.output
+        if solution.lang_ext == "java":
+            if output[0] != "E":
+                output = output.split("Solution.java")[-1]
+        elif solution.lang_ext == "c":
+            output = output.split("Solution.c")[-1]
+        elif solution.lang_ext == "cpp":
+            output = output.split("Solution.cpp")[-1]
+        output = "Line:" + output
+        return "{0:.3f}".format(execution_time), output
 
     return "{0:.3f}".format(execution_time)
