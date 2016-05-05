@@ -6,6 +6,7 @@ import filecmp
 from db_helpers import get_db_session, insert_to_db
 from .. import app
 from ..models import Solution, ResultCodes, Problem
+import time
 
 """
 This module is responsible for executing and checking code
@@ -108,14 +109,16 @@ def _generate_output_file(solution, problem):
         # print command
         # print compile_command
         check_output(compile_command, shell=True, stderr=STDOUT)
+        start_time = time.time()
         process = Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
-        resource_usage = os.wait4(process.pid, 0)
+        os.wait4(process.pid, 0)
+        end_time = time.time()
         # print execution_times
-        execution_time = resource_usage[2].ru_utime + resource_usage[2].ru_stime
-        returncode = resource_usage[1]
+        execution_time = end_time - start_time
         error = process.stderr.read()
-        if returncode == 124:
-            raise TimeoutExpired(command, timeout=time_limit, output=str(stderr))
+
+        if execution_time > time_limit:
+            raise TimeoutExpired(command, timeout=time_limit, output=str(error))
         if error != '':
             raise CalledProcessError(process.returncode, command, output=str(error))
 
