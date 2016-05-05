@@ -292,9 +292,14 @@
                                         "   <tr> " +
                                         "       <td><strong>Execution time</strong></td> " +
                                         "       <td>" + execution_time + "s</td> " +
-                                        "   </tr> " +
-                                        "   </tbody> " +
-                                        "</table>";
+                                        "   </tr> ";
+                                if (result_code=="NZEC")
+                                   result_str += "<tr class='red-text'>  " +
+                                                "<td> <strong> Error </strong></td>" +
+                                                "<td> <strong>"+ data.error+"</strong> </td>" +
+                                                "</tr> </tbody> </table>";
+                                else
+                                    result_str+= "</tbody></table>";
                                 $(".modal-content").html(result_str);
                             },
                             'json'

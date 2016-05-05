@@ -1,6 +1,6 @@
 #include <iostream> 
 using namespace std; 
-int main() { 
-   cout << 8 << endl;
+int main()  
+   // your code goes here 
    return 0; 
 }
