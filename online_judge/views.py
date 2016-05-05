@@ -196,4 +196,4 @@ def profile():
 def help():
     user_id = session['username']
     user = get_db_session().query(User).filter_by(id=user_id).one()
-    return render_template('help.html', user=user)
+    return render_template('help.html', user=user, randint=random.randint(1000,9999))
